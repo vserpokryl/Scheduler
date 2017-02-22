@@ -18,7 +18,7 @@
 
 ## Установка
 
-*   Скачать репозиторий `git clone https://github.com/Nanografon/Schedule`
+*   Скачать репозиторий `git clone https://github.com/Nanografon/Scheduler`
 *   Переименовать .env.example в .env и заполнить необходимыми опциями.
 *   Запустить команды :
 
