@@ -2,9 +2,9 @@
 # Модуль для составления расписания занятий в высших учебных заведениях
 
 <p align="center">
-    <a href="https://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/github/license/nanografon/schedule.svg" alt="License"></a>
-    <a href="https://travis-ci.org/Nanografon/Schedule"><img src="https://travis-ci.org/Nanografon/Schedule.svg?branch=master" alt="Build Status"></a>
-    <a href="https://styleci.io/repos/82446555"><img src="https://styleci.io/repos/82446555/shield?branch=master" alt="StyleCI"></a>
+    <a href="https://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/github/license/nanografon/scheduler.svg" alt="License"></a>
+    <a href="https://travis-ci.org/Nanografon/Scheduler"><img src="https://travis-ci.org/Nanografon/Scheduler.svg?branch=master" alt="Build Status"></a>
+    <a href="https://styleci.io/repos/82827551"><img src="https://styleci.io/repos/82827551/shield?branch=master" alt="StyleCI"></a>
 </p>
 
 ## Требования для окружения:
