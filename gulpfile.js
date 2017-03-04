@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const path = require('path');
 const File = require('vinyl');
+const fs = require('fs');
 const del = require('del');
 const gulplog = require('gulplog');
 const browserSync = require('browser-sync').create();
@@ -23,10 +24,32 @@ const webpack = require('webpack');
 const through2 = require('through2').obj;
 const notifier = require('node-notifier');
 const googleWebFonts = require('gulp-google-webfonts');
+const WebpackChunkHash = require('webpack-chunk-hash');
 
 const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 const isWatch = process.argv.indexOf('--watch') > -1;
 const isServe = process.argv.indexOf('--serve') > -1;
+
+const manifest = new class {
+    constructor() {
+        this._manifest = {};
+    }
+    set(name, obj) {
+        this._manifest[name] = obj;
+        this.save();
+    }
+    save() {
+        const contents = [];
+        for (let key in this._manifest) {
+            contents.push(this._manifest[key]);
+        }
+        fs.writeFile(process.cwd() + '/public/mix-manifest.json', new Buffer(JSON.stringify(Object.assign(...contents))), function(err) {
+            if(err) {
+                return console.log(err);
+            }
+        });
+    }
+};
 
 gulp.task('styles', function() {
 
@@ -56,14 +79,15 @@ gulp.task('styles', function() {
         .pipe(rev.manifest('css.json'))
         .pipe(through2(function(file, encoding, callback) {
             let assets = JSON.parse(file.contents.toString());
+            let resultAssets = {};
             for (let key in assets) {
-                assets['/css/' + key] = '/css/' + assets[key];
-                delete assets[key];
+                if (assets.hasOwnProperty(key)) {
+                    resultAssets['/css/' + key] = '/css/' + assets[key];
+                }
             }
-            file.contents = new Buffer(JSON.stringify(assets));
+            manifest.set('styles', resultAssets);
             callback(null, file);
         }))
-        .pipe(gulp.dest('resources/assets/manifest'));
 
 });
 
@@ -110,9 +134,10 @@ gulp.task('webpack', function(callback) {
         },
         plugins: [
             new webpack.NoEmitOnErrorsPlugin(),
+            new WebpackChunkHash(),
             new AssetsPlugin({
-                filename: 'js.json',
-                path:     __dirname + '/resources/assets/manifest',
+                filename: 'manifest-js.json',
+                path:     __dirname + '/resources/assets',
                 processOutput(assets) {
                     for (let key in assets) {
                         if (assets.hasOwnProperty(key)) {
@@ -124,7 +149,8 @@ gulp.task('webpack', function(callback) {
                             delete assets[key];
                         }
                     }
-                    return JSON.stringify(assets);
+                    manifest.set('js', assets);
+                    return {};
                 }
             }),
             new webpack.DefinePlugin({
@@ -183,35 +209,19 @@ gulp.task('webpack', function(callback) {
 
 });
 
-gulp.task('manifest', function() {
-    const contents = [];
-
-    return gulp.src('resources/assets/manifest/{js,css}.json')
-        .pipe(through2(function(file, encoding, callback) {
-            contents.push(JSON.parse(file.contents.toString()));
-            callback();
-        }, function(callback) {
-            let manifest = new File({
-                contents: new Buffer(JSON.stringify(Object.assign(...contents))),
-                base: process.cwd(),
-                path: process.cwd() + '/mix-manifest.json',
-            });
-
-            this.push(manifest);
-            callback();
-        }))
-        .pipe(gulp.dest('public/'));
-});
-
 gulp.task('clean', function() {
     return del(['public/css', 'public/img', 'public/js', 'resources/assets/manifest', 'public/fonts']);
+});
+
+gulp.task('clean:tempManifestFile', function() {
+    return del(['resources/assets/manifest-js.json']);
 });
 
 gulp.task('watch', function() {
     gulp.watch('resources/assets/sass/fonts.css', gulp.series('fonts', 'styles'));
     gulp.watch('resources/assets/sass/**/*.scss', gulp.series('styles'));
     gulp.watch('resources/assets/img/**/*.*', gulp.series('assets'));
-    gulp.watch('resources/assets/manifest/{js,css}.json', gulp.series('manifest'));
+    gulp.watch('resources/assets/manifest-js.json', gulp.series('clean:tempManifestFile'));
 });
 
 gulp.task('serve', function() {
@@ -244,8 +254,7 @@ gulp.task('fonts', function () {
 let tasksForBuild = [
     'clean',
     'fonts',
-    gulp.parallel('assets', 'styles', 'webpack'),
-    'manifest'
+    gulp.parallel('assets', 'styles', 'webpack')
 ];
 
 if (isServe)
@@ -254,7 +263,10 @@ if (isServe)
 if (isWatch)
     tasksForBuild.push('watch');
 
+tasksForBuild.push('clean:tempManifestFile');
 
 gulp.task('build', gulp.series(
     ...tasksForBuild
 ));
+
+gulp.task('pre-commit', gulp.series('clean'));

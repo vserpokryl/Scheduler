@@ -13,12 +13,18 @@
     <body>
     <div>
         <div id="app">
-            <v-select v-model="selected" :options="['foo','bar']"></v-select>
             <p>
                 <router-link to="/user/foo">/user/foo</router-link>
                 <router-link to="/user/bar">/user/bar</router-link>
             </p>
             <router-view></router-view>
+
+        </div>
+        <div id="app2">
+            <v-select :options="options" v-model="selected" label="value" placeholder="Выбор факультета">
+                <p slot="no-options">Асипка</p>
+            </v-select>
+            @{{ selected }}
         </div>
     </div>
     <script src="{{ mix('js/common.js') }}"></script>

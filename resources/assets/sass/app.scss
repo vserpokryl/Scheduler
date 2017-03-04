@@ -6,7 +6,9 @@
 @import 'variables';
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+//$bootstrap-sass-asset-helper: true;
+//@import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 
 html {
   background-color: $body-bg;
