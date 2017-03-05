@@ -233,6 +233,9 @@ gulp.task('serve', function() {
 });
 
 gulp.task('fonts', function () {
+    gulp.src('node_modules/font-awesome/fonts/*')
+        .pipe(gulp.dest('public/fonts'));
+
     const options = {
         fontsDir: 'fonts/',
         cssDir: '',
@@ -257,13 +260,17 @@ let tasksForBuild = [
     gulp.parallel('assets', 'styles', 'webpack')
 ];
 
+let parallelTasks = [];
+
 if (isServe)
-    tasksForBuild.push('serve');
+    parallelTasks.push('serve');
 
 if (isWatch)
-    tasksForBuild.push('watch');
+    parallelTasks.push('watch');
 
-tasksForBuild.push('clean:tempManifestFile');
+parallelTasks.push('clean:tempManifestFile');
+
+tasksForBuild.push(gulp.parallel(...parallelTasks));
 
 gulp.task('build', gulp.series(
     ...tasksForBuild

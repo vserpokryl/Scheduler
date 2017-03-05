@@ -14,13 +14,10 @@ use Illuminate\Routing\Router;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /* @var Router $router */
 Route::get('/', 'HomeController@index')->name('home');
 Route::pattern('id', '[0-9]+');
+
 Route::group(['namespace' => 'Auth'], function () {
     Route::group(['middleware' => ['guest']], function () {
         Route::get('login', 'LoginController@index')->name('login');
@@ -28,6 +25,7 @@ Route::group(['namespace' => 'Auth'], function () {
         Route::get('register', 'RegistrationController@index')->name('registration');
         Route::post('register', 'RegistrationController@register');
     });
+
     Route::group(['middleware' => ['auth']], function () {
         Route::match(['GET', 'POST'], 'logout', 'LoginController@logout')->name('logout');
         Route::get('confirmed', 'ConfirmationController@index')->name('confirmation.confirmed');
