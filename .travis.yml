@@ -1,5 +1,5 @@
 sudo: required
-language: php
+language: php node_js
 
 php:
   - 7.1
