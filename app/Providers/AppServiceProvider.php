@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * @param Repository $repository
+     * @param  Repository $repository
      * @return void
      */
     private function loadProviders(Repository $repository)
