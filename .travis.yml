@@ -9,6 +9,8 @@ before_script:
   - node -v
   - npm -v
   - sudo npm update npm -g
+  - node -v
+  - npm -v
   - sudo npm install n -g
   - sudo n latest
   - node -v
