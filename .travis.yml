@@ -1,12 +1,17 @@
-language: php
+language: php node_js
 
 php:
   - 7.1
+
+node_js:
+  - 7
 
 before_script:
   - composer self-update
   - composer install --dev --no-interaction --prefer-source
   - cp ./.env.travis ./.env
   - touch ./database/testing.sqlite
+  - npm install
+  - npm run production
 
 script: vendor/bin/phpunit
