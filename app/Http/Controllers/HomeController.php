@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 /**
- * Class HomeController
- * @package App\Http\Controllers
+ * Class HomeController.
  */
 class HomeController extends Controller
 {
