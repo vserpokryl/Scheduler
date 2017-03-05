@@ -11,6 +11,7 @@
 
 *   PHP 7.1 или выше
 *   PHP Extension: OpenSSL, PDO, Mbstring, Tokenizer, XML
+*   Поддержка протокола HTTPS
 *   MySQL 5.6 или выше
 *   Composer 1.2 или выше
 *   Git 2.10 или выше
