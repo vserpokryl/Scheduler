@@ -6,9 +6,14 @@ php:
 
 before_script:
   - sudo apt-get install -y nodejs
-  - sudo npm update npm
+  - node -v
+  - npm -v
+  - sudo npm update npm -g
   - sudo npm install n -g
   - sudo n latest
+  - node -v
+  - npm -v
+  - sudo npm update npm -g
   - node -v
   - npm -v
   - npm install
