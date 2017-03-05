@@ -86,7 +86,7 @@ php artisan serve
     *   [ ]  Экспорт расписания для преподавателя в pdf (?)
 
 
-Этот проект разработан c :heart: by @Nanografon
+Этот проект разработан c :heart: by [@Nanografon](https://github.com/Nanografon)
 
 ## Лицензия
 Открытый исходный код под лицензией [MIT](http://opensource.org/licenses/MIT).
