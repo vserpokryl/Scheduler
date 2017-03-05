@@ -12,11 +12,11 @@
 *   PHP 7.1 или выше
 *   PHP Extension: OpenSSL, PDO, Mbstring, Tokenizer, XML
 *   MySQL 5.6 или выше
-*   Apache или Nginx (?)
 *   Composer 1.2 или выше
-*   Node JS 7.7 или выше
-*   NPM 4.4 или выше
 *   Git 2.10 или выше
+*   Apache или Nginx (?)
+*   Node JS 7.7 или выше (?)
+*   NPM 4.4 или выше (?)
 
 ## Установка
 
@@ -26,8 +26,6 @@
 
 ```
 composer install
-npm install
-npm run production
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
