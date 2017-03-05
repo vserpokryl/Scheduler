@@ -5,14 +5,11 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/ico" href="/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
     <title>Расписание</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-
-    <!--     Fonts and icons     -->
-    {{--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />--}}
-    {{--<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />--}}
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
@@ -26,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navigation-index">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="{{ route('login', null, true) }}">
+                        <a href="{{ route('login') }}">
                             <i class="fa fa-user" aria-hidden="true"></i> Вход
                         </a>
                     </li>
@@ -69,5 +66,7 @@
         </div>
     </div>
 </footer>
+<script src="{{ mix('/js/common.js') }}"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

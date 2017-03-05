@@ -16,9 +16,9 @@ $fa-font-path:   "/fonts";
 @import 'material-kit.css';
 
 // Nprogress
-@import 'nprogress.scss';
+@import '../../../node_modules/nprogress/nprogress.css';
 
 //html {
 //  background-color: $body-bg;
-//  font-family: Raleway;
+  //font-family: Raleway;
 //}
