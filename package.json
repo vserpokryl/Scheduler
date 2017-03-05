@@ -23,6 +23,7 @@
     "cssnano": "^3.10.0",
     "del": "^2.2.2",
     "extract-text-webpack-plugin": "github:webpack-contrib/extract-text-webpack-plugin",
+    "font-awesome": "^4.7.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-google-webfonts": "0.0.14",
