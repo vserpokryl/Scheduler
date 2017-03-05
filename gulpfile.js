@@ -210,7 +210,7 @@ gulp.task('webpack', function(callback) {
 });
 
 gulp.task('clean', function() {
-    return del(['public/css', 'public/img', 'public/js', 'resources/assets/manifest', 'public/fonts']);
+    return del(['public/css', 'public/img', 'public/js', 'resources/assets/manifest', 'public/fonts', 'public/mix-manifest.json']);
 });
 
 gulp.task('clean:tempManifestFile', function() {
@@ -275,5 +275,3 @@ tasksForBuild.push(gulp.parallel(...parallelTasks));
 gulp.task('build', gulp.series(
     ...tasksForBuild
 ));
-
-gulp.task('pre-commit', gulp.series('clean'));
