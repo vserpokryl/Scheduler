@@ -1,10 +1,10 @@
 {
   "author": "Vasiliy Serpokryl",
   "scripts": {
-    "build": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/.bin/gulp build",
-    "watch": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/.bin/gulp build --watch",
-    "dev": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/.bin/gulp build --watch --serve",
-    "production": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=production node_modules/.bin/gulp build"
+    "build": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/gulp build",
+    "watch": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/gulp build --watch",
+    "dev": "node_modules/.bin/cross-env NODE_ENV=development node_modules/.bin/gulp build --watch --serve",
+    "production": "node_modules/.bin/cross-env NODE_ENV=production node_modules/.bin/gulp build"
   },
   "devDependencies": {
     "assets-webpack-plugin": "^3.5.1",
