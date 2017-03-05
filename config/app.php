@@ -178,7 +178,16 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+    ],
 
+    'local_providers' => [
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+    ],
+
+    'production_providers' => [
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
     ],
 
     /*

@@ -6,10 +6,12 @@
 /public/fonts
 /public/img
 /storage/*.key
+/storage/debugbar
 /vendor
 /.idea
 Homestead.json
 Homestead.yaml
 .env
 _ide_helper.php
+.phpstorm.meta.php
 yarn-error.log
