@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use Closure;
+use Request;
 
 /**
  * Class HttpsProtocol.
@@ -20,7 +21,7 @@ class HttpsProtocol
      */
     public function handle($request, Closure $next)
     {
-        if (! $request->secure() && env('APP_ENV') === 'production') {
+        if (! $request->secure() && env('APP_ENV') === 'production' && !Request::is('/')) {
             return redirect()->secure($request->getRequestUri());
         }
 
