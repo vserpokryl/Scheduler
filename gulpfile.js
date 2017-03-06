@@ -70,13 +70,9 @@ gulp.task('styles', function() {
             }
         })))
         .pipe(rev())
-        .pipe(gulpIf(isDevelopment, through2(function(file, encoding, callback) {
-            file.path = file.path.replace(/-.+\.css$/, '.css');
-            callback(null, file);
-        })))
         .pipe(gulp.dest('public/css'))
         .pipe(browserSync.stream())
-        .pipe(rev.manifest('css.json'))
+        .pipe(rev.manifest('css-manifest.json'))
         .pipe(through2(function(file, encoding, callback) {
             let assets = JSON.parse(file.contents.toString());
             let resultAssets = {};
@@ -106,7 +102,7 @@ gulp.task('webpack', function(callback) {
         output:  {
             path:     __dirname + '/public/js',
             publicPath: '/js/',
-            filename: isDevelopment ? '[name].js' : '[name]-[chunkhash:10].js'
+            filename: '[name]-[chunkhash:10].js'
         },
         watch:   isDevelopment && isWatch,
         devtool: isDevelopment ? 'cheap-module-inline-source-map' : false,
