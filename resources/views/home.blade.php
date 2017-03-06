@@ -1,30 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/ico" href="/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
-    <title>Расписание</title>
+    <title>Планировщик расписания - Главная</title>
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-
-    <!-- CSS Files -->
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 
 <body class="index-page">
-<!-- Navbar -->
+    <!-- Navbar -->
 @if (Auth::guest())
     <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
+                <span class="sr-only">Навигация</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
         <div class="container">
             <div class="collapse navbar-collapse" id="navigation-index">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="{{ route('login') }}">
-                            <i class="fa fa-user" aria-hidden="true"></i> Вход
+                    <li>
+                        <a href="{{ secure_url(route('login', [], false)) }}">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> Вход
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ secure_url(route('register', [], false)) }}">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i> Регистрация
                         </a>
                     </li>
                 </ul>
@@ -62,7 +73,7 @@
 <footer class="footer">
     <div class="container">
         <div class="copyright pull-right">
-            &copy; 2017, made with <i class="fa fa-heart heart"></i> by Nanografon
+            &copy; {{ date('Y') }}, made with <i class="fa fa-heart heart"></i> by Nanografon
         </div>
     </div>
 </footer>

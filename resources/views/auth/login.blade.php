@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/ico" href="/img/favicon.ico">
-    <title>Расписание 2.0 - Вход</title>
+    <link rel="icon" type="image/ico" href="/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <title>Планировщик расписания - Вход</title>
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="/css/main.css">
-
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 
-<body class="signup-page">
+<body>
+<div class="signup-page">
 <nav class="navbar navbar-transparent navbar-absolute">
     <div class="container">
         <div class="navbar-header">
@@ -31,48 +29,39 @@
             <div class="row" style="margin-bottom: 80px;">
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                     <div class="card card-signup">
-                        <form class="form" role="form" method="POST" action="{{ url('/login') }}">
+                        <form class="form" role="form" method="POST" action="{{ route('login') }}">
                             <div class="header header-primary text-center">
                                 <h4>Вход в панель управления</h4>
                             </div>
                             <div class="content">
-                                {{ csrf_field() }}
-
-                                <div class="input-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                <div class="input-group">
                                     <span class="input-group-addon">
 										<i class="material-icons">account_box</i>
 									</span>
-                                    <input id="username" type="text" class="form-control" name="username" placeholder="Логин..." value="{{ old('username') }}">
-                                    @if ($errors->has('username'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('username') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
-                                <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <span class="input-group-addon">
-                                          <i class="material-icons">lock_outline</i>
-                                    </span>
-                                    <input id="password" type="password" placeholder="Пароль..." class="form-control" name="password">
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-2">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="remember">Запомнить меня
-                                            </label>
-                                        </div>
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label" for="username">Логин</label>
+                                        <input id="username" type="text" class="form-control" name="username">
                                     </div>
                                 </div>
 
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                          <i class="material-icons">lock_outline</i>
+                                    </span>
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label" for="password">Пароль</label>
+                                        <input id="password" type="password" class="form-control" name="password">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember">
+                                            Запомнить меня
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="footer text-center">
                                 <button type="submit" class="btn btn-simple btn-primary btn-lg">Войти</button>
@@ -85,12 +74,14 @@
         <footer class="footer" style="position: absolute;bottom: 0;width: 100%;height: 80px;">
             <div class="container">
                 <div class="copyright pull-right">
-                    &copy; 2016, made with <i class="fa fa-heart heart"></i> by <a href="https://vk.com/nanografon" target="_blank">Nanografon</a>
+                    &copy; {{ date('Y') }}, made with <i class="fa fa-heart heart"></i> by <a href="https://vk.com/nanografon" target="_blank">Nanografon</a>
                 </div>
             </div>
         </footer>
     </div>
 </div>
+</div>
+<script src="{{ mix('/js/common.js') }}"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
 </body>
-<script src="/js/main.js"></script>
 </html>

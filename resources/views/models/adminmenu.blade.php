@@ -1,7 +1,7 @@
 <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#adminmenu-navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -10,11 +10,11 @@
             <a class="navbar-brand" href="#">Меню</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="example-navbar">
+        <div class="collapse navbar-collapse" id="adminmenu-navbar">
             <ul class="nav navbar-nav">
                 <li class="{{ Request::is("/") ? 'active' : '' }}"><a href="/">Расписание</a></li>
                 <li class="{{ Request::is("statistic") ? 'active' : '' }}"><a href="/statistic">Статистика</a></li>
-                <li class="dropdown {{ array_search(Request::path(), [
+                <li class="dropdown {{ Request::is(
                     'edit/colleges',
                     'edit/faculties',
                     'edit/specialties',
@@ -25,7 +25,7 @@
                     'edit/type_subjects',
                     'edit/buildings',
                     'edit/classrooms'
-                ]) > 0 ? 'active' : ''}}">
+                ) ? 'active' : ''}}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Редактирование
                         <b class="caret"></b>
                         <div class="ripple-container"></div>

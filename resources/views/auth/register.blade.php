@@ -3,17 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/ico" href="/img/favicon.ico">
-    <title>Расписание 2.0 - Вход</title>
+    <link rel="icon" type="image/ico" href="/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <title>Планировщик расписания - Регистрация</title>
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="/css/main.css">
-
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 
 <body class="signup-page">
@@ -33,50 +30,58 @@
                     <div class="card card-signup">
                         <form class="form" role="form" method="POST" action="{{ url('/register') }}">
                             <div class="header header-primary text-center">
-                                <h4>Регистрация нового пользователя</h4>
+                                <h4>Регистрация</h4>
                             </div>
                             <div class="content">
-                                {{ csrf_field() }}
-
-                                <div class="input-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                <div class="input-group">
                                     <span class="input-group-addon">
 										<i class="material-icons">account_box</i>
 									</span>
-                                    <input id="username" type="text" class="form-control" name="username" placeholder="Логин" value="{{ old('username') }}">
-                                    @if ($errors->has('username'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('username') }}</strong>
-                                        </span>
-                                    @endif
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label" for="username">Логин</label>
+                                        <input id="username" type="text" class="form-control" name="username">
+                                    </div>
                                 </div>
 
-                                <div class="input-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+										<i class="material-icons">school</i>
+									</span>
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label" for="university_name">Полное название учебного заведения</label>
+                                        <input id="university_name" type="text" class="form-control" name="university_name">
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+										<i class="material-icons">school</i>
+									</span>
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label" for="university_short_name">Сокращенное название учебного заведения</label>
+                                        <input id="university_short_name" type="text" class="form-control" name="university_short_name">
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
                                     <span class="input-group-addon">
                                           <i class="material-icons">lock_outline</i>
                                     </span>
-                                    <input id="password" type="password" placeholder="Пароль" class="form-control" name="password">
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label" for="password">Пароль</label>
+                                        <input id="password" type="password" class="form-control" name="password">
+                                    </div>
                                 </div>
 
-
-                                <div class="input-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                                <div class="input-group">
                                     <span class="input-group-addon">
                                           <i class="material-icons">lock_outline</i>
                                     </span>
-                                    <input id="password-confirm" type="password" placeholder="Подтверждение пароля" class="form-control" name="password_confirmation">
-
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                        </span>
-                                    @endif
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label" for="password-confirm">Подтверждение пароля</label>
+                                        <input id="password-confirm" type="password" class="form-control" name="password-confirm">
+                                    </div>
                                 </div>
-
                             </div>
                             <div class="footer text-center">
                                 <button type="submit" class="btn btn-simple btn-primary btn-lg">Зарегистрироваться</button>
@@ -89,12 +94,13 @@
         <footer class="footer" style="position: absolute;bottom: 0;width: 100%;height: 80px;">
             <div class="container">
                 <div class="copyright pull-right">
-                    &copy; 2016, made with <i class="fa fa-heart heart"></i> by <a href="https://vk.com/nanografon" target="_blank">Nanografon</a>
+                    &copy; {{ date('Y') }}, made with <i class="fa fa-heart heart"></i> by <a href="https://vk.com/nanografon" target="_blank">Nanografon</a>
                 </div>
             </div>
         </footer>
     </div>
 </div>
 </body>
-<script src="/js/main.js"></script>
+<script src="{{ mix('/js/common.js') }}"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
 </html>

@@ -22,8 +22,8 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::group(['middleware' => ['guest']], function () {
         Route::get('login', 'LoginController@index')->name('login');
         Route::post('login', 'LoginController@login');
-        Route::get('register', 'RegistrationController@index')->name('registration');
-        Route::post('register', 'RegistrationController@register');
+        Route::get('register', 'RegisterController@index')->name('register');
+        Route::post('register', 'RegisterController@register');
     });
 
     Route::group(['middleware' => ['auth']], function () {
