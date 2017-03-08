@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 use Illuminate\Routing\Router;
 
 /*
@@ -26,11 +27,11 @@ Route::group(['namespace' => 'Auth'], function () {
         Route::post('register', 'RegisterController@register');
     });
 
-    Route::group(['middleware' => ['auth']], function () {
-        Route::match(['GET', 'POST'], 'logout', 'LoginController@logout')->name('logout');
-        Route::get('confirmed', 'ConfirmationController@index')->name('confirmation.confirmed');
-        Route::get('confirm/{token}', 'ConfirmationController@confirm')
-            ->where('token', '[a-zA-Z0-9\._]+')
-            ->name('confirmation.confirm');
-    });
+//    Route::group(['middleware' => ['auth']], function () {
+//        Route::match(['GET', 'POST'], 'logout', 'LoginController@logout')->name('logout');
+//        Route::get('confirmed', 'ConfirmationController@index')->name('confirmation.confirmed');
+//        Route::get('confirm/{token}', 'ConfirmationController@confirm')
+//            ->where('token', '[a-zA-Z0-9\._]+')
+//            ->name('confirmation.confirm');
+//    });
 });
