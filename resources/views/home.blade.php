@@ -13,71 +13,94 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 
-<body class="index-page">
-    <!-- Navbar -->
+<body>
+<!-- Navbar -->
 @if (Auth::guest())
-    <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
-                <span class="sr-only">Навигация</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="container">
-            <div class="collapse navbar-collapse" id="navigation-index">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="{{ secure_url(route('login', [], false)) }}">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i> Вход
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ secure_url(route('register', [], false)) }}">
-                            <i class="fa fa-user-plus" aria-hidden="true"></i> Регистрация
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    @include('models.guestmenu')
 @else
     @include('models.adminmenu')
 @endif
 <!-- End Navbar -->
 
-<div class="wrapper">
-    <div class="header header-filter" style="background-image: url('img/bg2.jpeg');">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="brand">
-                        <h1>Расписание 2.0</h1>
-                        <h3>Программа для составления расписания и просмотра статистики.</h3>
+<div class="index-page">
+    <div class="wrapper">
+        <div class="header header-filter" style="background-image: url('/img/bg2.jpeg');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="brand">
+                            <h1>Расписание 2.0</h1>
+                            <h3>Программа для составления расписания и просмотра статистики.</h3>
+                        </div>
                     </div>
                 </div>
+
             </div>
-
         </div>
-    </div>
 
-    <div class="main main-raised">
-        <div class="section section-basic">
-            <div class="container">
+        <div class="main main-raised">
+            <div class="section section-basic">
+                <div class="container">
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <footer class="footer">
     <div class="container">
         <div class="copyright pull-right">
-            &copy; {{ date('Y') }}, made with <i class="fa fa-heart heart"></i> by Nanografon
+            &copy; {{ date('Y') }}, made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/Nanografon" target="_blank">Nanografon</a>
         </div>
     </div>
 </footer>
 <script src="{{ mix('/js/common.js') }}"></script>
 <script src="{{ mix('/js/app.js') }}"></script>
+<script>
+
+    let transparent = true;
+    let big_image;
+
+    $(document).ready(function(){
+
+        $.material.init();
+
+        $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
+
+        if($('.navbar-color-on-scroll').length !== 0){
+            $(window).on('scroll', function() {
+                if($(document).scrollTop() > 260 ) {
+                    if(transparent) {
+                        transparent = false;
+                        $('.navbar-color-on-scroll').removeClass('navbar-transparent');
+                    }
+                } else {
+                    if( !transparent ) {
+                        transparent = true;
+                        $('.navbar-color-on-scroll').addClass('navbar-transparent');
+                    }
+                }
+            });
+        }
+
+        $('[data-toggle="popover"]').popover();
+
+        let window_width = $(window).width();
+
+        if (window_width >= 992){
+            big_image = $('.wrapper > .header');
+            $(window).on('scroll', function() {
+                let oVal = ($(window).scrollTop() / 4);
+                big_image.css({
+                    'transform':'translate3d(0,' + oVal +'px,0)',
+                    '-webkit-transform':'translate3d(0,' + oVal +'px,0)',
+                    '-ms-transform':'translate3d(0,' + oVal +'px,0)',
+                    '-o-transform':'translate3d(0,' + oVal +'px,0)'
+                });
+
+            });
+        }
+
+    });
+</script>
 </body>
 </html>

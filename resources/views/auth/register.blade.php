@@ -15,9 +15,28 @@
 
 <body class="signup-page">
 <nav class="navbar navbar-transparent navbar-absolute">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
+            <span class="sr-only">Навигация</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
     <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">Главная</a>
+        <div class="collapse navbar-collapse" id="navigation-index">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="/">
+                        <i class="fa fa-home" aria-hidden="true"></i> Главная
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ secure_url(route('login', [], false)) }}">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i> Вход
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -26,7 +45,7 @@
     <div class="header header-filter" style="background-image: url('/img/city.jpg'); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row" style="margin-bottom: 80px;">
-                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="card card-signup">
                         <form class="form" role="form" method="POST" action="{{ url('/register') }}">
                             <div class="header header-primary text-center">
@@ -94,7 +113,7 @@
         <footer class="footer" style="position: absolute;bottom: 0;width: 100%;height: 80px;">
             <div class="container">
                 <div class="copyright pull-right">
-                    &copy; {{ date('Y') }}, made with <i class="fa fa-heart heart"></i> by <a href="https://vk.com/nanografon" target="_blank">Nanografon</a>
+                    &copy; {{ date('Y') }}, made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/Nanografon" target="_blank">Nanografon</a>
                 </div>
             </div>
         </footer>
@@ -102,5 +121,12 @@
 </div>
 </body>
 <script src="{{ mix('/js/common.js') }}"></script>
-<script src="{{ mix('/js/app.js') }}"></script>
+<script>
+
+    $(document).ready(function(){
+
+        $.material.init();
+
+    });
+</script>
 </html>
