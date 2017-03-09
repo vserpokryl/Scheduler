@@ -11,6 +11,11 @@
         <div class="collapse navbar-collapse" id="navigation-index">
             <ul class="nav navbar-nav navbar-right">
                 <li>
+                    <a href="/">
+                        <i class="fa fa-home" aria-hidden="true"></i> Главная
+                    </a>
+                </li>
+                <li>
                     <a href="{{ secure_url(route('login', [], false)) }}">
                         <i class="fa fa-sign-in" aria-hidden="true"></i> Вход
                     </a>
