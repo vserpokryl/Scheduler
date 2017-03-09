@@ -22,17 +22,3 @@ window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     'X-Requested-With': 'XMLHttpRequest'
 };
-
-$(document).ready(function(){
-
-    $.material.init();
-
-    $('[data-toggle="tooltip"], [rel="tooltip"]').tooltip();
-
-    if($('.navbar-color-on-scroll').length != 0){
-        $(window).on('scroll', materialKit.checkScrollForTransparentNavbar)
-    }
-
-    $('[data-toggle="popover"]').popover();
-
-});
