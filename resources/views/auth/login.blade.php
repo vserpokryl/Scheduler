@@ -46,7 +46,7 @@
         <div class="header header-filter" style="background-image: url('/img/city.jpg'); background-size: cover; background-position: top center;">
             <div class="container">
                 <div class="row" style="margin-bottom: 80px;">
-                    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                    <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                         <div class="card card-signup">
                             <form class="form" role="form" method="POST" action="{{ route('login') }}">
                                 <div class="header header-primary text-center">
