@@ -53,7 +53,7 @@ const manifest = new class {
 
 gulp.task('styles', function() {
 
-    return gulp.src('resources/assets/sass/app.scss')
+    return gulp.src('resources/assets/sass/{app,loader}.scss')
         .pipe(plumber({
             errorHandler: notify.onError(err => ({
                 title:   'Styles',
@@ -70,6 +70,10 @@ gulp.task('styles', function() {
             }
         })))
         .pipe(rev())
+        .pipe(gulpIf(isDevelopment, through2(function(file, encoding, callback) {
+            file.path = file.path.replace(/-.+\.css$/, '.css');
+            callback(null, file);
+        })))
         .pipe(gulp.dest('public/css'))
         .pipe(browserSync.stream())
         .pipe(rev.manifest('css-manifest.json'))
@@ -97,12 +101,14 @@ gulp.task('webpack', function(callback) {
     let options = {
         entry:   {
             app: './resources/assets/js/app',
+            home: './resources/assets/js/home',
+            loader: './resources/assets/js/loader',
             common: './resources/assets/js/common'
         },
         output:  {
             path:     __dirname + '/public/js',
             publicPath: '/js/',
-            filename: '[name]-[chunkhash:10].js'
+            filename: isDevelopment ? '[name].js' : '[name]-[chunkhash:10].js'
         },
         watch:   isDevelopment && isWatch,
         devtool: isDevelopment ? 'cheap-module-inline-source-map' : false,

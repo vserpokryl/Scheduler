@@ -19,13 +19,12 @@ use Illuminate\Routing\Router;
 Route::get('/', 'HomeController@index')->name('home');
 Route::pattern('id', '[0-9]+');
 
-Route::group(['namespace' => 'Auth'], function () {
-    Route::group(['middleware' => ['guest']], function () {
-        Route::get('login', 'LoginController@index')->name('login');
-        Route::post('login', 'LoginController@login');
-        Route::get('register', 'RegisterController@index')->name('register');
-        Route::post('register', 'RegisterController@register');
-    });
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('login', 'HomeController@index')->name('home');
+    Route::post('login', 'Auth\LoginController@login');
+    Route::get('register', 'HomeController@index')->name('home');
+    Route::post('register', 'Auth\RegisterController@register');
+});
 
 //    Route::group(['middleware' => ['auth']], function () {
 //        Route::match(['GET', 'POST'], 'logout', 'LoginController@logout')->name('logout');
@@ -34,4 +33,3 @@ Route::group(['namespace' => 'Auth'], function () {
 //            ->where('token', '[a-zA-Z0-9\._]+')
 //            ->name('confirmation.confirm');
 //    });
-});

@@ -11,19 +11,19 @@
         <div class="collapse navbar-collapse" id="navigation-index">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/">
+                    <router-link to="/">
                         <i class="fa fa-home" aria-hidden="true"></i> Главная
-                    </a>
+                    </router-link>
                 </li>
                 <li>
-                    <a href="{{ secure_url(route('login', [], false)) }}">
+                    <router-link to="/login">
                         <i class="fa fa-sign-in" aria-hidden="true"></i> Вход
-                    </a>
+                    </router-link>
                 </li>
                 <li>
-                    <a href="{{ secure_url(route('register', [], false)) }}">
+                    <router-link to="/register">
                         <i class="fa fa-user-plus" aria-hidden="true"></i> Регистрация
-                    </a>
+                    </router-link>
                 </li>
             </ul>
         </div>

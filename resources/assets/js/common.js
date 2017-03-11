@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import vSelect from 'vue-select'
-import NProgress from 'nprogress'
 import jQuery from 'jquery'
 import axios from 'axios'
 
@@ -17,7 +16,6 @@ require('./material.min');
 window.axios = axios;
 window.Vue = Vue;
 window.VueRouter = VueRouter;
-window.NProgress = NProgress;
 window.axios.defaults.headers.common = {
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
     'X-Requested-With': 'XMLHttpRequest'

@@ -15,10 +15,12 @@ $fa-font-path:   "/fonts";
 // Material KIT
 @import 'material-kit.css';
 
-// Nprogress
-@import '../../../node_modules/nprogress/nprogress.css';
 
 //html {
 //  background-color: $body-bg;
   //font-family: Raleway;
 //}
+
+body {
+  min-width: 600px;
+}
