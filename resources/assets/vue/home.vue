@@ -2,7 +2,7 @@
     <div>
         <div class="index-page">
            <div class="wrapper">
-               <div class="header header-filter" style="background-image: url('/img/bg2.jpeg');">
+               <div class="header header-filter" style="background-image: url('/img/homebg.jpeg');">
                    <div class="container">
                        <div class="row">
                            <div class="col-md-8 col-md-offset-2">

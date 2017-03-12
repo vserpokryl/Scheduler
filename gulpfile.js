@@ -14,6 +14,7 @@ const postcss = require('gulp-postcss');
 const cssnext = require('postcss-cssnext');
 const asImport = require('postcss-import');
 const sass = require('gulp-sass');
+const imagemin = require('gulp-image');
 
 const cssnano = require('gulp-cssnano');
 const rev = require('gulp-rev');
@@ -53,7 +54,7 @@ const manifest = new class {
 
 gulp.task('styles', function() {
 
-    return gulp.src('resources/assets/sass/{app,loader}.scss')
+    return gulp.src('resources/assets/styles/{app,loader}.scss')
         .pipe(plumber({
             errorHandler: notify.onError(err => ({
                 title:   'Styles',
@@ -89,11 +90,6 @@ gulp.task('styles', function() {
             callback(null, file);
         }))
 
-});
-
-gulp.task('assets', function() {
-    return gulp.src('resources/assets/img/**/*.*', {since: gulp.lastRun('assets')})
-        .pipe(gulp.dest('public/img'));
 });
 
 gulp.task('webpack', function(callback) {
@@ -176,13 +172,10 @@ gulp.task('webpack', function(callback) {
                 minimize: true
             })
         );
-
     }
 
-    // https://webpack.github.io/docs/node.js-api.html
     webpack(options, function(err, stats) {
-        if (!err) { // no hard error
-            // try to get a soft error from stats
+        if (!err) {
             err = stats.toJson().errors[0];
         }
 
@@ -199,7 +192,6 @@ gulp.task('webpack', function(callback) {
             }));
         }
 
-        // task never errs in watch mode, it waits and recompiles
         if (!options.watch && err) {
             callback(err);
         } else {
@@ -207,23 +199,34 @@ gulp.task('webpack', function(callback) {
         }
 
     });
+});
 
+gulp.task('assets', function() {
+    return gulp.src('resources/assets/cache/**/*.*')
+        .pipe(gulp.dest('public'));
+});
 
+gulp.task('imagemin', function() {
+    return gulp.src('resources/assets/img/*')
+        .pipe(imagemin())
+        .pipe(gulp.dest('resources/assets/cache/img'));
 });
 
 gulp.task('clean', function() {
     return del(['public/css', 'public/img', 'public/js', 'resources/assets/manifest', 'public/fonts']);
 });
 
-gulp.task('clean:tempManifestFile', function() {
+gulp.task('clean:cache', function() {
+    return del(['resources/assets/cache/img', 'resources/assets/cache/css', 'resources/assets/cache/js', 'resources/assets/cache/fonts']);
+});
+
+gulp.task('clean:temp', function() {
     return del(['resources/assets/manifest-js.json']);
 });
 
 gulp.task('watch', function() {
-    gulp.watch('resources/assets/sass/fonts.css', gulp.series('fonts', 'styles'));
-    gulp.watch('resources/assets/sass/**/*.scss', gulp.series('styles'));
-    gulp.watch('resources/assets/img/**/*.*', gulp.series('assets'));
-    gulp.watch('resources/assets/manifest-js.json', gulp.series('clean:tempManifestFile'));
+    gulp.watch('resources/assets/styles/**/*.scss', gulp.series('styles'));
+    gulp.watch('resources/assets/manifest-js.json', gulp.series('clean:temp'));
 });
 
 gulp.task('serve', function() {
@@ -236,7 +239,7 @@ gulp.task('serve', function() {
 
 gulp.task('fonts', function () {
     gulp.src('node_modules/font-awesome/fonts/*')
-        .pipe(gulp.dest('public/fonts'));
+        .pipe(gulp.dest('resources/assets/cache/fonts'));
 
     const options = {
         fontsDir: 'fonts/',
@@ -244,25 +247,28 @@ gulp.task('fonts', function () {
         cssFilename: 'fonts.css'
     };
 
-    return gulp.src('resources/assets/sass/fonts.list')
+    return gulp.src('resources/assets/styles/fonts.list')
         .pipe(googleWebFonts(options))
         .pipe(gulp.dest(function(file) {
             if (file.path === options.cssFilename) {
                 let contents = file.contents.toString();
                 file.contents = new Buffer(contents.replace(new RegExp(options.fontsDir, 'g'), '/' + options.fontsDir));
-                return 'resources/assets/sass/';
+                return 'resources/assets/styles/';
             }
-            return 'public/';
+            return 'resources/assets/cache';
         }));
 });
 
-let tasksForBuild = [
+gulp.task('cache', gulp.series('clean:cache',
+    gulp.parallel('imagemin', 'fonts')
+));
+
+let seriesTasks = [
     'clean',
-    'fonts',
     gulp.parallel('assets', 'styles', 'webpack')
 ];
 
-let parallelTasks = [];
+let parallelTasks = ['clean:temp'];
 
 if (isServe)
     parallelTasks.push('serve');
@@ -270,10 +276,8 @@ if (isServe)
 if (isWatch)
     parallelTasks.push('watch');
 
-parallelTasks.push('clean:tempManifestFile');
-
-tasksForBuild.push(gulp.parallel(...parallelTasks));
+seriesTasks.push(gulp.parallel(...parallelTasks));
 
 gulp.task('build', gulp.series(
-    ...tasksForBuild
+    ...seriesTasks
 ));
