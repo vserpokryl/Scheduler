@@ -10,16 +10,13 @@
     <meta name="app-css-path" content="{{ mix('/css/app.css') }}"/>
 
     <title>Планировщик расписания</title>
-
-    <link rel="stylesheet" href="{{ mix('/css/loader.css') }}">
 </head>
 
 <body class="loaderProgress">
 
 @include('loader')
-<script src="{{ mix('/js/loader.js') }}"></script>
 
-<div id="app" style="display: none">
+<div id="app">
 
     @if (Auth::guest())
         @include('models.guestmenu')
