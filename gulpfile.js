@@ -104,6 +104,7 @@ gulp.task('webpack', function(callback) {
         output:  {
             path:     __dirname + '/public/js',
             publicPath: '/js/',
+            chunkFilename: "[id].[name]-[chunkhash:10].js",
             filename: isDevelopment ? '[name].js' : '[name]-[chunkhash:10].js'
         },
         watch:   isDevelopment && isWatch,
@@ -224,9 +225,40 @@ gulp.task('clean:temp', function() {
     return del(['resources/assets/manifest-js.json']);
 });
 
+gulp.task('loader:file', function() {
+    let _php, _js, _css;
+
+    return gulp.src(['resources/views/templates/loader.temp.blade.php', 'public/js/loader*', 'public/css/loader*'])
+        .pipe(through2(
+            function(file, encoding, callback) {
+                if (file.path.indexOf('loader.temp.blade.php') >= 0) {
+                    _php = file.contents.toString();
+                } else if (file.path.indexOf('.js') >= 0) {
+                    _js = file.contents.toString();
+                } else if (file.path.indexOf('.css') >= 0) {
+                    _css = file.contents.toString();
+                }
+                callback(null);
+            }, function(callback){
+                _php =  _php.replace("@include('loader.css')", _css);
+                _php = _php.replace("@include('loader.js')", _js);
+
+                let _php_file = new File({
+                    contents: new Buffer(_php),
+                    base: process.cwd(),
+                    path: process.cwd() + '/loader.blade.php'
+                });
+
+                this.push(_php_file);
+                callback();
+            }))
+        .pipe(gulp.dest('resources/views'));
+});
+
 gulp.task('watch', function() {
     gulp.watch('resources/assets/styles/**/*.scss', gulp.series('styles'));
     gulp.watch('resources/assets/manifest-js.json', gulp.series('clean:temp'));
+    gulp.watch(['resources/views/templates/loader.temp.blade.php', 'public/js/loader*', 'public/css/loader*'], gulp.series('loader:file'));
 });
 
 gulp.task('serve', function() {
@@ -268,7 +300,7 @@ let seriesTasks = [
     gulp.parallel('assets', 'styles', 'webpack')
 ];
 
-let parallelTasks = ['clean:temp'];
+let parallelTasks = ['clean:temp', 'loader:file'];
 
 if (isServe)
     parallelTasks.push('serve');

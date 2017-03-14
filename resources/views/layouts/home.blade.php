@@ -12,7 +12,7 @@
     <title>Планировщик расписания</title>
 </head>
 
-<body class="loaderProgress">
+<body>
 
 @include('loader')
 
@@ -25,6 +25,7 @@
     @endif
 
     <router-view></router-view>
+
 </div>
 </body>
 <script src="{{ mix('/js/common.js') }}"></script>

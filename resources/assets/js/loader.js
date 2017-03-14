@@ -10,9 +10,13 @@ window.loadedAssets = () => {
     countAssets--;
     if (countAssets === 0) {
         NProgress.done();
-        document.body.className = document.body.className.replace('loaderProgress', '');
-        document.getElementById('loader').style.display = 'none';
-        document.getElementById('app').style.display = 'block';
+
+        let loader = document.getElementById('loader');
+        let app = document.getElementById('app');
+
+        app.style.display = 'block';
+        loader.style.opacity = 0;
+        loader.style.visibility = 'hidden';
     }
 };
 
