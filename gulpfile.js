@@ -104,7 +104,7 @@ gulp.task('webpack', function(callback) {
         output:  {
             path:     __dirname + '/public/js',
             publicPath: '/js/',
-            chunkFilename: "[id].[name]-[chunkhash:10].js",
+            chunkFilename: isDevelopment ? '[id].js' : '[id].[name]-[chunkhash:10].js',
             filename: isDevelopment ? '[name].js' : '[name]-[chunkhash:10].js'
         },
         watch:   isDevelopment && isWatch,
@@ -128,7 +128,7 @@ gulp.task('webpack', function(callback) {
         },
         resolve: {
             alias: {
-                'vue$': 'vue/dist/vue.common.js'
+                'vue$': 'vue/dist/vue.esm.js'
             }
         },
         plugins: [

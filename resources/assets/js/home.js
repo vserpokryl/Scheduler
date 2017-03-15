@@ -10,6 +10,9 @@ const router = new VueRouter({
         {
             path: '/register', component: () => import('./../vue/register.vue')
         },
+        {
+            path: '/password_reset', component: () => import('./../vue/password_reset.vue')
+        },
     ]
 });
 

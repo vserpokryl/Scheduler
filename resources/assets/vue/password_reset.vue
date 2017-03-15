@@ -9,46 +9,21 @@
                                 <div class="card card-signup">
                                     <form class="form" role="form" method="POST" action="/login">
                                         <div class="header header-primary text-center">
-                                            <h4>Вход в панель управления</h4>
+                                            <h4>Восстановление пароля</h4>
                                         </div>
                                         <div class="content">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
-                                                    <i class="material-icons">account_box</i>
+                                                    <i class="material-icons">email</i>
                                                 </span>
                                                 <div class="form-group label-floating is-empty">
-                                                    <label class="control-label" for="username">Логин</label>
-                                                    <input id="username" type="text" class="form-control" name="username">
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                      <i class="material-icons">lock_outline</i>
-                                                </span>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label" for="password">Пароль</label>
-                                                    <input id="password" type="password" class="form-control" name="password">
-                                                </div>
-                                            </div>
-
-                                            <!--<div class="col-xs-12" style="margin-top: 10px;">-->
-                                                <!--<router-link to="/password_reset" class="pull-right">-->
-                                                    <!--Забыли пароль?-->
-                                                <!--</router-link>-->
-                                            <!--</div>-->
-
-                                            <div class="col-xs-12">
-                                                <div class="checkbox text-center">
-                                                    <label>
-                                                        <input type="checkbox" name="remember" checked>
-                                                        Запомнить меня
-                                                    </label>
+                                                    <label class="control-label" for="email">E-Mail</label>
+                                                    <input id="email" type="text" class="form-control" name="email">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="footer text-center">
-                                            <button type="submit" class="btn btn-simple btn-primary btn-lg">Войти</button>
+                                            <button class="btn btn-simple btn-primary btn-lg">Восстановить</button>
                                         </div>
                                     </form>
                                 </div>

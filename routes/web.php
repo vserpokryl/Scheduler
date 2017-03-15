@@ -24,6 +24,8 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('login', 'Auth\LoginController@login');
     Route::get('register', 'HomeController@index')->name('home');
     Route::post('register', 'Auth\RegisterController@register');
+    Route::get('password_reset', 'HomeController@index')->name('home');
+//    Route::post('register', 'Auth\RegisterController@register');
 });
 
 //    Route::group(['middleware' => ['auth']], function () {
