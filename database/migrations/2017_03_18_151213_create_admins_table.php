@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateAdminsTable
+ * Class CreateAdminsTable.
  */
 class CreateAdminsTable extends Migration
 {

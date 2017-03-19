@@ -132,9 +132,9 @@ return [
     */
 
     'attributes'           => [
-        'email' => 'E-Mail',
-        'password' => 'пароль',
-        'university_name' => 'полное название учебного заведения',
+        'email'                 => 'E-Mail',
+        'password'              => 'пароль',
+        'university_name'       => 'полное название учебного заведения',
         'university_short_name' => 'сокращенное название учебного заведения',
         'password_confirmation' => 'подтвержждение пароля',
     ],

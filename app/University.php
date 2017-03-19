@@ -7,8 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class University
- * @package App
+ * Class University.
  */
 class University extends Model
 {
