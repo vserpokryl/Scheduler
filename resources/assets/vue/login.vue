@@ -7,48 +7,39 @@
                         <div class="row" style="margin-bottom: 80px;">
                             <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
                                 <div class="card card-signup">
-                                    <form class="form" role="form" method="POST" action="/login">
+                                    <form class="form">
                                         <div class="header header-primary text-center">
                                             <h4>Вход в панель управления</h4>
                                         </div>
                                         <div class="content">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="material-icons">account_box</i>
-                                                </span>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label" for="username">Логин</label>
-                                                    <input id="username" type="text" class="form-control" name="username">
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                      <i class="material-icons">lock_outline</i>
-                                                </span>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label" for="password">Пароль</label>
-                                                    <input id="password" type="password" class="form-control" name="password">
-                                                </div>
-                                            </div>
-
+                                            <form-input
+                                                    type="text"
+                                                    label="E-Mail"
+                                                    v-model="email"
+                                                    :error="email_error"
+                                                    @error="email_error = arguments[0]"
+                                                    icon="email">
+                                            </form-input>
+                                            <form-input
+                                                type="password"
+                                                label="Пароль"
+                                                v-model="password"
+                                                :error="password_error"
+                                                @error="password_error = arguments[0]"
+                                                icon="lock_outline"
+                                            />
                                             <!--<div class="col-xs-12" style="margin-top: 10px;">-->
                                                 <!--<router-link to="/password_reset" class="pull-right">-->
                                                     <!--Забыли пароль?-->
                                                 <!--</router-link>-->
                                             <!--</div>-->
 
-                                            <div class="col-xs-12">
-                                                <div class="checkbox text-center">
-                                                    <label>
-                                                        <input type="checkbox" name="remember" checked>
-                                                        Запомнить меня
-                                                    </label>
-                                                </div>
+                                            <div class="col-xs-12 text-center">
+                                                <form-checkbox label="Запомнить меня" v-model="remember"/>
                                             </div>
                                         </div>
                                         <div class="footer text-center">
-                                            <button type="submit" class="btn btn-simple btn-primary btn-lg">Войти</button>
+                                            <button v-on:click.prevent="login" class="btn btn-simple btn-primary btn-lg">Войти</button>
                                         </div>
                                     </form>
                                 </div>
@@ -72,14 +63,51 @@
 export default {
     data () {
         return {
-            msg: 'Hello world!'
+            email: '',
+            password: '',
+
+            email_error: false,
+            password_error: false,
+
+            remember: true,
+        }
+    },
+    methods: {
+        login: function() {
+            axios.post('/login', {
+                email: this.email,
+                password: this.password,
+                remember: this.remember
+            }).then((response) => {
+
+                if (response.data.success === true) {
+                    window.location.replace(response.data.goto);
+                } else {
+
+                    if (response.data.invalid === true) {
+                        for (let elem in response.data.messages) {
+                            let elem_messages = response.data.messages[elem];
+
+                            this[elem + '_error'] = true;
+
+                            elem_messages.forEach((message) => {
+                                showErrorMessage(message)
+                            });
+                        }
+                    } else {
+                        console.error(response);
+                        console.error(response.data);
+                        showErrorMessage(response.data.message);
+                    }
+
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
         }
     },
     created () {
         loadedAssets();
-        $(document).ready(function() {
-            $.material.init();
-        });
         NProgress.done();
     }
 }

@@ -8,11 +8,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * Class User.
+ * Class Admin
  */
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
+
+    protected $guard = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'password', 'university_id'
     ];
 
     /**
@@ -33,15 +35,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * @param string $password
-     * @param string $user
-     *
-     * @return User
+     * @param  string $password
+     * @return Admin
      */
-    public function setPasswordAttribute(string $password, string $user): User
+    public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
-
         return $this;
     }
 }

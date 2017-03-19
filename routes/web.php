@@ -16,16 +16,29 @@ use Illuminate\Routing\Router;
 */
 
 /* @var Router $router */
-Route::get('/', 'HomeController@index')->name('home');
 Route::pattern('id', '[0-9]+');
 
+Route::get('/', 'HomeController@index')->name('home');
+
 Route::group(['middleware' => ['guest']], function () {
-    Route::get('login', 'HomeController@index')->name('home');
-    Route::post('login', 'Auth\LoginController@login');
-    Route::get('register', 'HomeController@index')->name('home');
-    Route::post('register', 'Auth\RegisterController@register');
-    Route::get('password_reset', 'HomeController@index')->name('home');
-//    Route::post('register', 'Auth\RegisterController@register');
+
+    Route::get('login', 'HomeController@index');
+    Route::get('register', 'HomeController@index');
+    Route::get('password_reset', 'HomeController@index');
+
+    Route::post('register', 'Auth\AdminRegisterController@register');
+    Route::post('login', 'Auth\AdminLoginController@login');
+});
+
+Route::group(['middleware' => ['auth']], function () {
+
+//    Route::get('/', 'AdminController@index');
+
+    Route::get('logout', 'Auth\AdminLoginController@logout');
+
+    Route::get('/admin',function() {
+        return 'Admin';
+    });
 });
 
 //    Route::group(['middleware' => ['auth']], function () {

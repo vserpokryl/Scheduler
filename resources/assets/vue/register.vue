@@ -7,63 +7,54 @@
                         <div class="row" style="margin-bottom: 80px;">
                             <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                                 <div class="card card-signup">
-                                    <form class="form" role="form" method="POST" action="/register">
+                                    <form class="form">
                                         <div class="header header-primary text-center">
                                             <h4>Регистрация</h4>
                                         </div>
                                         <div class="content">
-                                            <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="material-icons">account_box</i>
-                                        </span>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label" for="username">Логин</label>
-                                                    <input id="username" type="text" class="form-control" name="username">
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="material-icons">school</i>
-                                        </span>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label" for="university_name">Полное название учебного заведения</label>
-                                                    <input id="university_name" type="text" class="form-control" name="university_name">
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="material-icons">school</i>
-                                        </span>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label" for="university_short_name">Сокращенное название учебного заведения</label>
-                                                    <input id="university_short_name" type="text" class="form-control" name="university_short_name">
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group">
-                                        <span class="input-group-addon">
-                                              <i class="material-icons">lock_outline</i>
-                                        </span>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label" for="password">Пароль</label>
-                                                    <input id="password" type="password" class="form-control" name="password">
-                                                </div>
-                                            </div>
-
-                                            <div class="input-group">
-                                        <span class="input-group-addon">
-                                              <i class="material-icons">lock_outline</i>
-                                        </span>
-                                                <div class="form-group label-floating is-empty">
-                                                    <label class="control-label" for="password-confirm">Подтверждение пароля</label>
-                                                    <input id="password-confirm" type="password" class="form-control" name="password-confirm">
-                                                </div>
-                                            </div>
+                                            <form-input
+                                                type="text"
+                                                label="E-Mail"
+                                                v-model="email"
+                                                :error="email_error"
+                                                @error="email_error = arguments[0]"
+                                                icon="email">
+                                            </form-input>
+                                            <form-input
+                                                type="text"
+                                                label="Полное название учебного заведения"
+                                                v-model="university_name"
+                                                :error="university_name_error"
+                                                @error="university_name_error = arguments[0]"
+                                                icon="school">
+                                            </form-input>
+                                            <form-input
+                                                type="text"
+                                                label="Сокращенное название учебного заведения"
+                                                v-model="university_short_name"
+                                                :error="university_short_name_error"
+                                                @error="university_short_name_error = arguments[0]"
+                                                icon="school">
+                                            </form-input>
+                                            <form-input
+                                                type="password"
+                                                label="Пароль"
+                                                v-model="password"
+                                                :error="password_error"
+                                                @error="password_error = arguments[0]"
+                                                icon="lock_outline">
+                                            </form-input>
+                                            <form-input
+                                                type="password"
+                                                label="Подтверждение пароля"
+                                                v-model="password_confirmation"
+                                                :error="password_confirmation_error"
+                                                @error="password_confirmation_error = arguments[0]"
+                                                icon="lock_outline">
+                                            </form-input>
                                         </div>
                                         <div class="footer text-center">
-                                            <button type="submit" class="btn btn-simple btn-primary btn-lg">Зарегистрироваться</button>
+                                            <button v-on:click.prevent="register" class="btn btn-simple btn-primary btn-lg">Зарегистрироваться</button>
                                         </div>
                                     </form>
                                 </div>
@@ -87,14 +78,68 @@
 export default {
     data () {
         return {
-            msg: 'Hello world!'
+            email: '',
+            university_name: '',
+            university_short_name: '',
+            password: '',
+            password_confirmation: '',
+
+            email_error: false,
+            university_name_error: false,
+            university_short_name_error: false,
+            password_error: false,
+            password_confirmation_error: false,
+        }
+    },
+    methods: {
+        register: function() {
+            axios.post('/register', {
+                email: this.email,
+                university_name: this.university_name,
+                university_short_name: this.university_short_name,
+                password: this.password,
+                password_confirmation: this.password_confirmation
+            }).then((response) => {
+
+                if (response.data.success === true) {
+                    showSuccessMessage(response.data.message);
+
+                    this.email = '';
+                    this.university_name = '';
+                    this.university_short_name = '';
+                    this.password = '';
+                    this.password_confirmation = '';
+
+                    this.email_error = false;
+                    this.university_name_error = false;
+                    this.university_short_name_error = false;
+                    this.password_error = false;
+                    this.password_confirmation_error = false;
+
+                } else {
+
+                    if (response.data.invalid === true) {
+                        for (let elem in response.data.messages) {
+                            let elem_messages = response.data.messages[elem];
+
+                            this[elem + '_error'] = true;
+
+                            elem_messages.forEach((message) => {
+                                showErrorMessage(message)
+                            });
+                        }
+                    } else {
+                        console.error(response);
+                        showErrorMessage(response.data.message);
+                    }
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
         }
     },
     created () {
         loadedAssets();
-        $(document).ready(function() {
-            $.material.init();
-        });
         NProgress.done();
     }
 }

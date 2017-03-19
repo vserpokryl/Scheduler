@@ -96,7 +96,7 @@ gulp.task('webpack', function(callback) {
 
     let options = {
         entry:   {
-            app: './resources/assets/js/app',
+            admin: './resources/assets/js/admin',
             home: './resources/assets/js/home',
             loader: './resources/assets/js/loader',
             common: './resources/assets/js/common'

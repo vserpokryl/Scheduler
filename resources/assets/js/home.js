@@ -22,4 +22,7 @@ router.beforeEach((to, from, next) => {
     next();
 });
 
-new Vue({ router }).$mount('#app');
+Vue.component('form-input', require('./../vue/form-input.vue'));
+Vue.component('form-checkbox', require('./../vue/form-checkbox.vue'));
+
+new Vue({router}).$mount('#app');
