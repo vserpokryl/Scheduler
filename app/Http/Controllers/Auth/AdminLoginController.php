@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Auth;
 use Validator;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 /**
  * Class LoginController.
  */
 class AdminLoginController extends Controller
 {
-
     /**
      * Create a new controller instance.
      */
@@ -47,26 +46,25 @@ class AdminLoginController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'email'    => 'required|email',
+            'password' => 'required|min:6',
         ]);
 
         if ($validator->fails()) {
             return [
-                'success' => false,
-                'invalid' => true,
-                'messages' => $validator->messages()
+                'success'  => false,
+                'invalid'  => true,
+                'messages' => $validator->messages(),
             ];
         }
 
         if (Auth::guard()->attempt([
                 'email' => $request->email,
-                'password' => $request->password
-            ], $request->remember))
-        {
+                'password' => $request->password,
+            ], $request->remember)) {
             return [
                 'success' => true,
-                'goto' => route('home'),
+                'goto'    => route('home'),
             ];
         }
 

@@ -21,7 +21,6 @@ Route::pattern('id', '[0-9]+');
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['guest']], function () {
-
     Route::get('login', 'HomeController@index');
     Route::get('register', 'HomeController@index');
     Route::get('password_reset', 'HomeController@index');
@@ -36,7 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('logout', 'Auth\AdminLoginController@logout');
 
-    Route::get('/admin',function() {
+    Route::get('/admin', function () {
         return 'Admin';
     });
 });

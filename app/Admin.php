@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * Class Admin
+ * Class Admin.
  */
 class Admin extends Authenticatable
 {
@@ -22,7 +22,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'university_id'
+        'email', 'password', 'university_id',
     ];
 
     /**
@@ -41,6 +41,7 @@ class Admin extends Authenticatable
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+
         return $this;
     }
 }
