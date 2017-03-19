@@ -21,7 +21,7 @@ class HttpsProtocol
      */
     public function handle($request, Closure $next)
     {
-        if (! $request->secure()) {
+        if (! $request->secure() && env('APP_ENV') !== 'testing') {
             return redirect()->secure($request->getRequestUri());
         }
 
