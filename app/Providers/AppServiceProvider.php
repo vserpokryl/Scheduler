@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use Illuminate\Config\Repository;
+use Laravel\Dusk\DuskServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Dusk\DuskServiceProvider;
 
 /**
  * Class AppServiceProvider.
