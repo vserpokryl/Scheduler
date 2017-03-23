@@ -29,7 +29,7 @@ class LoginTest extends DuskTestCase
 
         $admin = factory(Admin::class)->create([
             'university_id' => $university->id,
-            'password' => $password
+            'password'      => $password,
         ]);
 
         $this->browse(function ($browser) use ($admin, $password) {
@@ -51,7 +51,7 @@ class LoginTest extends DuskTestCase
     public function elements()
     {
         return [
-            '@email' => 'input[name=email]',
+            '@email'    => 'input[name=email]',
             '@password' => 'input[name=password]',
         ];
     }
