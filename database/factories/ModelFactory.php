@@ -13,13 +13,21 @@ declare(strict_types=1);
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Admin::class, function (Faker\Generator $faker) {
+    static $university_id;
     static $password;
 
     return [
-        'name'           => $faker->name,
         'email'          => $faker->unique()->safeEmail,
-        'password'       => $password ?: $password = bcrypt('secret'),
+        'password'       => $password ?: $password = 'secret',
+        'university_id'  => $university_id ?: $university_id = 1,
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\University::class, function (Faker\Generator $faker) {
+    return [
+        'university_name'          => $faker->name,
+        'university_short_name'    => $faker->name,
     ];
 });

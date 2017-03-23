@@ -19,4 +19,12 @@ class University extends Model
     protected $fillable = [
         'university_name', 'university_short_name',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function admins()
+    {
+        return $this->hasMany('App\Admin', 'university_id', 'id');
+    }
 }

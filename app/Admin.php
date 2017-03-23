@@ -44,4 +44,12 @@ class Admin extends Authenticatable
 
         return $this;
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function university()
+    {
+        return $this->belongsTo('App\University', 'university_id', 'id');
+    }
 }

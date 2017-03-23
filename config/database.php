@@ -35,7 +35,7 @@ return [
 
     'connections' => [
 
-        'unit-test' => [
+        'testing' => [
             'driver'   => 'sqlite',
             'database' => ':memory:',
             'prefix'   => '',

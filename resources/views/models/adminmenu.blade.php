@@ -12,21 +12,10 @@
 
         <div class="collapse navbar-collapse" id="adminmenu-navbar">
             <ul class="nav navbar-nav">
-                <li class="{{ Request::is("/") ? 'active' : '' }}"><a href="/">Расписание</a></li>
-                <li class="{{ Request::is("statistic") ? 'active' : '' }}"><a href="/statistic">Статистика</a></li>
-                <li class="dropdown {{ Request::is(
-                    'edit/colleges',
-                    'edit/faculties',
-                    'edit/specialties',
-                    'edit/groups',
-                    'edit/subgroups',
-                    'edit/teachers',
-                    'edit/subjects',
-                    'edit/type_subjects',
-                    'edit/buildings',
-                    'edit/classrooms'
-                ) ? 'active' : ''}}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Редактирование
+                <router-link to="/" tag="li"><a>Расписание</a></router-link>
+                <router-link to="/statistics" tag="li"><a>Статистика</a></router-link>
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Редактирование
                         <b class="caret"></b>
                         <div class="ripple-container"></div>
                     </a>
@@ -47,12 +36,12 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ Auth::user()->username }}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ Auth::user()->university->university_short_name }}
                         <b class="caret"></b>
                         <div class="ripple-container"></div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="{{ url('/logout') }}">Выход</a></li>
+                        <li><a href="/logout">Выход</a></li>
                     </ul>
                 </li>
             </ul>

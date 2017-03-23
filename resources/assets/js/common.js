@@ -1,13 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import vSelect from 'vue-select'
 import jQuery from 'jquery'
 import axios from 'axios'
 import noty from 'noty'
 
-
 Vue.use(VueRouter);
-Vue.component('v-select', vSelect);
 
 window.jQuery = window.$ = jQuery;
 window.noty = noty;

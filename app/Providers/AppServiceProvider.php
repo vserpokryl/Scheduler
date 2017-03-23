@@ -7,6 +7,7 @@ namespace App\Providers;
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Dusk\DuskServiceProvider;
 
 /**
  * Class AppServiceProvider.
@@ -25,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->loadProviders($this->app->make(Repository::class));
+
+        if ($this->app->environment('local', 'testing')) {
+            $this->app->register(DuskServiceProvider::class);
+        }
     }
 
     /**

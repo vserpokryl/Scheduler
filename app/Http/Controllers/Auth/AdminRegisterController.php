@@ -51,7 +51,7 @@ class AdminRegisterController extends Controller
 
         $university = University::create($request->only('university_name', 'university_short_name'));
 
-        $admin = Admin::create([
+        Admin::create([
             'email'         => $request->email,
             'password'      => $request->password,
             'university_id' => $university->id,

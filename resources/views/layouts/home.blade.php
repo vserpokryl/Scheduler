@@ -18,11 +18,7 @@
 
 <div id="app">
 
-    @if (Auth::guest())
-        @include('models.guestmenu')
-    @else
-        @include('models.adminmenu')
-    @endif
+    @include('models.guestmenu')
 
     <router-view></router-view>
 
