@@ -7,9 +7,15 @@ namespace Tests\Browser;
 use App\Admin;
 use App\University;
 use Tests\DuskTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
+/**
+ * Class LoginTest.
+ */
 class LoginTest extends DuskTestCase
 {
+    use DatabaseMigrations;
+
     /**
      * A Dusk test example.
      *
@@ -17,23 +23,36 @@ class LoginTest extends DuskTestCase
      */
     public function testLogin()
     {
-        //        $university = factory(University::class)->create();
-//
-//        dd($university);
+        $password = 'secret';
 
-//        $admin = factory(Admin::class)->create([
-//            'email' => 'test@mytest.ru',
-//            'password' => '12345678',
-//            'university_id' => $university->id,
-//        ]);
+        $university = factory(University::class)->create();
 
-//        $this->browse(function ($browser) use ($admin) {
-//            $browser->visit('/login')
-//                ->waitFor('.form')
-//                ->type('email', $admin->email)
-//                ->type('password', '12345678')
-//                ->press('Login')
-//                ->assertPathIs('/schedule');
-//        });
+        $admin = factory(Admin::class)->create([
+            'university_id' => $university->id,
+            'password' => $password
+        ]);
+
+        $this->browse(function ($browser) use ($admin, $password) {
+            $browser->visit('/login')
+                ->waitFor('.form')
+                ->pause(1000)
+                ->type('@email', $admin->email)
+                ->type('@password', $password)
+                ->press('Войти')
+                ->assertPathIs('/schedule');
+        });
+    }
+
+    /**
+     * Get the element shortcuts for the page.
+     *
+     * @return array
+     */
+    public function elements()
+    {
+        return [
+            '@email' => 'input[name=email]',
+            '@password' => 'input[name=password]',
+        ];
     }
 }

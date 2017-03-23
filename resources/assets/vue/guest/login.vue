@@ -14,6 +14,7 @@
                                         <div class="content">
                                             <form-input
                                                     type="text"
+                                                    name="email"
                                                     label="E-Mail"
                                                     v-model="email"
                                                     :error="email_error"
@@ -22,6 +23,7 @@
                                             </form-input>
                                             <form-input
                                                 type="password"
+                                                name="password"
                                                 label="Пароль"
                                                 v-model="password"
                                                 :error="password_error"

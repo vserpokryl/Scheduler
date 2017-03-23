@@ -7,6 +7,7 @@
             <label class="control-label">{{ label }}</label>
             <input class="form-control"
                 :type="type"
+                :name="name"
                 :value="value"
                 @input="$emit('input', $event.target.value)"
                 @focus="onFocus"
@@ -19,7 +20,7 @@
 
 <script>
 export default {
-    props: ['icon', 'label', 'error', 'value', 'type'],
+    props: ['icon', 'label', 'error', 'value', 'type', 'name'],
     data () {
         return {
             focus: false,

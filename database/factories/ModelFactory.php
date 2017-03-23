@@ -14,13 +14,11 @@ declare(strict_types=1);
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Admin::class, function (Faker\Generator $faker) {
-    static $university_id;
     static $password;
 
     return [
         'email'          => $faker->unique()->safeEmail,
         'password'       => $password ?: $password = 'secret',
-        'university_id'  => $university_id ?: $university_id = 1,
         'remember_token' => str_random(10),
     ];
 });
