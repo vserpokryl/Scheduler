@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Browser;
 
 use App\Admin;
 use App\University;
 use Tests\DuskTestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class LoginTest extends DuskTestCase
 {
@@ -16,7 +17,7 @@ class LoginTest extends DuskTestCase
      */
     public function testLogin()
     {
-//        $university = factory(University::class)->create();
+        //        $university = factory(University::class)->create();
 //
 //        dd($university);
 
@@ -25,7 +26,6 @@ class LoginTest extends DuskTestCase
 //            'password' => '12345678',
 //            'university_id' => $university->id,
 //        ]);
-
 
 //        $this->browse(function ($browser) use ($admin) {
 //            $browser->visit('/login')

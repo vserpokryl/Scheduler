@@ -18,9 +18,7 @@ use Illuminate\Routing\Router;
 /* @var Router $router */
 Route::pattern('id', '[0-9]+');
 
-
 Route::group(['middleware' => ['guest']], function () {
-
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('login', 'HomeController@index');
     Route::get('register', 'HomeController@index');
@@ -31,7 +29,6 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-
     Route::get('/schedule', 'AdminController@index')->name('admin_home');
     Route::get('logout', 'Auth\AdminLoginController@logout');
 });
