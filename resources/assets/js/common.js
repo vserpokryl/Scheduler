@@ -4,13 +4,13 @@ import jQuery from 'jquery'
 import axios from 'axios'
 import noty from 'noty'
 
-Vue.use(VueRouter);
-
 window.jQuery = window.$ = jQuery;
 window.noty = noty;
 window.axios = axios;
 window.Vue = Vue;
 window.VueRouter = VueRouter;
+
+window.Vue.use(window.VueRouter);
 
 require('./bootstrap.min');
 require('./material.min');
