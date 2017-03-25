@@ -112,7 +112,7 @@ webpackJsonp([ 5 ], {
     },
     78: function(e, t, n) {
         "use strict";
-        var o = new VueRouter({
+        var o = new window.VueRouter({
             mode: "history",
             routes: [ {
                 path: "/",
@@ -133,7 +133,8 @@ webpackJsonp([ 5 ], {
         });
         o.beforeEach(function(e, t, n) {
             NProgress.start(), n();
-        }), Vue.component("form-input", n(10)), Vue.component("form-checkbox", n(9)), new Vue({
+        }), window.Vue.component("form-input", n(10)), window.Vue.component("form-checkbox", n(9)), 
+        new window.Vue({
             router: o
         }).$mount("#app");
     },
