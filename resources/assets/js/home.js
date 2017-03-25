@@ -1,4 +1,4 @@
-const router = new VueRouter({
+const router = new window.VueRouter({
     mode: 'history',
     routes: [
         {
@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
     next();
 });
 
-Vue.component('form-input', require('./../vue/components/form-input.vue'));
-Vue.component('form-checkbox', require('./../vue/components/form-checkbox.vue'));
+window.Vue.component('form-input', require('./../vue/components/form-input.vue'));
+window.Vue.component('form-checkbox', require('./../vue/components/form-checkbox.vue'));
 
-new Vue({router}).$mount('#app');
+new window.Vue({router}).$mount('#app');

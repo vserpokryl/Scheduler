@@ -12,9 +12,8 @@ install:
 
 before_script:
   - phantomjs --webdriver=127.0.0.1:9515 &
-  - sleep 10
   - php artisan serve &
-  - sleep 10
+  - sleep 5
 
 script:
   - vendor/bin/phpunit
