@@ -34,18 +34,20 @@ class LoginTest extends DuskTestCase
         ]);
 
         $this->browse(function (Browser $browser) use ($admin, $password) {
-            $browser->visit('/login')
-                ->waitUntil('window.countAssets === 0')
-                ->assertSee('Вход в панель управления')
-                ->type('input[name=email]', $admin->email)
-                ->type('input[name=password]', $password)
-                ->pause(1000)
-                ->press('.login-button')
-                ->pause(2000)
+//            $browser->visit('/login')
+//                ->waitUntil('window.countAssets === 0')
+//                ->assertSee('Вход в панель управления')
+//                ->type('input[name=email]', $admin->email)
+//                ->type('input[name=password]', $password)
+//                ->pause(1000)
+//                ->press('.login-button')
+//                ->pause(2000)
 //
 //                ->click('#login1')
 //                ->waitFor('input[name=email]')
-                ->assertPathIs('/schedule');
+//                ->assertPathIs('/schedule');
+            $browser->visit('/test')
+                ->assertSee('Hello');
         });
     }
 }

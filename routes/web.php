@@ -23,6 +23,9 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('login', 'HomeController@index');
     Route::get('register', 'HomeController@index');
     Route::get('password_reset', 'HomeController@index');
+    Route::get('test', function() {
+        return 'Hello';
+    });
 
     Route::post('register', 'Auth\AdminRegisterController@register');
     Route::post('login', 'Auth\AdminLoginController@login');

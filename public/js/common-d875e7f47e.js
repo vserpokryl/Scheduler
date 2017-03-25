@@ -10155,8 +10155,8 @@
             default: t
         };
     }
-    var r = n(58), i = o(r), s = n(56), a = o(s), c = n(35), u = o(c), l = n(51), p = o(l), f = n(54), d = o(f);
-    window.jQuery = window.$ = u.default, window.noty = d.default, window.axios = p.default, 
+    var r = n(58), i = o(r), s = n(56), a = o(s), c = n(35), u = o(c), l = n(54), p = o(l), f = n(51), d = o(f);
+    window.jQuery = window.$ = u.default, window.noty = p.default, window.axios = d.default, 
     window.Vue = i.default, window.VueRouter = a.default, window.Vue.use(window.VueRouter), 
     n(52), n(53), window.$.noty.defaults = {
         layout: "topRight",
@@ -10191,12 +10191,12 @@
         },
         buttons: !1
     }, window.showSuccessMessage = function(t) {
-        return (0, d.default)({
+        return (0, p.default)({
             text: t,
             type: "success"
         });
     }, window.showErrorMessage = function(t) {
-        return (0, d.default)({
+        return (0, p.default)({
             text: t,
             type: "error",
             timeout: 8e3,
