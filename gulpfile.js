@@ -156,6 +156,9 @@ gulp.task('webpack', function(callback) {
                 'process.env': {
                     NODE_ENV: isDevelopment ? '"development"' : '"production"'
                 }
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: "common"
             })
         ]
     };
