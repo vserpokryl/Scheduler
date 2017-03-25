@@ -1,8 +1,6 @@
 language: php
 
 php:
-  - 5.6
-  - 7.0
   - 7.1
 
 install:
@@ -10,13 +8,13 @@ install:
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - cp .env.travis .env
   - php artisan key:generate
-  - touch ./database/testing.sqlite
   - echo "" > ./database/testing.sqlite
 
 before_script:
   - phantomjs --webdriver=127.0.0.1:9515 &
+  - sleep 10
   - php artisan serve &
-  - sleep 5
+  - sleep 10
 
 script:
   - vendor/bin/phpunit
