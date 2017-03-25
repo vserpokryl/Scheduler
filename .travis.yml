@@ -1,14 +1,22 @@
-sudo: required
 language: php
 
 php:
+  - 5.6
+  - 7.0
   - 7.1
 
-before_script:
+install:
   - composer self-update
-  - composer install --dev --no-interaction --prefer-source
-  - cp ./.env.travis ./.env
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - cp .env.travis .env
   - php artisan key:generate
+  - touch ./database/testing.sqlite
+  - echo "" > ./database/testing.sqlite
+
+before_script:
+  - phantomjs --webdriver=127.0.0.1:9515 &
+  - php artisan serve &
+  - sleep 5
 
 script:
   - vendor/bin/phpunit

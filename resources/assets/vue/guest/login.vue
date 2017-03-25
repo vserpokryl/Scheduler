@@ -28,8 +28,8 @@
                                                 v-model="password"
                                                 :error="password_error"
                                                 @error="password_error = arguments[0]"
-                                                icon="lock_outline"
-                                            />
+                                                icon="lock_outline">
+                                            </form-input>
                                             <!--<div class="col-xs-12" style="margin-top: 10px;">-->
                                                 <!--<router-link to="/password_reset" class="pull-right">-->
                                                     <!--Забыли пароль?-->
@@ -37,11 +37,11 @@
                                             <!--</div>-->
 
                                             <div class="col-xs-12 text-center">
-                                                <form-checkbox label="Запомнить меня" v-model="remember"/>
+                                                <form-checkbox label="Запомнить меня" v-model="remember"></form-checkbox>
                                             </div>
                                         </div>
                                         <div class="footer text-center">
-                                            <button v-on:click.prevent="login" class="btn btn-simple btn-primary btn-lg">Войти</button>
+                                            <button v-on:click.prevent="login" class="btn btn-simple btn-primary btn-lg login-button">Войти</button>
                                         </div>
                                     </form>
                                 </div>
@@ -85,7 +85,6 @@ export default {
                 if (response.data.success === true) {
                     window.location.replace(response.data.goto);
                 } else {
-
                     if (response.data.invalid === true) {
                         for (let elem in response.data.messages) {
                             let elem_messages = response.data.messages[elem];
@@ -104,6 +103,7 @@ export default {
 
                 }
             }).catch((error) => {
+                window.err = error;
                 console.error(error);
             });
         }

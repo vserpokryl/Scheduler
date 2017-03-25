@@ -6,6 +6,7 @@ namespace Tests\Browser;
 
 use App\Admin;
 use App\University;
+use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -32,27 +33,19 @@ class LoginTest extends DuskTestCase
             'password'      => $password,
         ]);
 
-        $this->browse(function ($browser) use ($admin, $password) {
+        $this->browse(function (Browser $browser) use ($admin, $password) {
             $browser->visit('/login')
-                ->waitFor('.form')
+                ->waitUntil('window.countAssets === 0')
+                ->assertSee('Вход в панель управления')
+                ->type('input[name=email]', $admin->email)
+                ->type('input[name=password]', $password)
                 ->pause(1000)
-                ->type('@email', $admin->email)
-                ->type('@password', $password)
-                ->press('Войти')
+                ->press('.login-button')
+                ->pause(2000)
+//
+//                ->click('#login1')
+//                ->waitFor('input[name=email]')
                 ->assertPathIs('/schedule');
         });
-    }
-
-    /**
-     * Get the element shortcuts for the page.
-     *
-     * @return array
-     */
-    public function elements()
-    {
-        return [
-            '@email'    => 'input[name=email]',
-            '@password' => 'input[name=password]',
-        ];
     }
 }

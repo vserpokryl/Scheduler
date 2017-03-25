@@ -14,6 +14,7 @@
                                         <div class="content">
                                             <form-input
                                                 type="text"
+                                                name="email"
                                                 label="E-Mail"
                                                 v-model="email"
                                                 :error="email_error"
@@ -22,6 +23,7 @@
                                             </form-input>
                                             <form-input
                                                 type="text"
+                                                name="university_name"
                                                 label="Полное название учебного заведения"
                                                 v-model="university_name"
                                                 :error="university_name_error"
@@ -30,6 +32,7 @@
                                             </form-input>
                                             <form-input
                                                 type="text"
+                                                name="university_short_name"
                                                 label="Сокращенное название учебного заведения"
                                                 v-model="university_short_name"
                                                 :error="university_short_name_error"
@@ -38,6 +41,7 @@
                                             </form-input>
                                             <form-input
                                                 type="password"
+                                                name="password"
                                                 label="Пароль"
                                                 v-model="password"
                                                 :error="password_error"
@@ -46,6 +50,7 @@
                                             </form-input>
                                             <form-input
                                                 type="password"
+                                                name="password_confirmation"
                                                 label="Подтверждение пароля"
                                                 v-model="password_confirmation"
                                                 :error="password_confirmation_error"
