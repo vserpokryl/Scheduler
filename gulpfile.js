@@ -99,7 +99,6 @@ gulp.task('webpack', function(callback) {
             admin: './resources/assets/js/admin',
             home: './resources/assets/js/home',
             loader: './resources/assets/js/loader',
-            test: './resources/assets/js/test',
             common: './resources/assets/js/common'
         },
         output:  {
@@ -169,12 +168,14 @@ gulp.task('webpack', function(callback) {
         options.plugins.push(
             new webpack.optimize.UglifyJsPlugin({
                 sourceMap: false,
-                // beautify: false,
-                compress: true,
-                mangle: true,
+                beautify: false,
+                compress: {
+                    warnings: false,
+                },
+                mangle: {
+                    except: ['btoa']
+                },
                 comments: false,
-
-                beautify: true,
             }),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
