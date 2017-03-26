@@ -1,13 +1,13 @@
 webpackJsonp([ 3 ], {
-    117: function(t, a, s) {
-        var e = s(8)(s(121), s(128), null, null);
-        t.exports = e.exports;
+    117: function(module, exports, __webpack_require__) {
+        var Component = __webpack_require__(8)(__webpack_require__(121), __webpack_require__(128), null, null);
+        module.exports = Component.exports;
     },
-    121: function(t, a, s) {
+    121: function(module, exports, __webpack_require__) {
         "use strict";
-        Object.defineProperty(a, "__esModule", {
+        Object.defineProperty(exports, "__esModule", {
             value: !0
-        }), a.default = {
+        }), exports.default = {
             data: function() {
                 return {};
             },
@@ -16,88 +16,88 @@ webpackJsonp([ 3 ], {
             }
         };
     },
-    128: function(t, a) {
-        t.exports = {
+    128: function(module, exports) {
+        module.exports = {
             render: function() {
-                var t = this, a = t.$createElement;
-                t._self._c;
-                return t._m(0);
+                var _vm = this, _h = _vm.$createElement;
+                _vm._self._c;
+                return _vm._m(0);
             },
             staticRenderFns: [ function() {
-                var t = this, a = t.$createElement, s = t._self._c || a;
-                return s("div", [ s("h3", [ t._v(" - Добавление высшего учебного заведения.") ]), t._v(" "), s("div", {
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
+                return _c("div", [ _c("h3", [ _vm._v(" - Добавление высшего учебного заведения.") ]), _vm._v(" "), _c("div", {
                     staticClass: "row"
-                }, [ s("form", {
+                }, [ _c("form", {
                     attrs: {
                         id: "add_college"
                     }
-                }, [ s("div", {
+                }, [ _c("div", {
                     staticClass: "col-md-6"
-                }, [ s("div", {
+                }, [ _c("div", {
                     staticClass: "form-group label-floating is-empty"
-                }, [ s("label", {
+                }, [ _c("label", {
                     staticClass: "control-label"
-                }, [ t._v("Сокращенное название ВУЗа") ]), t._v(" "), s("input", {
+                }, [ _vm._v("Сокращенное название ВУЗа") ]), _vm._v(" "), _c("input", {
                     staticClass: "form-control",
                     attrs: {
                         type: "text",
                         name: "short_name"
                     }
-                }), t._v(" "), s("span", {
+                }), _vm._v(" "), _c("span", {
                     staticClass: "material-input"
-                }) ]) ]), t._v(" "), s("div", {
+                }) ]) ]), _vm._v(" "), _c("div", {
                     staticClass: "col-md-6"
-                }, [ s("div", {
+                }, [ _c("div", {
                     staticClass: "form-group label-floating is-empty"
-                }, [ s("label", {
+                }, [ _c("label", {
                     staticClass: "control-label"
-                }, [ t._v("Полное название ВУЗа") ]), t._v(" "), s("input", {
+                }, [ _vm._v("Полное название ВУЗа") ]), _vm._v(" "), _c("input", {
                     staticClass: "form-control",
                     attrs: {
                         type: "text",
                         name: "name"
                     }
-                }), t._v(" "), s("span", {
+                }), _vm._v(" "), _c("span", {
                     staticClass: "material-input"
-                }) ]) ]), t._v(" "), s("div", {
+                }) ]) ]), _vm._v(" "), _c("div", {
                     staticClass: "col-md-12"
-                }, [ s("input", {
+                }, [ _c("input", {
                     staticClass: "btn pull-right btn-success",
                     attrs: {
                         type: "submit",
                         value: "Добавить"
                     }
-                }) ]) ]) ]), t._v(" "), s("h3", [ t._v(" - Редактирование высших учебных заведений.") ]), t._v(" "), s("div", {
+                }) ]) ]) ]), _vm._v(" "), _c("h3", [ _vm._v(" - Редактирование высших учебных заведений.") ]), _vm._v(" "), _c("div", {
                     staticClass: "row"
-                }, [ s("div", {
+                }, [ _c("div", {
                     staticClass: "col-md-12"
-                }, [ s("table", {
+                }, [ _c("table", {
                     staticClass: "table table-striped table-bordered table-edit",
                     attrs: {
                         id: "table_edit"
                     }
-                }, [ s("thead", [ s("tr", [ s("th", [ t._v("Сокращенное название") ]), t._v(" "), s("th", [ t._v("Полное название") ]), t._v(" "), s("th", [ t._v("Управление") ]) ]) ]), t._v(" "), s("tbody", [ s("tr", [ s("td", {
+                }, [ _c("thead", [ _c("tr", [ _c("th", [ _vm._v("Сокращенное название") ]), _vm._v(" "), _c("th", [ _vm._v("Полное название") ]), _vm._v(" "), _c("th", [ _vm._v("Управление") ]) ]) ]), _vm._v(" "), _c("tbody", [ _c("tr", [ _c("td", {
                     attrs: {
                         contenteditable: "true"
                     }
-                }, [ t._v("$college->short_name") ]), t._v(" "), s("td", {
+                }, [ _vm._v("$college->short_name") ]), _vm._v(" "), _c("td", {
                     attrs: {
                         contenteditable: "true"
                     }
-                }, [ t._v("$college->name") ]), t._v(" "), s("td", {
+                }, [ _vm._v("$college->name") ]), _vm._v(" "), _c("td", {
                     staticClass: "text-center"
-                }, [ s("button", {
+                }, [ _c("button", {
                     staticClass: "btn btn-disable",
                     attrs: {
                         id: "changes",
                         "data-id": "$college->id"
                     }
-                }, [ t._v("Нет изменений") ]), t._v(" "), s("button", {
+                }, [ _vm._v("Нет изменений") ]), _vm._v(" "), _c("button", {
                     staticClass: "btn btn-danger",
                     attrs: {
                         "data-id": "$college->id"
                     }
-                }, [ t._v("Удалить") ]) ]) ]) ]) ]) ]) ]) ]);
+                }, [ _vm._v("Удалить") ]) ]) ]) ]) ]) ]) ]) ]);
             } ]
         };
     }

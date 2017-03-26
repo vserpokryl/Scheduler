@@ -172,9 +172,10 @@ gulp.task('webpack', function(callback) {
                 compress: {
                     warnings: false,
                 },
-                mangle: {
-                    except: ['btoa']
-                },
+                mangle: false,
+                // mangle: {
+                //     except: ['btoa']
+                // },
                 comments: false,
             }),
             new webpack.LoaderOptionsPlugin({

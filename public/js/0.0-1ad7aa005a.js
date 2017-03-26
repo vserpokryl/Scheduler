@@ -1,13 +1,13 @@
 webpackJsonp([ 0 ], {
-    120: function(r, e, t) {
-        var s = t(8)(t(124), t(127), null, null);
-        r.exports = s.exports;
+    120: function(module, exports, __webpack_require__) {
+        var Component = __webpack_require__(8)(__webpack_require__(124), __webpack_require__(127), null, null);
+        module.exports = Component.exports;
     },
-    124: function(r, e, t) {
+    124: function(module, exports, __webpack_require__) {
         "use strict";
-        Object.defineProperty(e, "__esModule", {
+        Object.defineProperty(exports, "__esModule", {
             value: !0
-        }), e.default = {
+        }), exports.default = {
             data: function() {
                 return {
                     email: "",
@@ -24,25 +24,25 @@ webpackJsonp([ 0 ], {
             },
             methods: {
                 register: function() {
-                    var r = this;
+                    var _this = this;
                     axios.post("/register", {
                         email: this.email,
                         university_name: this.university_name,
                         university_short_name: this.university_short_name,
                         password: this.password,
                         password_confirmation: this.password_confirmation
-                    }).then(function(e) {
-                        if (e.data.success === !0) showSuccessMessage(e.data.message), r.email = "", r.university_name = "", 
-                        r.university_short_name = "", r.password = "", r.password_confirmation = "", r.email_error = !1, 
-                        r.university_name_error = !1, r.university_short_name_error = !1, r.password_error = !1, 
-                        r.password_confirmation_error = !1; else if (e.data.invalid === !0) for (var t in e.data.messages) {
-                            var s = e.data.messages[t];
-                            r[t + "_error"] = !0, s.forEach(function(r) {
-                                showErrorMessage(r);
+                    }).then(function(response) {
+                        if (response.data.success === !0) showSuccessMessage(response.data.message), _this.email = "", 
+                        _this.university_name = "", _this.university_short_name = "", _this.password = "", 
+                        _this.password_confirmation = "", _this.email_error = !1, _this.university_name_error = !1, 
+                        _this.university_short_name_error = !1, _this.password_error = !1, _this.password_confirmation_error = !1; else if (response.data.invalid === !0) for (var elem in response.data.messages) {
+                            var elem_messages = response.data.messages[elem];
+                            _this[elem + "_error"] = !0, elem_messages.forEach(function(message) {
+                                showErrorMessage(message);
                             });
-                        } else console.error(e), showErrorMessage(e.data.message);
-                    }).catch(function(r) {
-                        console.error(r);
+                        } else console.error(response), showErrorMessage(response.data.message);
+                    }).catch(function(error) {
+                        console.error(error);
                     });
                 }
             },
@@ -51,155 +51,155 @@ webpackJsonp([ 0 ], {
             }
         };
     },
-    127: function(r, e) {
-        r.exports = {
+    127: function(module, exports) {
+        module.exports = {
             render: function() {
-                var r = this, e = r.$createElement, t = r._self._c || e;
-                return t("div", [ t("div", {
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
+                return _c("div", [ _c("div", {
                     staticClass: "signup-page"
-                }, [ t("div", {
+                }, [ _c("div", {
                     staticClass: "wrapper"
-                }, [ t("div", {
+                }, [ _c("div", {
                     staticClass: "header header-filter",
                     staticStyle: {
                         "background-image": "url('/img/city.jpg')",
                         "background-size": "cover",
                         "background-position": "top center"
                     }
-                }, [ t("div", {
+                }, [ _c("div", {
                     staticClass: "container"
-                }, [ t("div", {
+                }, [ _c("div", {
                     staticClass: "row",
                     staticStyle: {
                         "margin-bottom": "80px"
                     }
-                }, [ t("div", {
+                }, [ _c("div", {
                     staticClass: "col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2"
-                }, [ t("div", {
+                }, [ _c("div", {
                     staticClass: "card card-signup"
-                }, [ t("form", {
+                }, [ _c("form", {
                     staticClass: "form"
-                }, [ r._m(0), r._v(" "), t("div", {
+                }, [ _vm._m(0), _vm._v(" "), _c("div", {
                     staticClass: "content"
-                }, [ t("form-input", {
+                }, [ _c("form-input", {
                     attrs: {
                         type: "text",
                         name: "email",
                         label: "E-Mail",
-                        error: r.email_error,
+                        error: _vm.email_error,
                         icon: "email"
                     },
                     on: {
-                        error: function(e) {
-                            r.email_error = arguments[0];
+                        error: function($event) {
+                            _vm.email_error = arguments[0];
                         }
                     },
                     model: {
-                        value: r.email,
-                        callback: function(e) {
-                            r.email = e;
+                        value: _vm.email,
+                        callback: function($$v) {
+                            _vm.email = $$v;
                         },
                         expression: "email"
                     }
-                }), r._v(" "), t("form-input", {
+                }), _vm._v(" "), _c("form-input", {
                     attrs: {
                         type: "text",
                         name: "university_name",
                         label: "Полное название учебного заведения",
-                        error: r.university_name_error,
+                        error: _vm.university_name_error,
                         icon: "school"
                     },
                     on: {
-                        error: function(e) {
-                            r.university_name_error = arguments[0];
+                        error: function($event) {
+                            _vm.university_name_error = arguments[0];
                         }
                     },
                     model: {
-                        value: r.university_name,
-                        callback: function(e) {
-                            r.university_name = e;
+                        value: _vm.university_name,
+                        callback: function($$v) {
+                            _vm.university_name = $$v;
                         },
                         expression: "university_name"
                     }
-                }), r._v(" "), t("form-input", {
+                }), _vm._v(" "), _c("form-input", {
                     attrs: {
                         type: "text",
                         name: "university_short_name",
                         label: "Сокращенное название учебного заведения",
-                        error: r.university_short_name_error,
+                        error: _vm.university_short_name_error,
                         icon: "school"
                     },
                     on: {
-                        error: function(e) {
-                            r.university_short_name_error = arguments[0];
+                        error: function($event) {
+                            _vm.university_short_name_error = arguments[0];
                         }
                     },
                     model: {
-                        value: r.university_short_name,
-                        callback: function(e) {
-                            r.university_short_name = e;
+                        value: _vm.university_short_name,
+                        callback: function($$v) {
+                            _vm.university_short_name = $$v;
                         },
                         expression: "university_short_name"
                     }
-                }), r._v(" "), t("form-input", {
+                }), _vm._v(" "), _c("form-input", {
                     attrs: {
                         type: "password",
                         name: "password",
                         label: "Пароль",
-                        error: r.password_error,
+                        error: _vm.password_error,
                         icon: "lock_outline"
                     },
                     on: {
-                        error: function(e) {
-                            r.password_error = arguments[0];
+                        error: function($event) {
+                            _vm.password_error = arguments[0];
                         }
                     },
                     model: {
-                        value: r.password,
-                        callback: function(e) {
-                            r.password = e;
+                        value: _vm.password,
+                        callback: function($$v) {
+                            _vm.password = $$v;
                         },
                         expression: "password"
                     }
-                }), r._v(" "), t("form-input", {
+                }), _vm._v(" "), _c("form-input", {
                     attrs: {
                         type: "password",
                         name: "password_confirmation",
                         label: "Подтверждение пароля",
-                        error: r.password_confirmation_error,
+                        error: _vm.password_confirmation_error,
                         icon: "lock_outline"
                     },
                     on: {
-                        error: function(e) {
-                            r.password_confirmation_error = arguments[0];
+                        error: function($event) {
+                            _vm.password_confirmation_error = arguments[0];
                         }
                     },
                     model: {
-                        value: r.password_confirmation,
-                        callback: function(e) {
-                            r.password_confirmation = e;
+                        value: _vm.password_confirmation,
+                        callback: function($$v) {
+                            _vm.password_confirmation = $$v;
                         },
                         expression: "password_confirmation"
                     }
-                }) ], 1), r._v(" "), t("div", {
+                }) ], 1), _vm._v(" "), _c("div", {
                     staticClass: "footer text-center"
-                }, [ t("button", {
+                }, [ _c("button", {
                     staticClass: "btn btn-simple btn-primary btn-lg",
                     on: {
-                        click: function(e) {
-                            e.preventDefault(), r.register(e);
+                        click: function($event) {
+                            $event.preventDefault(), _vm.register($event);
                         }
                     }
-                }, [ r._v("Зарегистрироваться") ]) ]) ]) ]) ]) ]) ]), r._v(" "), r._m(1) ]) ]) ]) ]);
+                }, [ _vm._v("Зарегистрироваться") ]) ]) ]) ]) ]) ]) ]), _vm._v(" "), _vm._m(1) ]) ]) ]) ]);
             },
             staticRenderFns: [ function() {
-                var r = this, e = r.$createElement, t = r._self._c || e;
-                return t("div", {
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
+                return _c("div", {
                     staticClass: "header header-primary text-center"
-                }, [ t("h4", [ r._v("Регистрация") ]) ]);
+                }, [ _c("h4", [ _vm._v("Регистрация") ]) ]);
             }, function() {
-                var r = this, e = r.$createElement, t = r._self._c || e;
-                return t("footer", {
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
+                return _c("footer", {
                     staticClass: "footer",
                     staticStyle: {
                         position: "absolute",
@@ -207,18 +207,18 @@ webpackJsonp([ 0 ], {
                         width: "100%",
                         height: "80px"
                     }
-                }, [ t("div", {
+                }, [ _c("div", {
                     staticClass: "container"
-                }, [ t("div", {
+                }, [ _c("div", {
                     staticClass: "copyright pull-right"
-                }, [ r._v("\n                            © 2017, made with "), t("i", {
+                }, [ _vm._v("\n                            © 2017, made with "), _c("i", {
                     staticClass: "fa fa-heart heart"
-                }), r._v(" by "), t("a", {
+                }), _vm._v(" by "), _c("a", {
                     attrs: {
                         href: "https://github.com/Nanografon",
                         target: "_blank"
                     }
-                }, [ r._v("Nanografon") ]) ]) ]) ]);
+                }, [ _vm._v("Nanografon") ]) ]) ]) ]);
             } ]
         };
     }
