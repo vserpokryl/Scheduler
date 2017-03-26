@@ -8,6 +8,9 @@ use Laravel\Dusk\TestCase as BaseTestCase;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 
+/**
+ * Class DuskTestCase.
+ */
 abstract class DuskTestCase extends BaseTestCase
 {
     use CreatesApplication;
@@ -20,7 +23,10 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
-//        static::startChromeDriver();
+        if (PHP_OS === 'Darwin' || PHP_OS === 'Windows')
+        {
+            static::startChromeDriver();
+        }
     }
 
     /**
@@ -31,7 +37,8 @@ abstract class DuskTestCase extends BaseTestCase
     protected function driver()
     {
         return RemoteWebDriver::create(
-            'http://localhost:9515', DesiredCapabilities::phantomjs()
+            'http://localhost:9515',
+            PHP_OS === 'Darwin' || PHP_OS === 'Windows' ? DesiredCapabilities::chrome() : DesiredCapabilities::phantomjs()
         );
     }
 }

@@ -6,8 +6,8 @@ namespace Tests\Browser;
 
 use App\Admin;
 use App\University;
-use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
