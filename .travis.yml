@@ -4,6 +4,9 @@ language: php
 php:
   - 7.1
 
+addons:
+  firefox: "17.0"
+
 install:
   - composer self-update
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
