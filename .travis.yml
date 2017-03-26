@@ -1,11 +1,12 @@
-sudo: false
+dist: trusty
+sudo: required
 language: php
 
 php:
   - 7.1
 
 addons:
-  firefox: "17.0"
+  firefox: "52.0.1"
 
 install:
   - composer self-update
