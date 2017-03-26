@@ -7,214 +7,344 @@
 </div>
 
 <script>
-    !function(t) {
-    function e(r) {
-        if (n[r]) return n[r].exports;
-        var o = n[r] = {
-            i: r,
-            l: !1,
+    (function(modules) {
+    var installedModules = {};
+    function __webpack_require__(moduleId) {
+        if (installedModules[moduleId]) return installedModules[moduleId].exports;
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: false,
             exports: {}
         };
-        return t[r].call(o.exports, o, o.exports, e), o.l = !0, o.exports;
+        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+        module.l = true;
+        return module.exports;
     }
-    var n = {};
-    e.m = t, e.c = n, e.i = function(t) {
-        return t;
-    }, e.d = function(t, n, r) {
-        e.o(t, n) || Object.defineProperty(t, n, {
-            configurable: !1,
-            enumerable: !0,
-            get: r
-        });
-    }, e.n = function(t) {
-        var n = t && t.__esModule ? function() {
-            return t.default;
-        } : function() {
-            return t;
+    __webpack_require__.m = modules;
+    __webpack_require__.c = installedModules;
+    __webpack_require__.i = function(value) {
+        return value;
+    };
+    __webpack_require__.d = function(exports, name, getter) {
+        if (!__webpack_require__.o(exports, name)) {
+            Object.defineProperty(exports, name, {
+                configurable: false,
+                enumerable: true,
+                get: getter
+            });
+        }
+    };
+    __webpack_require__.n = function(module) {
+        var getter = module && module.__esModule ? function getDefault() {
+            return module["default"];
+        } : function getModuleExports() {
+            return module;
         };
-        return e.d(n, "a", n), n;
-    }, e.o = function(t, e) {
-        return Object.prototype.hasOwnProperty.call(t, e);
-    }, e.p = "/js/", e(e.s = 82);
-}({
-    57: function(t, e, n) {
-        var r, o;
-        !function(i, s) {
-            r = s, void 0 !== (o = "function" == typeof r ? r.call(e, n, e, t) : r) && (t.exports = o);
-        }(0, function() {
-            function t(t, e, n) {
-                return t < e ? e : t > n ? n : t;
+        __webpack_require__.d(getter, "a", getter);
+        return getter;
+    };
+    __webpack_require__.o = function(object, property) {
+        return Object.prototype.hasOwnProperty.call(object, property);
+    };
+    __webpack_require__.p = "/js/";
+    return __webpack_require__(__webpack_require__.s = 82);
+})({
+    57: function(module, exports, __webpack_require__) {
+        var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;
+        (function(root, factory) {
+            if (true) {
+                !(__WEBPACK_AMD_DEFINE_FACTORY__ = factory, __WEBPACK_AMD_DEFINE_RESULT__ = typeof __WEBPACK_AMD_DEFINE_FACTORY__ === "function" ? __WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module) : __WEBPACK_AMD_DEFINE_FACTORY__, 
+                __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+            } else if (typeof exports === "object") {
+                module.exports = factory();
+            } else {
+                root.NProgress = factory();
             }
-            function e(t) {
-                return 100 * (-1 + t);
-            }
-            function n(t, n, r) {
-                var o;
-                return o = "translate3d" === c.positionUsing ? {
-                    transform: "translate3d(" + e(t) + "%,0,0)"
-                } : "translate" === c.positionUsing ? {
-                    transform: "translate(" + e(t) + "%,0)"
-                } : {
-                    "margin-left": e(t) + "%"
-                }, o.transition = "all " + n + "ms " + r, o;
-            }
-            function r(t, e) {
-                return ("string" == typeof t ? t : s(t)).indexOf(" " + e + " ") >= 0;
-            }
-            function o(t, e) {
-                var n = s(t), o = n + e;
-                r(n, e) || (t.className = o.substring(1));
-            }
-            function i(t, e) {
-                var n, o = s(t);
-                r(t, e) && (n = o.replace(" " + e + " ", " "), t.className = n.substring(1, n.length - 1));
-            }
-            function s(t) {
-                return (" " + (t.className || "") + " ").replace(/\s+/gi, " ");
-            }
-            function a(t) {
-                t && t.parentNode && t.parentNode.removeChild(t);
-            }
-            var u = {};
-            u.version = "0.2.0";
-            var c = u.settings = {
+        })(this, function() {
+            var NProgress = {};
+            NProgress.version = "0.2.0";
+            var Settings = NProgress.settings = {
                 minimum: .08,
                 easing: "ease",
                 positionUsing: "",
                 speed: 200,
-                trickle: !0,
+                trickle: true,
                 trickleRate: .02,
                 trickleSpeed: 800,
-                showSpinner: !0,
+                showSpinner: true,
                 barSelector: '[role="bar"]',
                 spinnerSelector: '[role="spinner"]',
                 parent: "body",
                 template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
             };
-            u.configure = function(t) {
-                var e, n;
-                for (e in t) void 0 !== (n = t[e]) && t.hasOwnProperty(e) && (c[e] = n);
+            NProgress.configure = function(options) {
+                var key, value;
+                for (key in options) {
+                    value = options[key];
+                    if (value !== undefined && options.hasOwnProperty(key)) Settings[key] = value;
+                }
                 return this;
-            }, u.status = null, u.set = function(e) {
-                var r = u.isStarted();
-                e = t(e, c.minimum, 1), u.status = 1 === e ? null : e;
-                var o = u.render(!r), i = o.querySelector(c.barSelector), s = c.speed, a = c.easing;
-                return o.offsetWidth, l(function(t) {
-                    "" === c.positionUsing && (c.positionUsing = u.getPositioningCSS()), d(i, n(e, s, a)), 
-                    1 === e ? (d(o, {
-                        transition: "none",
-                        opacity: 1
-                    }), o.offsetWidth, setTimeout(function() {
-                        d(o, {
-                            transition: "all " + s + "ms linear",
-                            opacity: 0
-                        }), setTimeout(function() {
-                            u.remove(), t();
-                        }, s);
-                    }, s)) : setTimeout(t, s);
-                }), this;
-            }, u.isStarted = function() {
-                return "number" == typeof u.status;
-            }, u.start = function() {
-                u.status || u.set(0);
-                var t = function() {
-                    setTimeout(function() {
-                        u.status && (u.trickle(), t());
-                    }, c.trickleSpeed);
-                };
-                return c.trickle && t(), this;
-            }, u.done = function(t) {
-                return t || u.status ? u.inc(.3 + .5 * Math.random()).set(1) : this;
-            }, u.inc = function(e) {
-                var n = u.status;
-                return n ? ("number" != typeof e && (e = (1 - n) * t(Math.random() * n, .1, .95)), 
-                n = t(n + e, 0, .994), u.set(n)) : u.start();
-            }, u.trickle = function() {
-                return u.inc(Math.random() * c.trickleRate);
-            }, function() {
-                var t = 0, e = 0;
-                u.promise = function(n) {
-                    return n && "resolved" !== n.state() ? (0 === e && u.start(), t++, e++, n.always(function() {
-                        e--, 0 === e ? (t = 0, u.done()) : u.set((t - e) / t);
-                    }), this) : this;
-                };
-            }(), u.render = function(t) {
-                if (u.isRendered()) return document.getElementById("nprogress");
-                o(document.documentElement, "nprogress-busy");
-                var n = document.createElement("div");
-                n.id = "nprogress", n.innerHTML = c.template;
-                var r, i = n.querySelector(c.barSelector), s = t ? "-100" : e(u.status || 0), l = document.querySelector(c.parent);
-                return d(i, {
-                    transition: "all 0 linear",
-                    transform: "translate3d(" + s + "%,0,0)"
-                }), c.showSpinner || (r = n.querySelector(c.spinnerSelector)) && a(r), l != document.body && o(l, "nprogress-custom-parent"), 
-                l.appendChild(n), n;
-            }, u.remove = function() {
-                i(document.documentElement, "nprogress-busy"), i(document.querySelector(c.parent), "nprogress-custom-parent");
-                var t = document.getElementById("nprogress");
-                t && a(t);
-            }, u.isRendered = function() {
-                return !!document.getElementById("nprogress");
-            }, u.getPositioningCSS = function() {
-                var t = document.body.style, e = "WebkitTransform" in t ? "Webkit" : "MozTransform" in t ? "Moz" : "msTransform" in t ? "ms" : "OTransform" in t ? "O" : "";
-                return e + "Perspective" in t ? "translate3d" : e + "Transform" in t ? "translate" : "margin";
             };
-            var l = function() {
-                function t() {
-                    var n = e.shift();
-                    n && n(t);
-                }
-                var e = [];
-                return function(n) {
-                    e.push(n), 1 == e.length && t();
+            NProgress.status = null;
+            NProgress.set = function(n) {
+                var started = NProgress.isStarted();
+                n = clamp(n, Settings.minimum, 1);
+                NProgress.status = n === 1 ? null : n;
+                var progress = NProgress.render(!started), bar = progress.querySelector(Settings.barSelector), speed = Settings.speed, ease = Settings.easing;
+                progress.offsetWidth;
+                queue(function(next) {
+                    if (Settings.positionUsing === "") Settings.positionUsing = NProgress.getPositioningCSS();
+                    css(bar, barPositionCSS(n, speed, ease));
+                    if (n === 1) {
+                        css(progress, {
+                            transition: "none",
+                            opacity: 1
+                        });
+                        progress.offsetWidth;
+                        setTimeout(function() {
+                            css(progress, {
+                                transition: "all " + speed + "ms linear",
+                                opacity: 0
+                            });
+                            setTimeout(function() {
+                                NProgress.remove();
+                                next();
+                            }, speed);
+                        }, speed);
+                    } else {
+                        setTimeout(next, speed);
+                    }
+                });
+                return this;
+            };
+            NProgress.isStarted = function() {
+                return typeof NProgress.status === "number";
+            };
+            NProgress.start = function() {
+                if (!NProgress.status) NProgress.set(0);
+                var work = function() {
+                    setTimeout(function() {
+                        if (!NProgress.status) return;
+                        NProgress.trickle();
+                        work();
+                    }, Settings.trickleSpeed);
                 };
-            }(), d = function() {
-                function t(t) {
-                    return t.replace(/^-ms-/, "ms-").replace(/-([\da-z])/gi, function(t, e) {
-                        return e.toUpperCase();
+                if (Settings.trickle) work();
+                return this;
+            };
+            NProgress.done = function(force) {
+                if (!force && !NProgress.status) return this;
+                return NProgress.inc(.3 + .5 * Math.random()).set(1);
+            };
+            NProgress.inc = function(amount) {
+                var n = NProgress.status;
+                if (!n) {
+                    return NProgress.start();
+                } else {
+                    if (typeof amount !== "number") {
+                        amount = (1 - n) * clamp(Math.random() * n, .1, .95);
+                    }
+                    n = clamp(n + amount, 0, .994);
+                    return NProgress.set(n);
+                }
+            };
+            NProgress.trickle = function() {
+                return NProgress.inc(Math.random() * Settings.trickleRate);
+            };
+            (function() {
+                var initial = 0, current = 0;
+                NProgress.promise = function($promise) {
+                    if (!$promise || $promise.state() === "resolved") {
+                        return this;
+                    }
+                    if (current === 0) {
+                        NProgress.start();
+                    }
+                    initial++;
+                    current++;
+                    $promise.always(function() {
+                        current--;
+                        if (current === 0) {
+                            initial = 0;
+                            NProgress.done();
+                        } else {
+                            NProgress.set((initial - current) / initial);
+                        }
                     });
+                    return this;
+                };
+            })();
+            NProgress.render = function(fromStart) {
+                if (NProgress.isRendered()) return document.getElementById("nprogress");
+                addClass(document.documentElement, "nprogress-busy");
+                var progress = document.createElement("div");
+                progress.id = "nprogress";
+                progress.innerHTML = Settings.template;
+                var bar = progress.querySelector(Settings.barSelector), perc = fromStart ? "-100" : toBarPerc(NProgress.status || 0), parent = document.querySelector(Settings.parent), spinner;
+                css(bar, {
+                    transition: "all 0 linear",
+                    transform: "translate3d(" + perc + "%,0,0)"
+                });
+                if (!Settings.showSpinner) {
+                    spinner = progress.querySelector(Settings.spinnerSelector);
+                    spinner && removeElement(spinner);
                 }
-                function e(t) {
-                    var e = document.body.style;
-                    if (t in e) return t;
-                    for (var n, r = o.length, i = t.charAt(0).toUpperCase() + t.slice(1); r--; ) if ((n = o[r] + i) in e) return n;
-                    return t;
+                if (parent != document.body) {
+                    addClass(parent, "nprogress-custom-parent");
                 }
-                function n(n) {
-                    return n = t(n), i[n] || (i[n] = e(n));
+                parent.appendChild(progress);
+                return progress;
+            };
+            NProgress.remove = function() {
+                removeClass(document.documentElement, "nprogress-busy");
+                removeClass(document.querySelector(Settings.parent), "nprogress-custom-parent");
+                var progress = document.getElementById("nprogress");
+                progress && removeElement(progress);
+            };
+            NProgress.isRendered = function() {
+                return !!document.getElementById("nprogress");
+            };
+            NProgress.getPositioningCSS = function() {
+                var bodyStyle = document.body.style;
+                var vendorPrefix = "WebkitTransform" in bodyStyle ? "Webkit" : "MozTransform" in bodyStyle ? "Moz" : "msTransform" in bodyStyle ? "ms" : "OTransform" in bodyStyle ? "O" : "";
+                if (vendorPrefix + "Perspective" in bodyStyle) {
+                    return "translate3d";
+                } else if (vendorPrefix + "Transform" in bodyStyle) {
+                    return "translate";
+                } else {
+                    return "margin";
                 }
-                function r(t, e, r) {
-                    e = n(e), t.style[e] = r;
+            };
+            function clamp(n, min, max) {
+                if (n < min) return min;
+                if (n > max) return max;
+                return n;
+            }
+            function toBarPerc(n) {
+                return (-1 + n) * 100;
+            }
+            function barPositionCSS(n, speed, ease) {
+                var barCSS;
+                if (Settings.positionUsing === "translate3d") {
+                    barCSS = {
+                        transform: "translate3d(" + toBarPerc(n) + "%,0,0)"
+                    };
+                } else if (Settings.positionUsing === "translate") {
+                    barCSS = {
+                        transform: "translate(" + toBarPerc(n) + "%,0)"
+                    };
+                } else {
+                    barCSS = {
+                        "margin-left": toBarPerc(n) + "%"
+                    };
                 }
-                var o = [ "Webkit", "O", "Moz", "ms" ], i = {};
-                return function(t, e) {
-                    var n, o, i = arguments;
-                    if (2 == i.length) for (n in e) void 0 !== (o = e[n]) && e.hasOwnProperty(n) && r(t, n, o); else r(t, i[1], i[2]);
+                barCSS.transition = "all " + speed + "ms " + ease;
+                return barCSS;
+            }
+            var queue = function() {
+                var pending = [];
+                function next() {
+                    var fn = pending.shift();
+                    if (fn) {
+                        fn(next);
+                    }
+                }
+                return function(fn) {
+                    pending.push(fn);
+                    if (pending.length == 1) next();
                 };
             }();
-            return u;
+            var css = function() {
+                var cssPrefixes = [ "Webkit", "O", "Moz", "ms" ], cssProps = {};
+                function camelCase(string) {
+                    return string.replace(/^-ms-/, "ms-").replace(/-([\da-z])/gi, function(match, letter) {
+                        return letter.toUpperCase();
+                    });
+                }
+                function getVendorProp(name) {
+                    var style = document.body.style;
+                    if (name in style) return name;
+                    var i = cssPrefixes.length, capName = name.charAt(0).toUpperCase() + name.slice(1), vendorName;
+                    while (i--) {
+                        vendorName = cssPrefixes[i] + capName;
+                        if (vendorName in style) return vendorName;
+                    }
+                    return name;
+                }
+                function getStyleProp(name) {
+                    name = camelCase(name);
+                    return cssProps[name] || (cssProps[name] = getVendorProp(name));
+                }
+                function applyCss(element, prop, value) {
+                    prop = getStyleProp(prop);
+                    element.style[prop] = value;
+                }
+                return function(element, properties) {
+                    var args = arguments, prop, value;
+                    if (args.length == 2) {
+                        for (prop in properties) {
+                            value = properties[prop];
+                            if (value !== undefined && properties.hasOwnProperty(prop)) applyCss(element, prop, value);
+                        }
+                    } else {
+                        applyCss(element, args[1], args[2]);
+                    }
+                };
+            }();
+            function hasClass(element, name) {
+                var list = typeof element == "string" ? element : classList(element);
+                return list.indexOf(" " + name + " ") >= 0;
+            }
+            function addClass(element, name) {
+                var oldList = classList(element), newList = oldList + name;
+                if (hasClass(oldList, name)) return;
+                element.className = newList.substring(1);
+            }
+            function removeClass(element, name) {
+                var oldList = classList(element), newList;
+                if (!hasClass(element, name)) return;
+                newList = oldList.replace(" " + name + " ", " ");
+                element.className = newList.substring(1, newList.length - 1);
+            }
+            function classList(element) {
+                return (" " + (element.className || "") + " ").replace(/\s+/gi, " ");
+            }
+            function removeElement(element) {
+                element && element.parentNode && element.parentNode.removeChild(element);
+            }
+            return NProgress;
         });
     },
-    82: function(t, e, n) {
+    82: function(module, exports, __webpack_require__) {
         "use strict";
-        function r(t) {
-            return t && t.__esModule ? t : {
-                default: t
+        var _nprogress = __webpack_require__(57);
+        var _nprogress2 = _interopRequireDefault(_nprogress);
+        function _interopRequireDefault(obj) {
+            return obj && obj.__esModule ? obj : {
+                default: obj
             };
         }
-        var o = n(57), i = r(o);
-        window.NProgress = i.default, i.default.start(), window.countAssets = 2, window.loadedAssets = function() {
-            if (0 === --countAssets) {
-                i.default.done();
-                var t = document.getElementById("loader");
-                document.getElementById("app").style.display = "block", t.style.opacity = 0, t.style.visibility = "hidden";
+        window.NProgress = _nprogress2.default;
+        _nprogress2.default.start();
+        window.countAssets = 2;
+        window.loadedAssets = function() {
+            countAssets--;
+            if (countAssets === 0) {
+                _nprogress2.default.done();
+                var loader = document.getElementById("loader");
+                var app = document.getElementById("app");
+                app.style.display = "block";
+                loader.style.opacity = 0;
+                loader.style.visibility = "hidden";
             }
         };
-        var s = document.createElement("link");
-        s.href = document.querySelector('meta[name="app-css-path"]').getAttribute("content"), 
-        s.rel = "stylesheet", s.onload = function() {
+        var link = document.createElement("link");
+        link.href = document.querySelector('meta[name="app-css-path"]').getAttribute("content");
+        link.rel = "stylesheet";
+        link.onload = function() {
             loadedAssets();
-        }, document.head.appendChild(s);
+        };
+        document.head.appendChild(link);
     }
 });
 </script>

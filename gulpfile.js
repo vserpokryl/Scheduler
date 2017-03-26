@@ -169,10 +169,8 @@ gulp.task('webpack', function(callback) {
             new webpack.optimize.UglifyJsPlugin({
                 sourceMap: false,
                 // beautify: false,
-                compress: {
-                    reduce_vars: false,
-                    warnings: false
-                },
+                compress: false,
+                mangle: false,
                 comments: false,
 
                 beautify: true,
