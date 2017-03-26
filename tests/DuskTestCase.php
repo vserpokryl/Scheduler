@@ -23,8 +23,7 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
-        if (PHP_OS === 'Darwin' || PHP_OS === 'Windows')
-        {
+        if (PHP_OS === 'Darwin' || PHP_OS === 'Windows') {
             static::startChromeDriver();
         }
     }

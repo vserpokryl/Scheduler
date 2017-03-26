@@ -3203,12 +3203,7 @@
     });
 }, function(t, e, n) {
     "use strict";
-    var o = n(0), r = n(65), i = n(68), s = n(74), a = n(72), c = n(39), u;
-    if(window.btoa) {
-        u = window.btoa.bind(window);
-    } else {
-        u = n(67);
-    }
+    var o = n(0), r = n(65), i = n(68), s = n(74), a = n(72), c = n(39), u = n(67);
     t.exports = function(t) {
         return new Promise(function(e, l) {
             var p = t.data, f = t.headers;
