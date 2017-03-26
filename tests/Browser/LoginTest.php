@@ -39,9 +39,9 @@ class LoginTest extends DuskTestCase
                 ->assertSee('Вход в панель управления')
                 ->type('input[name=email]', $admin->email)
                 ->type('input[name=password]', $password)
-                ->pause(1000)
-                ->press('.login-button')
                 ->pause(2000)
+                ->press('.login-button')
+                ->pause(3000)
 //
 //                ->click('#login1')
 //                ->waitFor('input[name=email]')
