@@ -170,10 +170,10 @@ gulp.task('webpack', function(callback) {
                 sourceMap: false,
                 // beautify: false,
                 compress: true,
-                mangle: false,
+                mangle: true,
                 comments: false,
 
-                beautify: true,
+                beautify: false,
             }),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
