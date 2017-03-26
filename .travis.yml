@@ -5,6 +5,9 @@ language: php
 php:
   - 7.1
 
+addons:
+  nodejs: "7.7.4"
+
 install:
   - composer self-update
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
