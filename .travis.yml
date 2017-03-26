@@ -1,11 +1,9 @@
+dist: trusty
+sudo: required
 language: php
 
 php:
   - 7.1
-
-addons:
-  - firefox: "52.0.1"
-  - chrome: ""
 
 install:
   - composer self-update
@@ -13,6 +11,11 @@ install:
   - cp .env.travis .env
   - php artisan key:generate
   - echo "" > ./database/testing.sqlite
+
+before_script:
+  - phantomjs --webdriver=127.0.0.1:9515 --web-security=no --ignore-ssl-errors=yes &
+  - php artisan serve &
+  - sleep 5
 
 script:
   - vendor/bin/phpunit

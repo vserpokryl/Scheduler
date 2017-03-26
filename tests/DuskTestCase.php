@@ -23,7 +23,9 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
-        static::startChromeDriver();
+        if (PHP_OS === 'Darwin' || PHP_OS === 'Windows') {
+            static::startChromeDriver();
+        }
     }
 
     /**
@@ -34,7 +36,8 @@ abstract class DuskTestCase extends BaseTestCase
     protected function driver()
     {
         return RemoteWebDriver::create(
-            'http://localhost:9515', DesiredCapabilities::chrome()
+            'http://localhost:9515',
+            PHP_OS === 'Darwin' || PHP_OS === 'Windows' ? DesiredCapabilities::chrome() : DesiredCapabilities::phantomjs()
         );
     }
 }
