@@ -9,7 +9,6 @@ cache:
     - "travis_phantomjs"
 
 before_install:
-# Ensure we have newer version of PhantomJS to fix weird test failures from 1.9.8
   - export TRAVIS_PHANTOMJS_INSTALL_PATH="$PWD/travis_phantomjs"
   - export TRAVIS_PHANTOMJS_VERSION_NAME="phantomjs-2.1.1-linux-x86_64"
   - export PATH="$TRAVIS_PHANTOMJS_INSTALL_PATH/$TRAVIS_PHANTOMJS_VERSION_NAME/bin:$PATH"
