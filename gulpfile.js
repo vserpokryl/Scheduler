@@ -168,7 +168,7 @@ gulp.task('webpack', function(callback) {
         options.plugins.push(
             new webpack.optimize.UglifyJsPlugin({
                 sourceMap: false,
-                beautify: true,
+                beautify: false,
                 compress: {
                     warnings: false,
                 },
