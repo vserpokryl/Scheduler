@@ -99,6 +99,7 @@ gulp.task('webpack', function(callback) {
             admin: './resources/assets/js/admin',
             home: './resources/assets/js/home',
             loader: './resources/assets/js/loader',
+            test: './resources/assets/js/test',
             common: './resources/assets/js/common'
         },
         output:  {
@@ -173,7 +174,7 @@ gulp.task('webpack', function(callback) {
                 mangle: true,
                 comments: false,
 
-                beautify: false,
+                beautify: true,
             }),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,

@@ -24,24 +24,30 @@ class LoginTest extends DuskTestCase
      */
     public function testLogin()
     {
-        $password = 'secret';
+//        $password = 'secret';
+//
+//        $university = factory(University::class)->create();
+//
+//        $admin = factory(Admin::class)->create([
+//            'university_id' => $university->id,
+//            'password'      => $password,
+//        ]);
+//
+//        $this->browse(function (Browser $browser) use ($admin, $password) {
+//            $browser->visit('/login')
+//                ->waitUntil('countAssets === 0')
+//                ->assertSee('Вход в панель управления')
+//                ->type('input[name=email]', $admin->email)
+//                ->type('input[name=password]', $password)
+//                ->press('.login-button')
+//                ->pause(1000)
+//                ->assertPathIs('/schedule');
+//        });
 
-        $university = factory(University::class)->create();
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/test')
+                ->waitForText('Message');
 
-        $admin = factory(Admin::class)->create([
-            'university_id' => $university->id,
-            'password'      => $password,
-        ]);
-
-        $this->browse(function (Browser $browser) use ($admin, $password) {
-            $browser->visit('/login')
-                ->waitUntil('countAssets === 0')
-                ->assertSee('Вход в панель управления')
-                ->type('input[name=email]', $admin->email)
-                ->type('input[name=password]', $password)
-                ->press('.login-button')
-                ->pause(1000)
-                ->assertPathIs('/schedule');
         });
     }
 }
