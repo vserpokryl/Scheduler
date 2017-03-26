@@ -169,16 +169,15 @@ gulp.task('webpack', function(callback) {
             new webpack.optimize.UglifyJsPlugin({
                 sourceMap: false,
                 // beautify: false,
-                compress: false,
+                compress: true,
                 mangle: false,
                 comments: false,
 
                 beautify: true,
             }),
             new webpack.LoaderOptionsPlugin({
-                // minimize: true
-
-                minimize: false
+                minimize: true,
+                debug: false,
             })
         );
     }

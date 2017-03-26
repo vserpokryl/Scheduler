@@ -1,103 +1,67 @@
-(function(modules) {
-    var parentJsonpFunction = window["webpackJsonp"];
-    window["webpackJsonp"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
-        var moduleId, chunkId, i = 0, resolves = [], result;
-        for (;i < chunkIds.length; i++) {
-            chunkId = chunkIds[i];
-            if (installedChunks[chunkId]) resolves.push(installedChunks[chunkId][0]);
-            installedChunks[chunkId] = 0;
-        }
-        for (moduleId in moreModules) {
-            if (Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-                modules[moduleId] = moreModules[moduleId];
-            }
-        }
-        if (parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
-        while (resolves.length) resolves.shift()();
-    };
-    var installedModules = {};
-    var installedChunks = {
-        5: 0
-    };
+!function(modules) {
     function __webpack_require__(moduleId) {
         if (installedModules[moduleId]) return installedModules[moduleId].exports;
         var module = installedModules[moduleId] = {
             i: moduleId,
-            l: false,
+            l: !1,
             exports: {}
         };
-        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-        module.l = true;
-        return module.exports;
+        return modules[moduleId].call(module.exports, module, module.exports, __webpack_require__), 
+        module.l = !0, module.exports;
     }
-    __webpack_require__.e = function requireEnsure(chunkId) {
-        if (installedChunks[chunkId] === 0) return Promise.resolve();
-        if (installedChunks[chunkId]) {
-            return installedChunks[chunkId][2];
+    var parentJsonpFunction = window.webpackJsonp;
+    window.webpackJsonp = function(chunkIds, moreModules, executeModules) {
+        for (var moduleId, chunkId, i = 0, resolves = []; i < chunkIds.length; i++) chunkId = chunkIds[i], 
+        installedChunks[chunkId] && resolves.push(installedChunks[chunkId][0]), installedChunks[chunkId] = 0;
+        for (moduleId in moreModules) Object.prototype.hasOwnProperty.call(moreModules, moduleId) && (modules[moduleId] = moreModules[moduleId]);
+        for (parentJsonpFunction && parentJsonpFunction(chunkIds, moreModules, executeModules); resolves.length; ) resolves.shift()();
+    };
+    var installedModules = {}, installedChunks = {
+        5: 0
+    };
+    __webpack_require__.e = function(chunkId) {
+        function onScriptComplete() {
+            script.onerror = script.onload = null, clearTimeout(timeout);
+            var chunk = installedChunks[chunkId];
+            0 !== chunk && (chunk && chunk[1](new Error("Loading chunk " + chunkId + " failed.")), 
+            installedChunks[chunkId] = void 0);
         }
+        if (0 === installedChunks[chunkId]) return Promise.resolve();
+        if (installedChunks[chunkId]) return installedChunks[chunkId][2];
         var promise = new Promise(function(resolve, reject) {
             installedChunks[chunkId] = [ resolve, reject ];
         });
         installedChunks[chunkId][2] = promise;
-        var head = document.getElementsByTagName("head")[0];
-        var script = document.createElement("script");
-        script.type = "text/javascript";
-        script.charset = "utf-8";
-        script.async = true;
-        script.timeout = 12e4;
-        if (__webpack_require__.nc) {
-            script.setAttribute("nonce", __webpack_require__.nc);
-        }
+        var head = document.getElementsByTagName("head")[0], script = document.createElement("script");
+        script.type = "text/javascript", script.charset = "utf-8", script.async = !0, script.timeout = 12e4, 
+        __webpack_require__.nc && script.setAttribute("nonce", __webpack_require__.nc), 
         script.src = __webpack_require__.p + "" + chunkId + "." + ({}[chunkId] || chunkId) + "-" + {
             "3": "a848f1ef30"
         }[chunkId] + ".js";
         var timeout = setTimeout(onScriptComplete, 12e4);
-        script.onerror = script.onload = onScriptComplete;
-        function onScriptComplete() {
-            script.onerror = script.onload = null;
-            clearTimeout(timeout);
-            var chunk = installedChunks[chunkId];
-            if (chunk !== 0) {
-                if (chunk) chunk[1](new Error("Loading chunk " + chunkId + " failed."));
-                installedChunks[chunkId] = undefined;
-            }
-        }
-        head.appendChild(script);
-        return promise;
-    };
-    __webpack_require__.m = modules;
-    __webpack_require__.c = installedModules;
-    __webpack_require__.i = function(value) {
+        return script.onerror = script.onload = onScriptComplete, head.appendChild(script), 
+        promise;
+    }, __webpack_require__.m = modules, __webpack_require__.c = installedModules, __webpack_require__.i = function(value) {
         return value;
-    };
-    __webpack_require__.d = function(exports, name, getter) {
-        if (!__webpack_require__.o(exports, name)) {
-            Object.defineProperty(exports, name, {
-                configurable: false,
-                enumerable: true,
-                get: getter
-            });
-        }
-    };
-    __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function getDefault() {
-            return module["default"];
-        } : function getModuleExports() {
+    }, __webpack_require__.d = function(exports, name, getter) {
+        __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
+            configurable: !1,
+            enumerable: !0,
+            get: getter
+        });
+    }, __webpack_require__.n = function(module) {
+        var getter = module && module.__esModule ? function() {
+            return module.default;
+        } : function() {
             return module;
         };
-        __webpack_require__.d(getter, "a", getter);
-        return getter;
-    };
-    __webpack_require__.o = function(object, property) {
+        return __webpack_require__.d(getter, "a", getter), getter;
+    }, __webpack_require__.o = function(object, property) {
         return Object.prototype.hasOwnProperty.call(object, property);
-    };
-    __webpack_require__.p = "/js/";
-    __webpack_require__.oe = function(err) {
-        console.error(err);
-        throw err;
-    };
-    return __webpack_require__(__webpack_require__.s = 79);
-})({
+    }, __webpack_require__.p = "/js/", __webpack_require__.oe = function(err) {
+        throw console.error(err), err;
+    }, __webpack_require__(__webpack_require__.s = 79);
+}({
     10: function(module, exports, __webpack_require__) {
         var Component = __webpack_require__(8)(__webpack_require__(19), __webpack_require__(34), null, null);
         module.exports = Component.exports;
@@ -105,9 +69,8 @@
     18: function(module, exports, __webpack_require__) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.default = {
+            value: !0
+        }), exports.default = {
             props: {
                 label: String,
                 value: Boolean
@@ -117,19 +80,17 @@
     19: function(module, exports, __webpack_require__) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.default = {
+            value: !0
+        }), exports.default = {
             props: [ "icon", "label", "error", "value", "type", "name" ],
-            data: function data() {
+            data: function() {
                 return {
-                    focus: false
+                    focus: !1
                 };
             },
             methods: {
-                onFocus: function onFocus() {
-                    this.focus = true;
-                    this.$emit("error", false);
+                onFocus: function() {
+                    this.focus = !0, this.$emit("error", !1);
                 }
             }
         };
@@ -137,9 +98,7 @@
     33: function(module, exports) {
         module.exports = {
             render: function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("div", {
                     staticClass: "checkbox"
                 }, [ _c("label", [ _c("input", {
@@ -157,9 +116,7 @@
                 }), _vm._v(" "), _vm._m(0), _vm._v("\n        " + _vm._s(_vm.label) + "\n    ") ]) ]);
             },
             staticRenderFns: [ function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("span", {
                     staticClass: "checkbox-material"
                 }, [ _c("span", {
@@ -171,9 +128,7 @@
     34: function(module, exports) {
         module.exports = {
             render: function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("div", {
                     staticClass: "input-group"
                 }, [ _c("span", {
@@ -184,7 +139,7 @@
                     staticClass: "form-group label-floating",
                     class: {
                         "has-error": _vm.error,
-                        "is-empty": _vm.value.length === 0,
+                        "is-empty": 0 === _vm.value.length,
                         "is-focused": _vm.focus
                     }
                 }, [ _c("label", {
@@ -208,7 +163,7 @@
                         },
                         focus: _vm.onFocus,
                         blur: function($event) {
-                            _vm.focus = false;
+                            _vm.focus = !1;
                         }
                     }
                 }), _vm._v(" "), _vm.error ? _c("span", {
@@ -220,8 +175,8 @@
     },
     60: function(module, exports, __webpack_require__) {
         !function(t, e) {
-            true ? module.exports = e() : "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? exports.VueSelect = e() : t.VueSelect = e();
-        }(this, function() {
+            module.exports = e();
+        }(0, function() {
             return function(t) {
                 function e(r) {
                     if (n[r]) return n[r].exports;
@@ -289,10 +244,10 @@
                     return t[e] = n, t;
                 };
             }, function(t, e, n) {
-                var r = n(23)("wks"), o = n(15), i = n(1).Symbol, a = "function" == typeof i, s = t.exports = function(t) {
+                var r = n(23)("wks"), o = n(15), i = n(1).Symbol, a = "function" == typeof i;
+                (t.exports = function(t) {
                     return r[t] || (r[t] = a && i[t] || (a ? i : o)("Symbol." + t));
-                };
-                s.store = r;
+                }).store = r;
             }, function(t, e) {
                 t.exports = function(t) {
                     try {
@@ -316,7 +271,7 @@
                 var r = n(1), o = n(6), i = n(56), a = n(7), s = "prototype", u = function(t, e, n) {
                     var l, c, f, p = t & u.F, d = t & u.G, h = t & u.S, b = t & u.P, v = t & u.B, y = t & u.W, g = d ? o : o[e] || (o[e] = {}), m = g[s], x = d ? r : h ? r[e] : (r[e] || {})[s];
                     d && (n = e);
-                    for (l in n) c = !p && x && void 0 !== x[l], c && l in g || (f = c ? x[l] : n[l], 
+                    for (l in n) (c = !p && x && void 0 !== x[l]) && l in g || (f = c ? x[l] : n[l], 
                     g[l] = d && "function" != typeof x[l] ? n[l] : v && c ? i(f, r) : y && x[l] == f ? function(t) {
                         var e = function(e, n, r) {
                             if (this instanceof t) {
@@ -442,7 +397,7 @@
                     methods: {
                         toggleLoading: function() {
                             var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : null;
-                            return null == t ? this.mutableLoading = !this.mutableLoading : this.mutableLoading = t;
+                            return this.mutableLoading = null == t ? !this.mutableLoading : t;
                         }
                     }
                 };
@@ -529,7 +484,7 @@
                 });
             }, function(t, e, n) {
                 "use strict";
-                var r = n(19), o = n(12), i = n(39), a = n(7), s = n(3), u = n(18), l = n(61), c = n(21), f = n(68), p = n(8)("iterator"), d = !([].keys && "next" in [].keys()), h = "@@iterator", b = "keys", v = "values", y = function() {
+                var r = n(19), o = n(12), i = n(39), a = n(7), s = n(3), u = n(18), l = n(61), c = n(21), f = n(68), p = n(8)("iterator"), d = !([].keys && "next" in [].keys()), b = "keys", v = "values", y = function() {
                     return this;
                 };
                 t.exports = function(t, e, n, g, m, x, w) {
@@ -550,8 +505,8 @@
                         return function() {
                             return new n(this, t);
                         };
-                    }, k = e + " Iterator", P = m == v, A = !1, C = t.prototype, M = C[p] || C[h] || m && C[m], E = M || j(m), T = m ? P ? j("entries") : E : void 0, V = "Array" == e ? C.entries || M : M;
-                    if (V && (_ = f(V.call(new t())), _ !== Object.prototype && (c(_, k, !0), r || s(_, p) || a(_, p, y))), 
+                    }, k = e + " Iterator", P = m == v, A = !1, C = t.prototype, M = C[p] || C["@@iterator"] || m && C[m], E = M || j(m), T = m ? P ? j("entries") : E : void 0, V = "Array" == e ? C.entries || M : M;
+                    if (V && (_ = f(V.call(new t()))) !== Object.prototype && (c(_, k, !0), r || s(_, p) || a(_, p, y)), 
                     P && M && M.name !== v && (A = !0, E = function() {
                         return M.call(this);
                     }), r && !w || !d && !A && C[p] || a(C, p, E), u[e] = E, u[k] = y, m) if (O = {
@@ -563,10 +518,9 @@
                 };
             }, function(t, e, n) {
                 var r = n(11), o = n(65), i = n(17), a = n(22)("IE_PROTO"), s = function() {}, u = "prototype", l = function() {
-                    var t, e = n(32)("iframe"), r = i.length, o = "<", a = ">";
+                    var t, e = n(32)("iframe"), r = i.length;
                     for (e.style.display = "none", n(58).appendChild(e), e.src = "javascript:", t = e.contentWindow.document, 
-                    t.open(), t.write(o + "script" + a + "document.F=Object" + o + "/script" + a), t.close(), 
-                    l = t.F; r--; ) delete l[u][i[r]];
+                    t.open(), t.write("<script>document.F=Object</script>"), t.close(), l = t.F; r--; ) delete l[u][i[r]];
                     return l();
                 };
                 t.exports = Object.create || function(t, e) {
@@ -650,7 +604,7 @@
                         getOptionLabel: {
                             type: Function,
                             default: function(t) {
-                                return "object" === ("undefined" == typeof t ? "undefined" : (0, l.default)(t)) && this.label && t[this.label] ? t[this.label] : t;
+                                return "object" === (void 0 === t ? "undefined" : (0, l.default)(t)) && this.label && t[this.label] ? t[this.label] : t;
                             }
                         },
                         onChange: {
@@ -696,7 +650,7 @@
                             this.mutableValue = t;
                         },
                         mutableValue: function(t, e) {
-                            this.multiple ? this.onChange ? this.onChange(t) : null : this.onChange && t !== e ? this.onChange(t) : null;
+                            this.multiple ? this.onChange && this.onChange(t) : this.onChange && t !== e && this.onChange(t);
                         },
                         options: function(t) {
                             this.mutableOptions = t;
@@ -723,7 +677,7 @@
                             if (this.multiple) {
                                 var n = -1;
                                 this.mutableValue.forEach(function(r) {
-                                    (r === t || "object" === ("undefined" == typeof r ? "undefined" : (0, l.default)(r)) && r[e.label] === t[e.label]) && (n = r);
+                                    (r === t || "object" === (void 0 === r ? "undefined" : (0, l.default)(r)) && r[e.label] === t[e.label]) && (n = r);
                                 });
                                 var r = this.mutableValue.indexOf(n);
                                 this.mutableValue.splice(r, 1);
@@ -741,7 +695,7 @@
                             if (this.multiple && this.mutableValue) {
                                 var n = !1;
                                 return this.mutableValue.forEach(function(r) {
-                                    "object" === ("undefined" == typeof r ? "undefined" : (0, l.default)(r)) && r[e.label] === t[e.label] ? n = !0 : "object" === ("undefined" == typeof r ? "undefined" : (0, 
+                                    "object" === (void 0 === r ? "undefined" : (0, l.default)(r)) && r[e.label] === t[e.label] ? n = !0 : "object" === (void 0 === r ? "undefined" : (0, 
                                     l.default)(r)) && r[e.label] === t ? n = !0 : r === t && (n = !0);
                                 }), n;
                             }
@@ -762,7 +716,7 @@
                         optionExists: function(t) {
                             var e = this, n = !1;
                             return this.mutableOptions.forEach(function(r) {
-                                "object" === ("undefined" == typeof r ? "undefined" : (0, l.default)(r)) && r[e.label] === t ? n = !0 : r === t && (n = !0);
+                                "object" === (void 0 === r ? "undefined" : (0, l.default)(r)) && r[e.label] === t ? n = !0 : r === t && (n = !0);
                             }), n;
                         },
                         maybePushTag: function(t) {
@@ -779,14 +733,14 @@
                             };
                         },
                         dropdownOpen: function() {
-                            return !this.noDrop && (this.open && !this.mutableLoading);
+                            return !this.noDrop && this.open && !this.mutableLoading;
                         },
                         searchPlaceholder: function() {
                             if (this.isValueEmpty && this.placeholder) return this.placeholder;
                         },
                         filteredOptions: function() {
                             var t = this, e = this.mutableOptions.filter(function(e) {
-                                return "object" === ("undefined" == typeof e ? "undefined" : (0, l.default)(e)) && e.hasOwnProperty(t.label) ? e[t.label].toLowerCase().indexOf(t.search.toLowerCase()) > -1 : "object" !== ("undefined" == typeof e ? "undefined" : (0, 
+                                return "object" === (void 0 === e ? "undefined" : (0, l.default)(e)) && e.hasOwnProperty(t.label) ? e[t.label].toLowerCase().indexOf(t.search.toLowerCase()) > -1 : "object" !== (void 0 === e ? "undefined" : (0, 
                                 l.default)(e)) || e.hasOwnProperty(t.label) ? e.toLowerCase().indexOf(t.search.toLowerCase()) > -1 : console.warn('[vue-select warn]: Label key "option.' + t.label + '" does not exist in options object.\nhttp://sagalbot.github.io/vue-select/#ex-labels');
                             });
                             return this.taggable && this.search.length && !this.optionExists(this.search) && e.unshift(this.search), 
@@ -839,13 +793,12 @@
                 };
             }, function(t, e, n) {
                 "use strict";
-                function r(t) {
+                e.__esModule = !0;
+                var o = n(43), i = function(t) {
                     return t && t.__esModule ? t : {
                         default: t
                     };
-                }
-                e.__esModule = !0;
-                var o = n(43), i = r(o);
+                }(o);
                 e.default = function(t, e, n) {
                     return e in t ? (0, i.default)(t, e, {
                         value: n,
@@ -868,9 +821,9 @@
                     return t && "function" == typeof s.default && t.constructor === s.default && t !== s.default.prototype ? "symbol" : typeof t;
                 };
                 e.default = "function" == typeof s.default && "symbol" === u(i.default) ? function(t) {
-                    return "undefined" == typeof t ? "undefined" : u(t);
+                    return void 0 === t ? "undefined" : u(t);
                 } : function(t) {
-                    return t && "function" == typeof s.default && t.constructor === s.default && t !== s.default.prototype ? "symbol" : "undefined" == typeof t ? "undefined" : u(t);
+                    return t && "function" == typeof s.default && t.constructor === s.default && t !== s.default.prototype ? "symbol" : void 0 === t ? "undefined" : u(t);
                 };
             }, function(t, e, n) {
                 n(74);
@@ -897,7 +850,7 @@
                     return function(e, n, a) {
                         var s, u = r(e), l = o(u.length), c = i(a, l);
                         if (t && n != n) {
-                            for (;l > c; ) if (s = u[c++], s != s) return !0;
+                            for (;l > c; ) if ((s = u[c++]) != s) return !0;
                         } else for (;l > c; c++) if ((t || c in u) && u[c] === n) return t || c || 0;
                         return !t && -1;
                     };
@@ -1047,7 +1000,7 @@
                 t.exports = function(t) {
                     return function(e, n) {
                         var i, a, s = String(o(e)), u = r(n), l = s.length;
-                        return u < 0 || u >= l ? t ? "" : void 0 : (i = s.charCodeAt(u), i < 55296 || i > 56319 || u + 1 === l || (a = s.charCodeAt(u + 1)) < 56320 || a > 57343 ? t ? s.charAt(u) : i : t ? s.slice(u, u + 2) : (i - 55296 << 10) + (a - 56320) + 65536);
+                        return u < 0 || u >= l ? t ? "" : void 0 : (i = s.charCodeAt(u), i < 55296 || i > 56319 || u + 1 === l || (a = s.charCodeAt(u + 1)) < 56320 || a > 57343 ? t ? s.charAt(u) : i : t ? s.slice(u, u + 2) : a - 56320 + (i - 55296 << 10) + 65536);
                     };
                 };
             }, function(t, e, n) {
@@ -1462,7 +1415,7 @@
                 var f = {}, p = function(t) {
                     var e;
                     return function() {
-                        return "undefined" == typeof e && (e = t.apply(this, arguments)), e;
+                        return void 0 === e && (e = t.apply(this, arguments)), e;
                     };
                 }, d = p(function() {
                     return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
@@ -1470,7 +1423,7 @@
                     return document.head || document.getElementsByTagName("head")[0];
                 }), b = null, v = 0, y = [];
                 t.exports = function(t, e) {
-                    e = e || {}, "undefined" == typeof e.singleton && (e.singleton = d()), "undefined" == typeof e.insertAt && (e.insertAt = "bottom");
+                    e = e || {}, void 0 === e.singleton && (e.singleton = d()), void 0 === e.insertAt && (e.insertAt = "bottom");
                     var n = o(t);
                     return r(n, e), function(t) {
                         for (var i = [], a = 0; a < n.length; a++) {
@@ -1478,8 +1431,7 @@
                             u.refs--, i.push(u);
                         }
                         if (t) {
-                            var l = o(t);
-                            r(l, e);
+                            r(o(t), e);
                         }
                         for (var a = 0; a < i.length; a++) {
                             var u = i[a];
@@ -1498,68 +1450,47 @@
                 }();
             }, function(t, e, n) {
                 var r = n(82);
-                "string" == typeof r && (r = [ [ t.id, r, "" ] ]);
-                n(87)(r, {});
-                r.locals && (t.exports = r.locals);
+                "string" == typeof r && (r = [ [ t.id, r, "" ] ]), n(87)(r, {}), r.locals && (t.exports = r.locals);
             } ]);
         });
     },
     79: function(module, exports, __webpack_require__) {
         "use strict";
-        var _vueSelect = __webpack_require__(60);
-        var _vueSelect2 = _interopRequireDefault(_vueSelect);
-        function _interopRequireDefault(obj) {
+        var _vueSelect = __webpack_require__(60), _vueSelect2 = function(obj) {
             return obj && obj.__esModule ? obj : {
                 default: obj
             };
-        }
-        var router = new VueRouter({
+        }(_vueSelect), router = new VueRouter({
             mode: "history",
             routes: [ {
                 path: "/schedule",
-                component: function component() {
+                component: function() {
                     return __webpack_require__.e(3).then(__webpack_require__.bind(null, 117));
                 }
             } ],
             linkActiveClass: "active"
         });
         router.beforeEach(function(to, from, next) {
-            NProgress.start();
-            next();
-        });
-        Vue.component("form-input", __webpack_require__(10));
-        Vue.component("form-checkbox", __webpack_require__(9));
-        Vue.component("v-select", _vueSelect2.default);
-        new Vue({
+            NProgress.start(), next();
+        }), Vue.component("form-input", __webpack_require__(10)), Vue.component("form-checkbox", __webpack_require__(9)), 
+        Vue.component("v-select", _vueSelect2.default), new Vue({
             router: router
         }).$mount("#app");
     },
     8: function(module, exports) {
-        module.exports = function normalizeComponent(rawScriptExports, compiledTemplate, scopeId, cssModules) {
-            var esModule;
-            var scriptExports = rawScriptExports = rawScriptExports || {};
-            var type = typeof rawScriptExports.default;
-            if (type === "object" || type === "function") {
-                esModule = rawScriptExports;
-                scriptExports = rawScriptExports.default;
-            }
-            var options = typeof scriptExports === "function" ? scriptExports.options : scriptExports;
-            if (compiledTemplate) {
-                options.render = compiledTemplate.render;
-                options.staticRenderFns = compiledTemplate.staticRenderFns;
-            }
-            if (scopeId) {
-                options._scopeId = scopeId;
-            }
-            if (cssModules) {
+        module.exports = function(rawScriptExports, compiledTemplate, scopeId, cssModules) {
+            var esModule, scriptExports = rawScriptExports = rawScriptExports || {}, type = typeof rawScriptExports.default;
+            "object" !== type && "function" !== type || (esModule = rawScriptExports, scriptExports = rawScriptExports.default);
+            var options = "function" == typeof scriptExports ? scriptExports.options : scriptExports;
+            if (compiledTemplate && (options.render = compiledTemplate.render, options.staticRenderFns = compiledTemplate.staticRenderFns), 
+            scopeId && (options._scopeId = scopeId), cssModules) {
                 var computed = Object.create(options.computed || null);
                 Object.keys(cssModules).forEach(function(key) {
                     var module = cssModules[key];
                     computed[key] = function() {
                         return module;
                     };
-                });
-                options.computed = computed;
+                }), options.computed = computed;
             }
             return {
                 esModule: esModule,

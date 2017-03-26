@@ -6,53 +6,31 @@ webpackJsonp([ 2 ], {
     122: function(module, exports, __webpack_require__) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.default = {
-            data: function data() {
+            value: !0
+        }), exports.default = {
+            data: function() {
                 return {};
             },
-            created: function created() {
+            created: function() {
                 loadedAssets();
-                var transparent = true;
-                var big_image = void 0;
-                var navbar = $(".navbar-color-on-scroll");
+                var transparent = !0, big_image = void 0, navbar = $(".navbar-color-on-scroll");
                 $(document).ready(function() {
-                    $.material.init();
-                    if (navbar.length !== 0) {
-                        $(window).on("scroll", function() {
-                            if ($(document).scrollTop() > 260) {
-                                if (transparent) {
-                                    transparent = false;
-                                    navbar.removeClass("navbar-transparent");
-                                }
-                            } else {
-                                if (!transparent) {
-                                    transparent = true;
-                                    navbar.addClass("navbar-transparent");
-                                }
-                            }
+                    $.material.init(), 0 !== navbar.length && $(window).on("scroll", function() {
+                        $(document).scrollTop() > 260 ? transparent && (transparent = !1, navbar.removeClass("navbar-transparent")) : transparent || (transparent = !0, 
+                        navbar.addClass("navbar-transparent"));
+                    }), $(window).width() >= 992 && (big_image = $(".wrapper > .header"), $(window).on("scroll", function() {
+                        var oVal = $(window).scrollTop() / 3;
+                        big_image.css({
+                            transform: "translate3d(0," + oVal + "px,0)",
+                            "-webkit-transform": "translate3d(0," + oVal + "px,0)",
+                            "-ms-transform": "translate3d(0," + oVal + "px,0)",
+                            "-o-transform": "translate3d(0," + oVal + "px,0)"
                         });
-                    }
-                    var window_width = $(window).width();
-                    if (window_width >= 992) {
-                        big_image = $(".wrapper > .header");
-                        $(window).on("scroll", function() {
-                            var oVal = $(window).scrollTop() / 3;
-                            big_image.css({
-                                transform: "translate3d(0," + oVal + "px,0)",
-                                "-webkit-transform": "translate3d(0," + oVal + "px,0)",
-                                "-ms-transform": "translate3d(0," + oVal + "px,0)",
-                                "-o-transform": "translate3d(0," + oVal + "px,0)"
-                            });
-                        });
-                    }
-                });
-                NProgress.done();
+                    }));
+                }), NProgress.done();
             },
-            beforeRouteLeave: function beforeRouteLeave(to, from, next) {
-                $(window).off("scroll");
-                $(".navbar-color-on-scroll").addClass("navbar-transparent");
+            beforeRouteLeave: function(to, from, next) {
+                $(window).off("scroll"), $(".navbar-color-on-scroll").addClass("navbar-transparent"), 
                 next();
             }
         };
@@ -60,15 +38,12 @@ webpackJsonp([ 2 ], {
     125: function(module, exports) {
         module.exports = {
             render: function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement;
+                _vm._self._c;
                 return _vm._m(0);
             },
             staticRenderFns: [ function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("div", [ _c("div", {
                     staticClass: "index-page"
                 }, [ _c("div", {

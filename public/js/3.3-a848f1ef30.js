@@ -6,30 +6,25 @@ webpackJsonp([ 3 ], {
     121: function(module, exports, __webpack_require__) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.default = {
-            data: function data() {
+            value: !0
+        }), exports.default = {
+            data: function() {
                 return {};
             },
-            created: function created() {
-                loadedAssets();
-                NProgress.done();
+            created: function() {
+                loadedAssets(), NProgress.done();
             }
         };
     },
     128: function(module, exports) {
         module.exports = {
             render: function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement;
+                _vm._self._c;
                 return _vm._m(0);
             },
             staticRenderFns: [ function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("div", [ _c("h3", [ _vm._v(" - Добавление высшего учебного заведения.") ]), _vm._v(" "), _c("div", {
                     staticClass: "row"
                 }, [ _c("form", {

@@ -6,25 +6,24 @@ webpackJsonp([ 0 ], {
     124: function(module, exports, __webpack_require__) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.default = {
-            data: function data() {
+            value: !0
+        }), exports.default = {
+            data: function() {
                 return {
                     email: "",
                     university_name: "",
                     university_short_name: "",
                     password: "",
                     password_confirmation: "",
-                    email_error: false,
-                    university_name_error: false,
-                    university_short_name_error: false,
-                    password_error: false,
-                    password_confirmation_error: false
+                    email_error: !1,
+                    university_name_error: !1,
+                    university_short_name_error: !1,
+                    password_error: !1,
+                    password_confirmation_error: !1
                 };
             },
             methods: {
-                register: function register() {
+                register: function() {
                     var _this = this;
                     axios.post("/register", {
                         email: this.email,
@@ -33,49 +32,29 @@ webpackJsonp([ 0 ], {
                         password: this.password,
                         password_confirmation: this.password_confirmation
                     }).then(function(response) {
-                        if (response.data.success === true) {
-                            showSuccessMessage(response.data.message);
-                            _this.email = "";
-                            _this.university_name = "";
-                            _this.university_short_name = "";
-                            _this.password = "";
-                            _this.password_confirmation = "";
-                            _this.email_error = false;
-                            _this.university_name_error = false;
-                            _this.university_short_name_error = false;
-                            _this.password_error = false;
-                            _this.password_confirmation_error = false;
-                        } else {
-                            if (response.data.invalid === true) {
-                                for (var elem in response.data.messages) {
-                                    var elem_messages = response.data.messages[elem];
-                                    _this[elem + "_error"] = true;
-                                    elem_messages.forEach(function(message) {
-                                        showErrorMessage(message);
-                                    });
-                                }
-                            } else {
-                                console.error(response);
-                                showErrorMessage(response.data.message);
-                            }
-                        }
+                        if (response.data.success === !0) showSuccessMessage(response.data.message), _this.email = "", 
+                        _this.university_name = "", _this.university_short_name = "", _this.password = "", 
+                        _this.password_confirmation = "", _this.email_error = !1, _this.university_name_error = !1, 
+                        _this.university_short_name_error = !1, _this.password_error = !1, _this.password_confirmation_error = !1; else if (response.data.invalid === !0) for (var elem in response.data.messages) {
+                            var elem_messages = response.data.messages[elem];
+                            _this[elem + "_error"] = !0, elem_messages.forEach(function(message) {
+                                showErrorMessage(message);
+                            });
+                        } else console.error(response), showErrorMessage(response.data.message);
                     }).catch(function(error) {
                         console.error(error);
                     });
                 }
             },
-            created: function created() {
-                loadedAssets();
-                NProgress.done();
+            created: function() {
+                loadedAssets(), NProgress.done();
             }
         };
     },
     127: function(module, exports) {
         module.exports = {
             render: function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("div", [ _c("div", {
                     staticClass: "signup-page"
                 }, [ _c("div", {
@@ -208,23 +187,18 @@ webpackJsonp([ 0 ], {
                     staticClass: "btn btn-simple btn-primary btn-lg",
                     on: {
                         click: function($event) {
-                            $event.preventDefault();
-                            _vm.register($event);
+                            $event.preventDefault(), _vm.register($event);
                         }
                     }
                 }, [ _vm._v("Зарегистрироваться") ]) ]) ]) ]) ]) ]) ]), _vm._v(" "), _vm._m(1) ]) ]) ]) ]);
             },
             staticRenderFns: [ function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("div", {
                     staticClass: "header header-primary text-center"
                 }, [ _c("h4", [ _vm._v("Регистрация") ]) ]);
             }, function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("footer", {
                     staticClass: "footer",
                     staticStyle: {

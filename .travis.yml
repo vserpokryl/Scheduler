@@ -5,8 +5,8 @@ language: php
 php:
   - 7.1
 
-addons:
-  node: "7.7.4"
+node:
+  - 7
 
 install:
   - composer self-update

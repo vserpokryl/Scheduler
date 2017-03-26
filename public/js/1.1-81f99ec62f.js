@@ -6,61 +6,45 @@ webpackJsonp([ 1 ], {
     123: function(module, exports, __webpack_require__) {
         "use strict";
         Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-        exports.default = {
-            data: function data() {
+            value: !0
+        }), exports.default = {
+            data: function() {
                 return {
                     email: "",
                     password: "",
-                    email_error: false,
-                    password_error: false,
-                    remember: true
+                    email_error: !1,
+                    password_error: !1,
+                    remember: !0
                 };
             },
             methods: {
-                login: function login() {
+                login: function() {
                     var _this = this;
                     axios.post("/login", {
                         email: this.email,
                         password: this.password,
                         remember: this.remember
                     }).then(function(response) {
-                        if (response.data.success === true) {
-                            window.location.replace(response.data.goto);
-                        } else {
-                            if (response.data.invalid === true) {
-                                for (var elem in response.data.messages) {
-                                    var elem_messages = response.data.messages[elem];
-                                    _this[elem + "_error"] = true;
-                                    elem_messages.forEach(function(message) {
-                                        showErrorMessage(message);
-                                    });
-                                }
-                            } else {
-                                console.error(response);
-                                console.error(response.data);
-                                showErrorMessage(response.data.message);
-                            }
-                        }
+                        if (response.data.success === !0) window.location.replace(response.data.goto); else if (response.data.invalid === !0) for (var elem in response.data.messages) {
+                            var elem_messages = response.data.messages[elem];
+                            _this[elem + "_error"] = !0, elem_messages.forEach(function(message) {
+                                showErrorMessage(message);
+                            });
+                        } else console.error(response), console.error(response.data), showErrorMessage(response.data.message);
                     }).catch(function(error) {
-                        window.err = error;
-                        console.error(error);
+                        window.err = error, console.error(error);
                     });
                 }
             },
-            created: function created() {
-                loadedAssets();
-                NProgress.done();
+            created: function() {
+                loadedAssets(), NProgress.done();
             }
         };
     },
     126: function(module, exports) {
         module.exports = {
             render: function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("div", [ _c("div", {
                     staticClass: "signup-page"
                 }, [ _c("div", {
@@ -146,23 +130,18 @@ webpackJsonp([ 1 ], {
                     staticClass: "btn btn-simple btn-primary btn-lg login-button",
                     on: {
                         click: function($event) {
-                            $event.preventDefault();
-                            _vm.login($event);
+                            $event.preventDefault(), _vm.login($event);
                         }
                     }
                 }, [ _vm._v("Войти") ]) ]) ]) ]) ]) ]) ]), _vm._v(" "), _vm._m(1) ]) ]) ]) ]);
             },
             staticRenderFns: [ function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("div", {
                     staticClass: "header header-primary text-center"
                 }, [ _c("h4", [ _vm._v("Вход в панель управления") ]) ]);
             }, function() {
-                var _vm = this;
-                var _h = _vm.$createElement;
-                var _c = _vm._self._c || _h;
+                var _vm = this, _h = _vm.$createElement, _c = _vm._self._c || _h;
                 return _c("footer", {
                     staticClass: "footer",
                     staticStyle: {
