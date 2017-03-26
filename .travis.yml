@@ -1,3 +1,4 @@
+sudo: required
 language: php
 
 php:
@@ -9,6 +10,8 @@ install:
   - cp .env.travis .env
   - php artisan key:generate
   - echo "" > ./database/testing.sqlite
+  - sudo apt-cache show phantomjs | grep -i version
+  - sudo apt-get install phantomjs
 
 before_script:
   - phantomjs --webdriver=127.0.0.1:9515 &
