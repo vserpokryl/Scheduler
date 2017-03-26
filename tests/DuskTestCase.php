@@ -37,7 +37,7 @@ abstract class DuskTestCase extends BaseTestCase
     {
         return RemoteWebDriver::create(
             'http://localhost:9515',
-            PHP_OS === 'Darwin' || PHP_OS === 'Windows' ? DesiredCapabilities::chrome() : DesiredCapabilities::phantomjs()
+            PHP_OS === 'Darwin' || PHP_OS === 'Windows' ? DesiredCapabilities::firefox() : DesiredCapabilities::phantomjs()
         );
     }
 }
