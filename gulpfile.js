@@ -168,12 +168,14 @@ gulp.task('webpack', function(callback) {
         options.plugins.push(
             new webpack.optimize.UglifyJsPlugin({
                 sourceMap: false,
-                // beautify: false,
-                compress: true,
-                mangle: false,
-                comments: false,
-
                 beautify: true,
+                compress: {
+                    warnings: false,
+                },
+                mangle: {
+                    except: ['btoa', 'window.btoa']
+                },
+                comments: false,
             }),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
