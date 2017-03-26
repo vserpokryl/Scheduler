@@ -33,9 +33,9 @@
         var a = document.getElementsByTagName("head")[0], c = document.createElement("script");
         c.type = "text/javascript", c.charset = "utf-8", c.async = !0, c.timeout = 12e4, 
         t.nc && c.setAttribute("nonce", t.nc), c.src = t.p + "" + e + "." + ({}[e] || e) + "-" + {
-            "0": "f12a3814db",
-            "1": "dd3bda925b",
-            "2": "8b2e61fdca"
+            "0": "1ad7aa005a",
+            "1": "81f99ec62f",
+            "2": "8589bfe989"
         }[e] + ".js";
         var s = setTimeout(n, 12e4);
         return c.onerror = c.onload = n, a.appendChild(c), r;
@@ -58,7 +58,7 @@
         return Object.prototype.hasOwnProperty.call(e, t);
     }, t.p = "/js/", t.oe = function(e) {
         throw console.error(e), e;
-    }, t(t.s = 78);
+    }, t(t.s = 81);
 }({
     10: function(e, t, n) {
         var r = n(8)(n(19), n(34), null, null);
@@ -171,33 +171,6 @@
             staticRenderFns: []
         };
     },
-    78: function(e, t, n) {
-        "use strict";
-        var r = new VueRouter({
-            mode: "history",
-            routes: [ {
-                path: "/",
-                component: function() {
-                    return n.e(2).then(n.bind(null, 114));
-                }
-            }, {
-                path: "/login",
-                component: function() {
-                    return n.e(1).then(n.bind(null, 115));
-                }
-            }, {
-                path: "/register",
-                component: function() {
-                    return n.e(0).then(n.bind(null, 116));
-                }
-            } ]
-        });
-        r.beforeEach(function(e, t, n) {
-            NProgress.start(), n();
-        }), Vue.component("form-input", n(10)), Vue.component("form-checkbox", n(9)), new Vue({
-            router: r
-        }).$mount("#app");
-    },
     8: function(e, t) {
         e.exports = function(e, t, n, r) {
             var o, a = e = e || {}, c = typeof e.default;
@@ -219,6 +192,33 @@
                 options: s
             };
         };
+    },
+    81: function(e, t, n) {
+        "use strict";
+        var r = new VueRouter({
+            mode: "history",
+            routes: [ {
+                path: "/",
+                component: function() {
+                    return n.e(2).then(n.bind(null, 118));
+                }
+            }, {
+                path: "/login",
+                component: function() {
+                    return n.e(1).then(n.bind(null, 119));
+                }
+            }, {
+                path: "/register",
+                component: function() {
+                    return n.e(0).then(n.bind(null, 120));
+                }
+            } ]
+        });
+        r.beforeEach(function(e, t, n) {
+            NProgress.start(), n();
+        }), Vue.component("form-input", n(10)), Vue.component("form-checkbox", n(9)), new Vue({
+            router: r
+        }).$mount("#app");
     },
     9: function(e, t, n) {
         var r = n(8)(n(18), n(33), null, null);

@@ -3,6 +3,11 @@ import VueRouter from 'vue-router'
 import jQuery from 'jquery'
 import noty from 'noty'
 import axios from 'axios'
+import Promise from 'promise-polyfill';
+
+if (!window.Promise) {
+    window.Promise = Promise;
+}
 
 window.jQuery = window.$ = jQuery;
 window.noty = noty;
