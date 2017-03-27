@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Browser\Pages;
 
-use App\Admin;
-use App\University;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page as BasePage;
 

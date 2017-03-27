@@ -23,6 +23,8 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
+        file_put_contents(realpath(__DIR__.'/../database/testing.sqlite'), '');
+
         if (PHP_OS === 'Darwin' || PHP_OS === 'Windows') {
             static::startChromeDriver();
         }

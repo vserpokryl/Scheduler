@@ -59,7 +59,6 @@ class RegisterTest extends DuskTestCase
             $this->assertEquals($university->university_name, $db_university->university_name);
             $this->assertEquals($university->university_short_name, $db_university->university_short_name);
 
-
             $this->assertEquals($admin->email, $db_admin->email);
         });
     }
