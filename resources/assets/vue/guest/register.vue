@@ -59,7 +59,7 @@
                                             </form-input>
                                         </div>
                                         <div class="footer text-center">
-                                            <button v-on:click.prevent="register" class="btn btn-simple btn-primary btn-lg">Зарегистрироваться</button>
+                                            <button v-on:click.prevent="register" class="btn btn-simple btn-primary btn-lg register-button">Зарегистрироваться</button>
                                         </div>
                                     </form>
                                 </div>
@@ -98,6 +98,7 @@ export default {
     },
     methods: {
         register: function() {
+
             axios.post('/register', {
                 email: this.email,
                 university_name: this.university_name,
@@ -109,18 +110,7 @@ export default {
                 if (response.data.success === true) {
                     showSuccessMessage(response.data.message);
 
-                    this.email = '';
-                    this.university_name = '';
-                    this.university_short_name = '';
-                    this.password = '';
-                    this.password_confirmation = '';
-
-                    this.email_error = false;
-                    this.university_name_error = false;
-                    this.university_short_name_error = false;
-                    this.password_error = false;
-                    this.password_confirmation_error = false;
-
+                    this.$router.push('login');
                 } else {
 
                     if (response.data.invalid === true) {

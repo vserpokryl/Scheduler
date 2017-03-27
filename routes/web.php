@@ -22,7 +22,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('login', 'HomeController@index');
     Route::get('register', 'HomeController@index');
-    Route::get('password_reset', 'HomeController@index');
+//    Route::get('password_reset', 'HomeController@index');
 
     Route::post('register', 'Auth\AdminRegisterController@register');
     Route::post('login', 'Auth\AdminLoginController@login');

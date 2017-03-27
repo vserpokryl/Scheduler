@@ -8,6 +8,7 @@ use App\Admin;
 use App\University;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
+use Tests\Browser\Pages\Login;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
@@ -34,13 +35,13 @@ class LoginTest extends DuskTestCase
         ]);
 
         $this->browse(function (Browser $browser) use ($admin, $password) {
-            $browser->visit('/login')
+            $browser->visit(new Login())
                 ->waitUntil('countAssets === 0')
-                ->assertSee('Вход в панель управления')
-                ->type('input[name=email]', $admin->email)
-                ->type('input[name=password]', $password)
+                ->type('@email', $admin->email)
+                ->type('@password', $password)
+                ->pause(500)
                 ->press('.login-button')
-                ->pause(1000)
+                ->pause(500)
                 ->assertPathIs('/schedule');
         });
     }

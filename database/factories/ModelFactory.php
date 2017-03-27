@@ -25,7 +25,7 @@ $factory->define(App\Admin::class, function (Faker\Generator $faker) {
 
 $factory->define(App\University::class, function (Faker\Generator $faker) {
     return [
-        'university_name'          => $faker->name,
-        'university_short_name'    => $faker->name,
+        'university_name'          => $faker->unique()->realText(50),
+        'university_short_name'    => $faker->realText(10),
     ];
 });
