@@ -7,15 +7,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <span class="navbar-brand">Меню</span>
         </div>
 
         <div class="collapse navbar-collapse" id="adminmenu-navbar">
             <ul class="nav navbar-nav">
-                <router-link to="/" tag="li"><a>Расписание</a></router-link>
-                <router-link to="/statistics" tag="li"><a>Статистика</a></router-link>
+                <router-link to="/" tag="li">
+                    <a>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        Расписание
+                    </a>
+                </router-link>
+                <router-link to="/statistics" tag="li">
+                    <a>
+                        <i class="fa fa-area-chart" aria-hidden="true"></i>
+                        Статистика
+                    </a>
+                </router-link>
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Редактирование
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        Редактирование
                         <b class="caret"></b>
                         <div class="ripple-container"></div>
                     </a>
@@ -35,8 +46,16 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a disabled="disabled">
+                        <i class="fa fa-university" aria-hidden="true"></i>
+                        {{ Auth::user()->university->university_short_name }}
+                    </a>
+                </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ Auth::user()->university->university_short_name }}
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user-o" aria-hidden="true"></i>
+                        {{ Auth::user()->email }}
                         <b class="caret"></b>
                         <div class="ripple-container"></div>
                     </a>

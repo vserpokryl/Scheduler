@@ -44,13 +44,7 @@ class RegisterTest extends DuskTestCase
                 ->type('@password_confirmation', $password)
                 ->pause(500)
                 ->press('.register-button')
-                ->pause(1000)
-                ->assertPathIs('/login')
-                ->type('@email', $admin->email)
-                ->type('@password', $password)
-                ->pause(500)
-                ->press('.login-button')
-                ->pause(500)
+                ->pause(3000)
                 ->assertPathIs('/schedule');
 
             $db_university = University::where('university_name', $university->university_name)->first();
