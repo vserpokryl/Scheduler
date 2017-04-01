@@ -9,8 +9,8 @@ use Validator;
 use App\University;
 use App\DefaultTimes;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Auth\Guard;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\StatefulGuard;
 
 /**
