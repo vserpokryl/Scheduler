@@ -7,8 +7,11 @@ namespace App\Http\Controllers\Auth;
 use App\Admin;
 use Validator;
 use App\University;
+use App\DefaultTimes;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Auth\Guard;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Auth\StatefulGuard;
 
 /**
  * Class RegisterController.
@@ -28,9 +31,11 @@ class AdminRegisterController extends Controller
      *
      * @param Request $request
      *
+     * @param Guard $guard
+     *
      * @return array
      */
-    protected function register(Request $request)
+    protected function register(Request $request, Guard $guard)
     {
         $validator = Validator::make($request->all(), [
             'university_name'       => 'required|string|max:255|unique:universities',
@@ -51,14 +56,20 @@ class AdminRegisterController extends Controller
 
         $university = University::create($request->only('university_name', 'university_short_name'));
 
-        Admin::create([
+        DefaultTimes::addDefaultTimes($university->id);
+
+        $admin = Admin::create([
             'email'         => $request->email,
             'password'      => $request->password,
             'university_id' => $university->id,
         ]);
 
+        /* @var StatefulGuard $guard */
+        $guard->login($admin, true);
+
         return [
             'success' => true,
+            'goto'    => route('admin_home', [], false),
             'message' => 'Вы успешно зарегистрированы!',
         ];
     }

@@ -15,6 +15,11 @@
                         <i class="fa fa-home" aria-hidden="true"></i> Главная
                     </router-link>
                 </li>
+            @if (Auth::check())
+                <li>
+                    <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Выход</a>
+                </li>
+            @else
                 <li>
                     <router-link to="/login">
                         <i class="fa fa-sign-in" aria-hidden="true"></i> Вход
@@ -25,6 +30,7 @@
                         <i class="fa fa-user-plus" aria-hidden="true"></i> Регистрация
                     </router-link>
                 </li>
+            @endif
             </ul>
         </div>
     </div>

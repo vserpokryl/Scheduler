@@ -5,15 +5,17 @@ declare(strict_types=1);
 use Illuminate\Database\Seeder;
 
 /**
- * Class DatabaseSeeder.
+ * Class AdminTableSeeder.
  */
-class DatabaseSeeder extends Seeder
+class AdminTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
     public function run()
     {
-         $this->call(AdminTableSeeder::class);
+
     }
 }

@@ -25,6 +25,14 @@ class University extends Model
      */
     public function admins()
     {
-        return $this->hasMany('App\Admin', 'university_id', 'id');
+        return $this->hasMany(Admin::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function default_times()
+    {
+        return $this->hasMany(DefaultTimes::class);
     }
 }

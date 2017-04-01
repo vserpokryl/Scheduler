@@ -17,9 +17,9 @@ use Illuminate\Routing\Router;
 
 /* @var Router $router */
 Route::pattern('id', '[0-9]+');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['guest']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
     Route::get('login', 'HomeController@index');
     Route::get('register', 'HomeController@index');
 //    Route::get('password_reset', 'HomeController@index');

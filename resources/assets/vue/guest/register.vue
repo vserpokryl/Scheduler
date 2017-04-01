@@ -110,7 +110,9 @@ export default {
                 if (response.data.success === true) {
                     showSuccessMessage(response.data.message);
 
-                    this.$router.push('login');
+                    setTimeout(() => {
+                        window.location.replace(response.data.goto);
+                    }, 2000);
                 } else {
 
                     if (response.data.invalid === true) {
