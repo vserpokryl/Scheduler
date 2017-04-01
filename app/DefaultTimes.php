@@ -33,7 +33,7 @@ class DefaultTimes extends Model
      *
      * @return bool
      */
-    static public function addDefaultTimes($university_id)
+    public static function addDefaultTimes($university_id)
     {
         $defaultTimes = [
             ['beginning_hour' => 8,  'beginning_minute' => 30, 'end_hour' => 10, 'end_minute' => 5],
@@ -45,14 +45,16 @@ class DefaultTimes extends Model
         ];
 
         foreach ($defaultTimes as $num_subject => $defaultTime) {
-            if (!DefaultTimes::create([
+            if (! self::create([
                 'university_id'    => $university_id,
                 'num_subject'      => $num_subject,
                 'beginning_hour'   => $defaultTime['beginning_hour'],
                 'beginning_minute' => $defaultTime['beginning_minute'],
                 'end_hour'         => $defaultTime['end_hour'],
                 'end_minute'       => $defaultTime['end_minute'],
-            ])) return false;
+            ])) {
+                return false;
+            }
         }
 
         return true;
