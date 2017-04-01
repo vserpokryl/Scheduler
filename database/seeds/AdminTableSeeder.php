@@ -17,15 +17,15 @@ class AdminTableSeeder extends Seeder
     public function run()
     {
         $university = \App\University::create([
-            'university_name' => 'Сибирский государственный университет водного транспорта',
+            'university_name'       => 'Сибирский государственный университет водного транспорта',
             'university_short_name' => 'СГУВТ',
         ]);
 
         \App\DefaultTimes::addDefaultTimes($university->id);
 
         \App\Admin::create([
-            'email' => 'test@test.ru',
-            'password' => 'password',
+            'email'         => 'test@test.ru',
+            'password'      => 'password',
             'university_id' => $university->id,
         ]);
     }

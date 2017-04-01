@@ -65,8 +65,8 @@
 export default {
     data () {
         return {
-            email: '',
-            password: '',
+            email: 'test@test.ru',
+            password: 'password',
 
             email_error: false,
             password_error: false,
