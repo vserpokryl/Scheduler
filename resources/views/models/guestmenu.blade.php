@@ -12,10 +12,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <router-link to="/">
-                        <i class="fa fa-home" aria-hidden="true"></i> Главная
+                        <i class="fa fa-home" aria-hidden="true"></i>Главная
                     </router-link>
                 </li>
             @if (Auth::check())
+                <li>
+                    <a href="/schedule"><i class="fa fa-calendar" aria-hidden="true"></i>Расписание</a>
+                </li>
                 <li>
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Выход</a>
                 </li>
