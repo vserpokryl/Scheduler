@@ -64,7 +64,7 @@ class AdminLoginController extends Controller
             ], $request->remember)) {
             return [
                 'success' => true,
-                'goto'    => route('admin_home'),
+                'goto'    => route('admin_home', [], false),
             ];
         }
 
