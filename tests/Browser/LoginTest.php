@@ -35,7 +35,7 @@ class LoginTest extends DuskTestCase
         ]);
 
         $this->browse(function (Browser $browser) use ($admin, $password) {
-//            $browser->visit(new Login())
+            //            $browser->visit(new Login())
 //                ->waitUntil('countAssets === 0')
 //                ->type('@email', $admin->email)
 //                ->type('@password', $password)
