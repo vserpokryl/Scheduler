@@ -7,7 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Building
+ * Class Building.
  */
 class Building extends Model
 {

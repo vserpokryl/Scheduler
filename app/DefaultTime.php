@@ -7,7 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class DefaultTime
+ * Class DefaultTime.
  */
 class DefaultTime extends Model
 {

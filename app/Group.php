@@ -7,7 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Group
+ * Class Group.
  */
 class Group extends Model
 {
@@ -17,7 +17,7 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'course', 'form_training', 'number_people', 'faculty_id'
+        'name', 'course', 'form_training', 'number_people', 'faculty_id',
     ];
 
     /**

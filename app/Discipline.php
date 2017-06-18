@@ -7,7 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Discipline
+ * Class Discipline.
  */
 class Discipline extends Model
 {
