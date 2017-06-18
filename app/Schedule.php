@@ -73,9 +73,9 @@ class Schedule extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function periodStudy()
+    public function studyPeriod()
     {
-        return $this->belongsTo(PeriodStudy::class);
+        return $this->belongsTo(StudyPeriod::class);
     }
 
     /**
