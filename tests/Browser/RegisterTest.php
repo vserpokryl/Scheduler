@@ -47,7 +47,6 @@ class RegisterTest extends DuskTestCase
                 ->pause(5000)
                 ->assertPathIs('/schedule');
 
-
 //            $db_university = University::where('university_name', $university->university_name)->first();
 //            $db_admin = Admin::where('email', $admin->email)->first();
 //            dd($admin->email);
