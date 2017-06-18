@@ -7,7 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class WishesTeacher
+ * Class WishesTeacher.
  */
 class WishesTeacher extends Model
 {
@@ -17,7 +17,7 @@ class WishesTeacher extends Model
      * @var array
      */
     protected $fillable = [
-        'week_day', 'num_week', 'num_discipline', 'teacher_id'
+        'week_day', 'num_week', 'num_discipline', 'teacher_id',
     ];
 
     /**

@@ -7,7 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Subgroup
+ * Class Subgroup.
  */
 class Subgroup extends Model
 {

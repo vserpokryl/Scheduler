@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateSchedulesTable
+ * Class CreateSchedulesTable.
  */
 class CreateSchedulesTable extends Migration
 {

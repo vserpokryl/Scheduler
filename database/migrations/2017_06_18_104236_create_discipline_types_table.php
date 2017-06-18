@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateDisciplineTypesTable
+ * Class CreateDisciplineTypesTable.
  */
 class CreateDisciplineTypesTable extends Migration
 {

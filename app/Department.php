@@ -7,8 +7,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Department
- * @package App
+ * Class Department.
  */
 class Department extends Model
 {
