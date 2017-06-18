@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Admin;
 use App\University;
-use App\DefaultTimes;
+use App\DefaultTime;
 use Illuminate\Database\Seeder;
 
 /**
@@ -29,7 +29,7 @@ class AdminsTableSeeder extends Seeder
                 'university_id' => $university->id,
             ]));
 
-            DefaultTimes::addDefaultTimes($university->id);
+            DefaultTime::addDefaultTimes($university->id);
         });
     }
 }

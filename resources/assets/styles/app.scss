@@ -15,7 +15,117 @@ $fa-font-path:   "/fonts";
 // Material KIT
 @import 'material-kit.css';
 
+// Flatpickr
+@import "../../../node_modules/flatpickr/dist/flatpickr.min.css";
 
-//body {
-//  min-width: 600px;
-//}
+.vertical-text {
+  transform: rotate(90deg);
+
+  transform-origin: left top 0;
+
+  margin-left: 30px;
+  padding: 0;
+  float: left;
+  height:80px;
+  width:5px;
+  white-space: nowrap;
+}
+
+.schedule {
+  text-align: center;
+  width: 100%;
+  font-size: 110%;
+  margin: 40px auto;
+  table-layout: fixed;
+
+  tbody {
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+  }
+
+  tr td.weekday span{
+    display: block;
+    transform: rotate(270deg);
+  }
+  tr td.weekday {
+    width: 5%;
+    border: 2px solid black;
+  }
+  tr td.time {
+    border: 2px solid #000;
+    width: 5%;
+  }
+
+  tr.delimiter {
+    background: #ff6f00;
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+    height: 20px;
+  }
+  .first_week, .second_week {
+    height: 35px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+  }
+  .first_week {
+    border-top: 2px solid black;
+  }
+  .second_week {
+    border-bottom: 2px solid black;
+  }
+  .first_week td[colspan="2"] {
+    border-bottom: 1px solid black;
+  }
+  .second_week td[colspan="2"] {
+    border-top: 1px solid black;
+  }
+  .subject {
+    border: 1px solid black;
+    border-right-width: 2px;
+    border-left-width: 2px;
+    position: relative;
+
+    .control_update {
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      height: 100%;
+      display: none;
+
+      button {
+        margin: 0;
+      }
+    }
+
+    &:hover .control_update {
+      display: block;
+    }
+
+    .control_add {
+      button {
+        margin: 5px 5px;
+        height: 100%;
+        width: calc(100% - 10px);
+        display: none;
+      }
+    }
+
+    &:hover .control_add button {
+      display: block;
+    }
+  }
+  .group-name {
+    font-size: 110%;
+    font-weight: bold;
+  }
+}
+
+table.table-edit {
+  tr td {
+    vertical-align: middle;
+  }
+}
+
+.opportunities li i {
+  color: #00be00;
+}

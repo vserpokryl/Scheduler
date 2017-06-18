@@ -50,6 +50,6 @@ class Admin extends Authenticatable
      */
     public function university()
     {
-        return $this->belongsTo('App\University', 'university_id', 'id');
+        return $this->belongsTo(University::class);
     }
 }

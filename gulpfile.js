@@ -129,7 +129,8 @@ gulp.task('webpack', function(callback) {
         resolve: {
             alias: {
                 'vue$': 'vue/dist/vue.esm.js'
-            }
+            },
+            extensions: ['.js', '.vue']
         },
         plugins: [
             new webpack.NoEmitOnErrorsPlugin(),

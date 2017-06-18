@@ -12,24 +12,32 @@
                                             <h4>Вход в панель управления</h4>
                                         </div>
                                         <div class="content">
-                                            <form-input
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">email</i>
+                                                </span>
+                                                <form-input
                                                     type="text"
                                                     name="email"
                                                     label="E-Mail"
                                                     v-model="email"
                                                     :error="email_error"
-                                                    @error="email_error = arguments[0]"
-                                                    icon="email">
-                                            </form-input>
-                                            <form-input
-                                                type="password"
-                                                name="password"
-                                                label="Пароль"
-                                                v-model="password"
-                                                :error="password_error"
-                                                @error="password_error = arguments[0]"
-                                                icon="lock_outline">
-                                            </form-input>
+                                                    @error="email_error = arguments[0]">
+                                                </form-input>
+                                            </div>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="material-icons">lock_outline</i>
+                                                </span>
+                                                <form-input
+                                                    type="password"
+                                                    name="password"
+                                                    label="Пароль"
+                                                    v-model="password"
+                                                    :error="password_error"
+                                                    @error="password_error = arguments[0]">
+                                                </form-input>
+                                            </div>
                                             <!--<div class="col-xs-12" style="margin-top: 10px;">-->
                                                 <!--<router-link to="/password_reset" class="pull-right">-->
                                                     <!--Забыли пароль?-->

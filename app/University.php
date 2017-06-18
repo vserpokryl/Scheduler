@@ -33,6 +33,30 @@ class University extends Model
      */
     public function default_times()
     {
-        return $this->hasMany(DefaultTimes::class);
+        return $this->hasMany(DefaultTime::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function buildings()
+    {
+        return $this->hasMany(Building::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function disciplineTypes()
+    {
+        return $this->hasMany(DisciplineType::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function faculties()
+    {
+        return $this->hasMany(Faculty::class);
     }
 }

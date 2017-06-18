@@ -43,13 +43,17 @@ class AdminLoginController extends Controller
      *
      * @return array|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
+
+    // функиця авторизации в систему
     public function login(Request $request)
     {
+        // проверка введенных данных пользователем
         $validator = Validator::make($request->all(), [
             'email'    => 'required|email',
             'password' => 'required|min:6',
         ]);
 
+        // оповещение пользователя об ошибке в случае ее возникновения
         if ($validator->fails()) {
             return [
                 'success'  => false,
@@ -58,6 +62,7 @@ class AdminLoginController extends Controller
             ];
         }
 
+        // вход в систему с последующей переадресацией
         if (Auth::guard()->attempt([
                 'email' => $request->email,
                 'password' => $request->password,

@@ -17,10 +17,36 @@
 
                <div class="main main-raised">
                    <div class="section section-basic">
-                       <div class="container">
-                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et libero quibusdam repellat soluta. A aliquam aspernatur deserunt dicta dolorum, eligendi eum libero neque nobis optio quas quidem quis sapiente! Atque, aut autem corporis culpa, dolor doloremque dolorum enim est exercitationem inventore ipsa labore laudantium molestiae molestias officia quos recusandae reprehenderit veritatis? Alias aspernatur at beatae corporis, doloremque dolores eligendi esse excepturi explicabo incidunt, iure molestiae nostrum officia optio, perspiciatis placeat ratione rem rerum! A adipisci alias at, aut commodi consequatur consequuntur corporis culpa cum dicta distinctio dolor eius eligendi esse eum excepturi expedita harum id ipsum laudantium libero magni modi officia officiis omnis, optio porro praesentium quia recusandae reiciendis sed sequi sint sit tempora vel velit vitae. Alias aspernatur blanditiis dolorem error facilis hic impedit laborum maxime necessitatibus provident quaerat, quam quod sed ullam ut! A amet deserunt dignissimos nulla odit temporibus. Consectetur debitis harum illo incidunt laudantium optio quod repellendus similique ut vero! Debitis, dolor earum enim et expedita id modi reiciendis ut velit! A ad cum dicta doloremque, ducimus earum eos illum magni minima mollitia non quis! Aperiam consectetur corporis cumque dolor incidunt nihil, nostrum numquam obcaecati odit pariatur quaerat quia quibusdam repellendus suscipit tempora vero voluptatem voluptates!
-                           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et libero quibusdam repellat soluta. A aliquam aspernatur deserunt dicta dolorum, eligendi eum libero neque nobis optio quas quidem quis sapiente! Atque, aut autem corporis culpa, dolor doloremque dolorum enim est exercitationem inventore ipsa labore laudantium molestiae molestias officia quos recusandae reprehenderit veritatis? Alias aspernatur at beatae corporis, doloremque dolores eligendi esse excepturi explicabo incidunt, iure molestiae nostrum officia optio, perspiciatis placeat ratione rem rerum! A adipisci alias at, aut commodi consequatur consequuntur corporis culpa cum dicta distinctio dolor eius eligendi esse eum excepturi expedita harum id ipsum laudantium libero magni modi officia officiis omnis, optio porro praesentium quia recusandae reiciendis sed sequi sint sit tempora vel velit vitae. Alias aspernatur blanditiis dolorem error facilis hic impedit laborum maxime necessitatibus provident quaerat, quam quod sed ullam ut! A amet deserunt dignissimos nulla odit temporibus. Consectetur debitis harum illo incidunt laudantium optio quod repellendus similique ut vero! Debitis, dolor earum enim et expedita id modi reiciendis ut velit! A ad cum dicta doloremque, ducimus earum eos illum magni minima mollitia non quis! Aperiam consectetur corporis cumque dolor incidunt nihil, nostrum numquam obcaecati odit pariatur quaerat quia quibusdam repellendus suscipit tempora vero voluptatem voluptates!
-                       </div>
+                        <div class="container">
+                            <h2>Составление расписания занятий в высших учебных заведениях</h2>
+                            <p class="h4">Составление расписания – одна из наиболее распространённых задач в планировании и оптимизации учебного процесса в учебных заведениях.</p>
+                            <p class="h4">От того, насколько хорошо составлено расписание, зависит эффективность работы преподавателей, усвоение учебного материала студентами, рациональное использование материальных ресурсов.</p>
+                            <p class="h4">Для облегчения составления расписания была разработана и введена в действие специализированная программа, получившая название «Планировщик расписания». При помощи этого программного обеспечения можно составить расписание занятий, вне зависимости от вместимости учебного заведения, количества студенческой аудитории, графиков обучения и прочих параметров.</p>
+                            <p class="h4">Основные возможности:</p>
+                            <ul class="list-unstyled h4 opportunities">
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Управление корпусами</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Управление аудиториями</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Управление факультетами</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Управление кафедрами</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Управление преподавателями</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Управление группами</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Управление подгруппами</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Управление дисциплинами</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Управление пожеланиями преподавателей</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Учет пожеланий преподавателей</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Внесение изменений в уже построенное расписание</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Составление расписания для очного отделения</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Составление расписания для заочного отделения</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Просмотр занятости аудиторий</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Просмотр занятости преподавателей</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Учет занятости аудиторий</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Учет занятости преподавателей</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Печать расписания для группы</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Печать расписания для подгруппы</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Печать расписания для преподавателей</li>
+                            </ul>
+                            <p class="h4">Исходный код данного проекта, а также краткое руководство по его настройке находится по адресу <a href="https://github.com/Nanografon/Scheduler" target="_blank">Scheduler</a></p>
+                        </div>
                    </div>
                </div>
            </div>
