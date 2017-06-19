@@ -1,50 +1,36 @@
 <template>
     <div>
-        <h3> - Добавление высшего учебного заведения.</h3>
+        <h3>Факультеты</h3>
         <div class="row">
-            <form id="add_college">
-                <div class="col-md-6">
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">Сокращенное название ВУЗа</label>
-                        <input type="text" class="form-control" name="short_name">
-                        <span class="material-input"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">Полное название ВУЗа</label>
-                        <input type="text" class="form-control" name="name">
-                        <span class="material-input"></span>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <input type="submit" class="btn pull-right btn-success" value="Добавить">
-                </div>
-            </form>
-        </div>
-        <h3> - Редактирование высших учебных заведений.</h3>
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table table-striped table-bordered table-edit" id="table_edit">
-                    <thead>
-                    <tr>
-                        <th>Сокращенное название</th>
-                        <th>Полное название</th>
-                        <th>Управление</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td contenteditable="true">$college->short_name</td>
-                        <td contenteditable="true">$college->name</td>
-                        <td class="text-center">
-                            <button class="btn btn-disable" id="changes" data-id="$college->id">Нет изменений</button>
-                            <button class="btn btn-danger" data-id="$college->id">Удалить</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+            <h4>Добавить факультет</h4>
+            <div class="col-md-6">
+                <form-input
+                        type="text"
+                        name="name"
+                        label="Название подгруппы"
+                        v-model="name"
+                        :error="name_error"
+                        @error="name_error = arguments[0]">
+                </form-input>
             </div>
+            <div class="col-md-6">
+                <form-input
+                        type="text"
+                        name="short_name"
+                        label="Название подгруппы"
+                        v-model="short_name"
+                        :error="short_name_error"
+                        @error="short_name_error = arguments[0]">
+                </form-input>
+            </div>
+            <div class="col-md-12">
+                <input type="submit" class="btn pull-right btn-success" value="Добавить">
+            </div>
+        </div>
+
+        <div class="row" v-show="faculties.length > 0">
+            <h4>Управление факультетами</h4>
+            <v-table :data="faculties" :columns="faculties_columns"></v-table>
         </div>
     </div>
 </template>
@@ -53,12 +39,36 @@
     export default {
         data () {
             return {
+                name: '',
+                name_error: false,
+                short_name: '',
+                short_name_error: false,
+
+                faculties: [],
+
+                faculties_columns: [{
+                    label: 'Название факультета',
+                    value: 'name'
+                }, {
+                    label: 'Сокращенное название',
+                    value: 'short_name'
+                }],
             }
         },
         created () {
-            loadedAssets();
+            document.title = appTitle + " - Управление факультетами";
 
-            NProgress.done();
-        }
+            axios.get('/get/faculties')
+                .then((response) => {
+                    this.faculties = response.data;
+
+                    NProgress.done();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+            loadedAssets(false);
+        },
     }
 </script>

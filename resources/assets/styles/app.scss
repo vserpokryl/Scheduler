@@ -120,6 +120,33 @@ $fa-font-path:   "/fonts";
   }
 }
 
+.VueTables__table {
+  .control_panel {
+    position: relative;
+
+    .control_update {
+      position: absolute;
+      right: 2px;
+      top: 2px;
+      height: 100%;
+      display: none;
+      width: 200px;
+
+      button {
+        margin: 0;
+        float: right;
+      }
+
+      .btn-success {
+        margin-left: 5px;
+      }
+    }
+  }
+  tr:hover .control_update {
+    display: block;
+  }
+}
+
 table.table-edit {
   tr td {
     vertical-align: middle;

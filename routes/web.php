@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/edit/groups/update/{group}', 'GroupController@update');
 
     Route::get('/edit/faculties', 'AdminController@index');
+    Route::get('/get/faculties', 'FacultyController@getAll');
     Route::post('/edit/faculties/add', 'FacultyController@add');
     Route::delete('/edit/faculties/destroy/{faculty}', 'FacultyController@destroy');
     Route::put('/edit/faculties/update/{faculty}', 'FacultyController@update');

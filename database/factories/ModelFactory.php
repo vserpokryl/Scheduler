@@ -30,3 +30,10 @@ $factory->define(App\University::class, function (Faker\Generator $faker) {
         'university_short_name'    => $faker->realText(10),
     ];
 });
+
+$factory->define(App\Faculty::class, function (Faker\Generator $faker) {
+    return [
+        'name'          => $faker->unique()->realText(50),
+        'short_name'    => $faker->text(5),
+    ];
+});

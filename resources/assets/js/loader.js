@@ -6,10 +6,11 @@ NProgress.start();
 
 window.countAssets = 2;
 
-window.loadedAssets = () => {
+window.loadedAssets = (withoutprogress) => {
     countAssets--;
     if (countAssets === 0) {
-        NProgress.done();
+        if(withoutprogress)
+            NProgress.done();
 
         let loader = document.getElementById('loader');
         let app = document.getElementById('app');

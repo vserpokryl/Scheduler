@@ -183,9 +183,6 @@
                         <th colspan="4">
                             <span class="VueTables__heading">Лабораторные занятия</span>
                         </th>
-                        <th rowspan="2">
-                            <span class="VueTables__heading">Управление</span>
-                        </th>
                     </tr>
                     <tr>
                         <th>

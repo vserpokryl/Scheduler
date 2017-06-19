@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Admin;
+use App\Faculty;
 use App\University;
 use App\DefaultTime;
 use Illuminate\Database\Seeder;
@@ -25,8 +26,22 @@ class AdminsTableSeeder extends Seeder
         ])->each(function ($university) {
             $university->admins()->save(factory(Admin::class)->make([
                 'email'         => 'test@test.ru',
-                'password'      => 'password',
-                'university_id' => $university->id,
+                'password'      => 'password'
+            ]));
+
+            $university->faculties()->save(factory(Faculty::class)->make([
+                'name'          => 'Электромеханический факультет',
+                'short_name'    => 'ЭМФ',
+            ]));
+
+            $university->faculties()->save(factory(Faculty::class)->make([
+                'name'          => 'Гидротехнический факультет',
+                'short_name'    => 'ГТФ',
+            ]));
+
+            $university->faculties()->save(factory(Faculty::class)->make([
+                'name'          => 'Судомеханический факультет',
+                'short_name'    => 'СМФ',
             ]));
 
             DefaultTime::addDefaultTimes($university->id);

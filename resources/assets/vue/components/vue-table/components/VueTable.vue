@@ -15,9 +15,9 @@
                 <div class="form-group form-inline pull-right">
                     <label for="limit">Записей:</label>
                     <select id="limit" class="form-control">
-                        <option value="10" selected="selected">10</option>
+                        <option value="10">10</option>
                         <option value="25">25</option>
-                        <option value="50">50</option>
+                        <option value="50" selected="selected">50</option>
                     </select>
                 </div>
             </div>
@@ -26,22 +26,29 @@
             <table class="VueTables__table table table-striped table-bordered table-hover">
                 <thead v-if="!theadslot">
                     <tr>
-                        <th class="VueTables__sortable" v-for="column in columns">
+                        <th class="VueTables__sortable" v-for="column in withoutlast">
                             <span class="VueTables__heading">{{ column.label }}</span>
                             <i class="fa fa-chevron-up pull-right" aria-hidden="true" v-if="column.sortable"></i>
                         </th>
-                        <th v-if="control_panel">
-                            <span class="VueTables__heading">Управление</span>
+                        <th class="VueTables__sortable" v-for="column in last">
+                            <span class="VueTables__heading">{{ column.label }}</span>
+                            <i class="fa fa-chevron-up pull-right" aria-hidden="true" v-if="column.sortable"></i>
                         </th>
                     </tr>
                 </thead>
                 <slot name="theadslot"></slot>
                 <tbody>
                     <tr v-for="line in data">
-                        <td v-for="column in columns">{{ line[column.value] }}</td>
-                        <td class="text-center" v-if="control_panel">
-                            <button class="btn btn-primary">Изменить</button>
-                            <button class="btn btn-danger">Удалить</button>
+                        <td v-for="column in withoutlast">{{ line[column.value] }}</td>
+                        <td v-for="column in last" class="control_panel">
+                            {{ line[column.value] }}
+
+                            <div v-if="control_panel">
+                                <div class="control_update">
+                                    <button class="btn btn-success btn-xs">Изменить</button>
+                                    <button class="btn btn-danger btn-xs">Удалить</button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -103,6 +110,12 @@
                 let suffix_key = mod > 4 && mod < 20 ? 2 : keys[Math.min(mod % 10, 5)];
 
                 return value + suffix[suffix_key];
+            },
+            withoutlast: function() {
+                return this.columns.slice(0, -1);
+            },
+            last: function() {
+                return this.columns.slice(-1);
             }
         }
     }
