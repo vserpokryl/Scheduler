@@ -1,212 +1,216 @@
 <template>
     <div>
-        <h3>Составление расписания</h3>
-        <div class="row">
-            <h4>Выберите факультет</h4>
-            <v-select
-                    :options="faculties"
-                    v-model="faculty"
-                    placeholder="Выберите факультет">
-                <div slot="no-options">Ничего не найдено</div>
-            </v-select>
-        </div>
-        <div class="row">
-            <h4>Выберите группу</h4>
-            <v-select
-                :options="groups"
-                v-model="group"
-                placeholder="Выберите группу">
-                <div slot="no-options">Ничего не найдено</div>
-            </v-select>
-        </div>
-        <div class="row" v-show="showschedule">
-            <h4>Учебный план</h4>
-
-            <v-table :data="teaching_load" :columns="teaching_load_columns" :control_panel="false"></v-table>
-        </div>
-
-        <div class="row" v-if="showschedule">
-            <table class="schedule">
-                <colgroup>
-                    <col width="70">
-                    <col width="110">
-                </colgroup>
-                <thead>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2"><span class="group-name">ИТ-41а</span></td>
-                    <td colspan="2"><span class="group-name">ИТ-41б</span></td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="first_week">
-                    <td rowspan="12" class="weekday"><span>Понедельник</span></td>
-                    <td rowspan="2" class="time">8:30 - 10.05</td>
-                    <td colspan="4" class="subject">Управление данными (л) 122 Лаб
-                        <div class="control_update">
-                            <button class="btn btn-success btn-xs" data-schedule_id="$subject->id" data-subgroup_id="$subject->subgroup_id" data-teacher_id="$subject->teacher_id" data-subject_id="$subject->subject_id" data-classroom_id="$subject->classroom_id" id="control_update" data-type_subject_id="$subject->type_subject_id">Изменить</button>
-                            <button class="btn btn-danger btn-xs" data-schedule_id="$subject->id">Удалить</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject" colspan="2">
-                        <div class="control_add">
-                            <button class="btn btn-primary btn-xs" data-subgroup_id="$subgroup_id" data-num_week="$num_week" data-week_day="$week_day" data-num_subject="$num_subject" data-toggle="tooltip" data-placement="top" title="$tooltip_text">Добавить</button>
-                        </div>
-                    </td>
-                    <td class="subject" colspan="2">Управление данными (лаб) 204 Лаб
-                        <div class="control_update">
-                            <button class="btn btn-success btn-xs" data-schedule_id="$subject->id" data-subgroup_id="$subject->subgroup_id" data-teacher_id="$subject->teacher_id" data-subject_id="$subject->subject_id" data-classroom_id="$subject->classroom_id" id="control_update" data-type_subject_id="$subject->type_subject_id">Изменить</button>
-                            <button class="btn btn-danger btn-xs" data-schedule_id="$subject->id">Удалить</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">10:15 - 11.50</td>
-                    <td colspan="4" rowspan="2" class="subject">Информационные технологии (л) 122 Лаб
-                        <div class="control_update">
-                            <button class="btn btn-success btn-xs" data-schedule_id="$subject->id" data-subgroup_id="$subject->subgroup_id" data-teacher_id="$subject->teacher_id" data-subject_id="$subject->subject_id" data-classroom_id="$subject->classroom_id" id="control_update" data-type_subject_id="$subject->type_subject_id">Изменить</button>
-                            <button class="btn btn-danger btn-xs" data-schedule_id="$subject->id">Удалить</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="second_week">
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">12:30 - 14:05</td>
-                    <td class="subject" colspan="2">Управление данными (лаб) 204 Лаб
-                        <div class="control_update">
-                            <button class="btn btn-success btn-xs" data-schedule_id="$subject->id" data-subgroup_id="$subject->subgroup_id" data-teacher_id="$subject->teacher_id" data-subject_id="$subject->subject_id" data-classroom_id="$subject->classroom_id" id="control_update" data-type_subject_id="$subject->type_subject_id">Изменить</button>
-                            <button class="btn btn-danger btn-xs" data-schedule_id="$subject->id">Удалить</button>
-                        </div>
-                    </td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject" colspan="2"></td>
-                    <td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">14:15 - 16:50</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">16:00 - 17:35</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">17:45 - 19:20</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject" colspan="2"></td>
-                </tr>
-                <tr class="delimiter">
-                    <td colspan="6"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="12" class="weekday"><span>Вторник</span></td>
-                    <td rowspan="2" class="time">8:30 - 10.05</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">10:15 - 11.50</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-
-                <tr class="first_week">
-                    <td rowspan="2" class="time">12:30 - 14:05</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject" colspan="2"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">14:15 - 16:50</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">16:00 - 17:35</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">17:45 - 19:20</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="delimiter">
-                    <td colspan="6"></td>
-                </tr>
-                <tr class="first_week">
+        <div class="wrapper">
+            <div class="header header-filter"></div>
+            <div class="main main-raised">
+                <div class="container">
+                    <h3>Составление расписания</h3>
+                    <div class="row">
+                        <h4>Выберите факультет</h4>
+                        <v-select
+                                :options="faculties"
+                                v-model="faculty"
+                                placeholder="Выберите факультет">
+                            <div slot="no-options">Ничего не найдено</div>
+                        </v-select>
+                    </div>
+                    <div class="row">
+                        <h4>Выберите группу</h4>
+                        <v-select
+                            :options="groups"
+                            v-model="group"
+                            placeholder="Выберите группу">
+                            <div slot="no-options">Ничего не найдено</div>
+                        </v-select>
+                    </div>
+                    <div class="row" v-show="showschedule">
+                        <h4>Учебный план</h4>
+
+                        <v-table :data="teaching_load" :columns="teaching_load_columns" :control_panel="false"></v-table>
+                    </div>
+
+                    <div class="row" v-if="showschedule">
+                        <table class="schedule">
+                            <colgroup>
+                                <col width="70">
+                                <col width="110">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td colspan="2"><span class="group-name">ИТ-41а</span></td>
+                                <td colspan="2"><span class="group-name">ИТ-41б</span></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="first_week">
+                                <td rowspan="12" class="weekday"><span>Понедельник</span></td>
+                                <td rowspan="2" class="time">8:30 - 10.05</td>
+                                <td colspan="4" class="subject">Управление данными (л) 122 Лаб
+                                    <div class="control_update">
+                                        <button class="btn btn-success btn-xs">Изменить</button>
+                                        <button class="btn btn-danger btn-xs">Удалить</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject" colspan="2">
+                                    <div class="control_add">
+                                        <button class="btn btn-primary btn-xs" data-subgroup_id="$subgroup_id" data-num_week="$num_week" data-week_day="$week_day" data-num_subject="$num_subject" data-toggle="tooltip" data-placement="top" title="$tooltip_text">Добавить</button>
+                                    </div>
+                                </td>
+                                <td class="subject" colspan="2">Управление данными (лаб) 204 Лаб
+                                    <div class="control_update">
+                                        <button class="btn btn-success btn-xs">Изменить</button>
+                                        <button class="btn btn-danger btn-xs">Удалить</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">10:15 - 11.50</td>
+                                <td colspan="4" rowspan="2" class="subject">Информационные технологии (л) 122 Лаб
+                                    <div class="control_update">
+                                        <button class="btn btn-success btn-xs">Изменить</button>
+                                        <button class="btn btn-danger btn-xs">Удалить</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="second_week">
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">12:30 - 14:05</td>
+                                <td class="subject" colspan="2">Управление данными (лаб) 204 Лаб
+                                    <div class="control_update">
+                                        <button class="btn btn-success btn-xs">Изменить</button>
+                                        <button class="btn btn-danger btn-xs">Удалить</button>
+                                    </div>
+                                </td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject" colspan="2"></td>
+                                <td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">14:15 - 16:50</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">16:00 - 17:35</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">17:45 - 19:20</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject" colspan="2"></td>
+                            </tr>
+                            <tr class="delimiter">
+                                <td colspan="6"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="12" class="weekday"><span>Вторник</span></td>
+                                <td rowspan="2" class="time">8:30 - 10.05</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">10:15 - 11.50</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">12:30 - 14:05</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject" colspan="2"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">14:15 - 16:50</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">16:00 - 17:35</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">17:45 - 19:20</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="delimiter">
+                                <td colspan="6"></td>
+                            </tr>
+                            <tr class="first_week">
 
-                    <td rowspan="12" class="weekday"><span>Среда</span></td>
+                                <td rowspan="12" class="weekday"><span>Среда</span></td>
 
-                    <td rowspan="2" class="time">8:30 - 10.05</td>
+                                <td rowspan="2" class="time">8:30 - 10.05</td>
 
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                </tr>
+                            </tr>
 
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
 
 
 
@@ -214,26 +218,26 @@
 
 
 
-                <tr class="first_week">
+                            <tr class="first_week">
 
 
-                    <td rowspan="2" class="time">10:15 - 11.50</td>
+                                <td rowspan="2" class="time">10:15 - 11.50</td>
 
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                </tr>
+                            </tr>
 
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
 
 
 
@@ -241,28 +245,28 @@
 
 
 
-                <tr class="first_week">
+                            <tr class="first_week">
 
 
-                    <td rowspan="2" class="time">12:30 - 14:05</td>
+                                <td rowspan="2" class="time">12:30 - 14:05</td>
 
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
-                    <td class="subject" colspan="2" rowspan="2">WEB-программирование (Лекция) 204 Г
-                        <div class="control_update">
-                            <button class="btn btn-success btn-xs" data-schedule_id="$subject->id" data-subgroup_id="$subject->subgroup_id" data-teacher_id="$subject->teacher_id" data-subject_id="$subject->subject_id" data-classroom_id="$subject->classroom_id" id="control_update" data-type_subject_id="$subject->type_subject_id">Изменить</button>
-                            <button class="btn btn-danger btn-xs" data-schedule_id="$subject->id">Удалить</button>
-                        </div>
-                    </td>
+                                <td class="subject" colspan="2" rowspan="2">WEB-программирование (Лекция) 204 Г
+                                    <div class="control_update">
+                                        <button class="btn btn-success btn-xs">Изменить</button>
+                                        <button class="btn btn-danger btn-xs">Удалить</button>
+                                    </div>
+                                </td>
 
-                </tr>
+                            </tr>
 
-                <tr class="second_week">
-                    <td class="subject"></td>
-                </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td>
+                            </tr>
 
 
 
@@ -270,26 +274,26 @@
 
 
 
-                <tr class="first_week">
+                            <tr class="first_week">
 
 
-                    <td rowspan="2" class="time">14:15 - 16:50</td>
+                                <td rowspan="2" class="time">14:15 - 16:50</td>
 
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                </tr>
+                            </tr>
 
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
 
 
 
@@ -297,26 +301,26 @@
 
 
 
-                <tr class="first_week">
+                            <tr class="first_week">
 
 
-                    <td rowspan="2" class="time">16:00 - 17:35</td>
+                                <td rowspan="2" class="time">16:00 - 17:35</td>
 
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                </tr>
+                            </tr>
 
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
 
 
 
@@ -324,234 +328,237 @@
 
 
 
-                <tr class="first_week">
+                            <tr class="first_week">
 
 
-                    <td rowspan="2" class="time">17:45 - 19:20</td>
+                                <td rowspan="2" class="time">17:45 - 19:20</td>
 
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                </tr>
+                            </tr>
 
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
 
 
 
-                <tr class="delimiter">
-                    <td colspan="6"></td>
-                </tr>
+                            <tr class="delimiter">
+                                <td colspan="6"></td>
+                            </tr>
 
 
 
 
-                <tr class="first_week">
+                            <tr class="first_week">
 
-                    <td rowspan="12" class="weekday"><span>Четверг</span></td>
+                                <td rowspan="12" class="weekday"><span>Четверг</span></td>
 
-                    <td rowspan="2" class="time">8:30 - 10.05</td>
+                                <td rowspan="2" class="time">8:30 - 10.05</td>
 
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
 
 
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">10:15 - 11.50</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">12:30 - 14:05</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">14:15 - 16:50</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">16:00 - 17:35</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">17:45 - 19:20</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="delimiter">
-                    <td colspan="6"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="12" class="weekday"><span>Пятница</span></td>
-                    <td rowspan="2" class="time">8:30 - 10.05</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">10:15 - 11.50</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">12:30 - 14:05</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">14:15 - 16:50</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">16:00 - 17:35</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">17:45 - 19:20</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="delimiter">
-                    <td colspan="6"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="12" class="weekday"><span>Суббота</span></td>
-                    <td rowspan="2" class="time">8:30 - 10.05</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">10:15 - 11.50</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">12:30 - 14:05</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">14:15 - 16:50</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">16:00 - 17:35</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                <tr class="first_week">
-                    <td rowspan="2" class="time">17:45 - 19:20</td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                    <td class="subject"></td>
-                    <td class="subject" rowspan="2"></td>
-                </tr>
-                <tr class="second_week">
-                    <td class="subject"></td><td class="subject"></td>
-                </tr>
-                </tbody>
-            </table>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">10:15 - 11.50</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">12:30 - 14:05</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">14:15 - 16:50</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">16:00 - 17:35</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">17:45 - 19:20</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="delimiter">
+                                <td colspan="6"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="12" class="weekday"><span>Пятница</span></td>
+                                <td rowspan="2" class="time">8:30 - 10.05</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">10:15 - 11.50</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">12:30 - 14:05</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">14:15 - 16:50</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">16:00 - 17:35</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">17:45 - 19:20</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="delimiter">
+                                <td colspan="6"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="12" class="weekday"><span>Суббота</span></td>
+                                <td rowspan="2" class="time">8:30 - 10.05</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">10:15 - 11.50</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">12:30 - 14:05</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">14:15 - 16:50</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">16:00 - 17:35</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            <tr class="first_week">
+                                <td rowspan="2" class="time">17:45 - 19:20</td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                                <td class="subject"></td>
+                                <td class="subject" rowspan="2"></td>
+                            </tr>
+                            <tr class="second_week">
+                                <td class="subject"></td><td class="subject"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

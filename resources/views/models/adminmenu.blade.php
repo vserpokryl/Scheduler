@@ -57,7 +57,7 @@
                             <a>Предметы</a>
                         </router-link>
                         <router-link to="/edit/buildings" tag="li">
-                            <a>Корпусы</a>
+                            <a>Корпуса</a>
                         </router-link>
                         <router-link to="/edit/classrooms" tag="li">
                             <a>Кабинеты</a>

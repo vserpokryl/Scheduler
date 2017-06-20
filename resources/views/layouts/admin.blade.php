@@ -21,16 +21,7 @@
 <div id="app">
     @include('models.adminmenu')
 
-    <div class="wrapper">
-        <div class="header header-filter" style="background-image: url('/img/city2.jpg');"></div>
-        <div class="main main-raised">
-            <div class="container">
-
-                <router-view></router-view>
-                <div style="margin-bottom: 20px;"></div>
-            </div>
-        </div>
-    </div>
+    <router-view></router-view>
 </div>
 <footer class="footer">
     <div class="container">

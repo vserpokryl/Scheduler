@@ -1,140 +1,147 @@
 <template>
     <div>
-        <h3>Группы</h3>
-        <div class="row">
-            <h4>Выберите факультет</h4>
-            <v-select
-                :options="faculties"
-                v-model="faculty"
-                placeholder="Выберите факультет">
-                <div slot="no-options">Ничего не найдено</div>
-            </v-select>
-        </div>
-        <div class="row">
-            <h4>Выберите группу</h4>
-            <v-select
-                :options="groups"
-                v-model="group"
-                placeholder="Выберите группу">
-                <div slot="no-options">Ничего не найдено</div>
-            </v-select>
-        </div>
+        <div class="wrapper">
+            <div class="header header-filter"></div>
+            <div class="main main-raised">
+                <div class="container">
+                    <h3>Группы</h3>
+                    <div class="row">
+                        <h4>Выберите факультет</h4>
+                        <v-select
+                            :options="faculties"
+                            v-model="faculty"
+                            placeholder="Выберите факультет">
+                            <div slot="no-options">Ничего не найдено</div>
+                        </v-select>
+                    </div>
+                    <div class="row">
+                        <h4>Выберите группу</h4>
+                        <v-select
+                            :options="groups"
+                            v-model="group"
+                            placeholder="Выберите группу">
+                            <div slot="no-options">Ничего не найдено</div>
+                        </v-select>
+                    </div>
 
-        <hr>
-        <div class="row">
-            <h4>Добавить подгруппу</h4>
+                    <hr>
+                    <div class="row">
+                        <h4>Добавить подгруппу</h4>
 
-            <div class="col-md-6">
-                <form-input
-                    type="text"
-                    name="name_subgroup"
-                    label="Название подгруппы"
-                    v-model="name_subgroup"
-                    :error="name_subgroup_error"
-                    @error="name_subgroup_error = arguments[0]">
-                </form-input>
+                        <div class="col-md-6">
+                            <form-input
+                                type="text"
+                                name="name_subgroup"
+                                label="Название подгруппы"
+                                v-model="name_subgroup"
+                                :error="name_subgroup_error"
+                                @error="name_subgroup_error = arguments[0]">
+                            </form-input>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input type="submit" class="btn pull-right btn-success" value="Добавить">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h4>Управление подгруппами{{ group ? ' у группы ' : '' }}{{ group }}</h4>
+
+                        <v-table :data="subgroups" :columns="subgroups_columns"></v-table>
+                    </div>
+
+                    <div class="row">
+                        <h4>Добавить период учебы{{ group ? ' для группы ' : '' }}{{ group }}</h4>
+
+                        <div class="col-md-6">
+                            <datepicker
+                                    label="Дата начала учебы"
+                                    name="start_of_study"
+                                    :config="configStartDate"
+                                    v-model="start_of_study"
+                                    :error="start_of_study_error"
+                                    @error="start_of_study_error = arguments[0]"
+                            >
+                            </datepicker>
+                        </div>
+                        <div class="col-md-6">
+                            <datepicker
+                                    label="Дата конца учебы"
+                                    name="end_of_study"
+                                    :config="configEndDate"
+                                    v-model="end_of_study"
+                                    :error="end_of_study_error"
+                                    @error="end_of_study_error = arguments[0]"
+                            >
+                            </datepicker>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input type="submit" class="btn pull-right btn-success" value="Добавить">
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <h4>Управление периодами учебы{{ group ? ' для группы ' : '' }}{{ group }}</h4>
+
+                        <v-table :data="periods_of_study" :columns="periods_of_study_columns"></v-table>
+                    </div>
+
+                    <div class="row">
+                        <h4>Добавить группу{{ faculty ? ' на ' + faculty : '' }}</h4>
+
+                        <div class="col-md-12">
+                            <v-select
+                                    :options="form_trainings"
+                                    v-model="form_training"
+                                    placeholder="Выберите форму обучения">
+                                <div slot="no-options">Ничего не найдено</div>
+                            </v-select>
+                        </div>
+                        <div class="col-md-6">
+                            <form-input
+                                type="text"
+                                name="name_group"
+                                label="Название группы"
+                                v-model="name_group"
+                                :error="name_group_error"
+                                @error="name_group_error = arguments[0]">
+                            </form-input>
+                        </div>
+                        <div class="col-md-6">
+                            <form-input
+                                type="number"
+                                name="course_group"
+                                label="Курс"
+                                v-model="course_group"
+                                :error="course_group_error"
+                                @error="course_group_error = arguments[0]">
+                            </form-input>
+                        </div>
+                        <div class="col-md-6">
+                            <form-input
+                                type="number"
+                                name="number_people"
+                                label="Количество человек в группе"
+                                v-model="number_people"
+                                :error="number_people_error"
+                                @error="number_people_error = arguments[0]">
+                            </form-input>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input type="submit" class="btn pull-right btn-success" value="Добавить">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h4>Управление группами{{ faculty ? ' на факультете ' : '' }}{{ faculty }}</h4>
+
+                        <v-table :data="groups_table" :columns="groups_table_columns"></v-table>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-md-12">
-                <input type="submit" class="btn pull-right btn-success" value="Добавить">
-            </div>
-        </div>
-
-        <div class="row">
-            <h4>Управление подгруппами{{ group ? ' у группы ' : '' }}{{ group }}</h4>
-
-            <v-table :data="subgroups" :columns="subgroups_columns"></v-table>
-        </div>
-
-        <div class="row">
-            <h4>Добавить период учебы{{ group ? ' для группы ' : '' }}{{ group }}</h4>
-
-            <div class="col-md-6">
-                <datepicker
-                        label="Дата начала учебы"
-                        name="start_of_study"
-                        :config="configStartDate"
-                        v-model="start_of_study"
-                        :error="start_of_study_error"
-                        @error="start_of_study_error = arguments[0]"
-                >
-                </datepicker>
-            </div>
-            <div class="col-md-6">
-                <datepicker
-                        label="Дата конца учебы"
-                        name="end_of_study"
-                        :config="configEndDate"
-                        v-model="end_of_study"
-                        :error="end_of_study_error"
-                        @error="end_of_study_error = arguments[0]"
-                >
-                </datepicker>
-            </div>
-
-            <div class="col-md-12">
-                <input type="submit" class="btn pull-right btn-success" value="Добавить">
-            </div>
-
-        </div>
-
-        <div class="row">
-            <h4>Управление периодами учебы{{ group ? ' для группы ' : '' }}{{ group }}</h4>
-
-            <v-table :data="periods_of_study" :columns="periods_of_study_columns"></v-table>
-        </div>
-
-        <div class="row">
-            <h4>Добавить группу{{ faculty ? ' на ' + faculty : '' }}</h4>
-
-            <div class="col-md-12">
-                <v-select
-                        :options="form_trainings"
-                        v-model="form_training"
-                        placeholder="Выберите форму обучения">
-                    <div slot="no-options">Ничего не найдено</div>
-                </v-select>
-            </div>
-            <div class="col-md-6">
-                <form-input
-                    type="text"
-                    name="name_group"
-                    label="Название группы"
-                    v-model="name_group"
-                    :error="name_group_error"
-                    @error="name_group_error = arguments[0]">
-                </form-input>
-            </div>
-            <div class="col-md-6">
-                <form-input
-                    type="number"
-                    name="course_group"
-                    label="Курс"
-                    v-model="course_group"
-                    :error="course_group_error"
-                    @error="course_group_error = arguments[0]">
-                </form-input>
-            </div>
-            <div class="col-md-6">
-                <form-input
-                    type="number"
-                    name="number_people"
-                    label="Количество человек в группе"
-                    v-model="number_people"
-                    :error="number_people_error"
-                    @error="number_people_error = arguments[0]">
-                </form-input>
-            </div>
-
-            <div class="col-md-12">
-                <input type="submit" class="btn pull-right btn-success" value="Добавить">
-            </div>
-        </div>
-
-        <div class="row">
-            <h4>Управление группами{{ faculty ? ' на факультете ' : '' }}{{ faculty }}</h4>
-
-            <v-table :data="groups_table" :columns="groups_table_columns"></v-table>
         </div>
     </div>
 </template>

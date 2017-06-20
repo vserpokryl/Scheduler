@@ -44,6 +44,16 @@ class AdminsTableSeeder extends Seeder
                 'short_name'    => 'СМФ',
             ]));
 
+            $university->faculties()->save(factory(Faculty::class)->make([
+                'name'          => 'Факультет судовождения',
+                'short_name'    => 'СВФ',
+            ]));
+
+            $university->faculties()->save(factory(Faculty::class)->make([
+                'name'          => 'Факультет управление на водном транспорте',
+                'short_name'    => 'УВТ',
+            ]));
+
             DefaultTime::addDefaultTimes($university->id);
         });
     }

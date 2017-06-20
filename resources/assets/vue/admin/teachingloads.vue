@@ -1,223 +1,230 @@
 <template>
     <div>
-        <h3>Учебная нагрузка</h3>
-        <div class="row">
-            <h4>Выберите факультет</h4>
-            <v-select
-                :options="faculties"
-                v-model="faculty"
-                placeholder="Выберите факультет">
-                <div slot="no-options">Ничего не найдено</div>
-            </v-select>
-        </div>
-        <div class="row">
-            <h4>Выберите группу</h4>
-            <v-select
-                :options="groups"
-                v-model="group"
-                placeholder="Выберите группу">
-                <div slot="no-options">Ничего не найдено</div>
-            </v-select>
-        </div>
-        <div class="row">
-            <h4>Выберите период учебы для которого нужно заполнить учебную нагрузку</h4>
-            <v-select
-                :options="periods_of_study_format"
-                v-model="period_of_study"
-                placeholder="Выберите период учебы">
-                <div slot="no-options">Ничего не найдено</div>
-            </v-select>
-        </div>
+        <div class="wrapper">
+            <div class="header header-filter"></div>
+            <div class="main main-raised">
+                <div class="container">
+                    <h3>Учебная нагрузка</h3>
+                    <div class="row">
+                        <h4>Выберите факультет</h4>
+                        <v-select
+                            :options="faculties"
+                            v-model="faculty"
+                            placeholder="Выберите факультет">
+                            <div slot="no-options">Ничего не найдено</div>
+                        </v-select>
+                    </div>
+                    <div class="row">
+                        <h4>Выберите группу</h4>
+                        <v-select
+                            :options="groups"
+                            v-model="group"
+                            placeholder="Выберите группу">
+                            <div slot="no-options">Ничего не найдено</div>
+                        </v-select>
+                    </div>
+                    <div class="row">
+                        <h4>Выберите период учебы для которого нужно заполнить учебную нагрузку</h4>
+                        <v-select
+                            :options="periods_of_study_format"
+                            v-model="period_of_study"
+                            placeholder="Выберите период учебы">
+                            <div slot="no-options">Ничего не найдено</div>
+                        </v-select>
+                    </div>
 
-        <hr>
-        <div class="row">
-            <h4>Добавить период действия дисциплин в семестре{{ group ? ' для группы ' : '' }}{{ group }}</h4>
+                    <hr>
+                    <div class="row">
+                        <h4>Добавить период действия дисциплин в семестре{{ group ? ' для группы ' : '' }}{{ group }}</h4>
 
-            <div class="col-md-6">
-                <datepicker
-                    label="Дата начала действия дисциплин"
-                    name="start_of_study"
-                    :config="configStartDateDisciplines"
-                    v-model="start_date_disciplines"
-                    :error="start_date_disciplines_error"
-                    @error="start_date_disciplines_error = arguments[0]"
-                >
-                </datepicker>
-            </div>
-            <div class="col-md-6">
-                <datepicker
-                    label="Дата конца действия дисциплин"
-                    name="end_of_study"
-                    :config="configEndDateDisciplines"
-                    v-model="end_date_disciplines"
-                    :error="end_date_disciplines_error"
-                    @error="end_date_disciplines_error = arguments[0]"
-                >
-                </datepicker>
-            </div>
-
-            <div class="col-md-12">
-                <input type="submit" class="btn pull-right btn-success" value="Добавить">
-            </div>
-
-        </div>
-
-        <div class="row">
-            <h4>Управление периодами действия дисциплин в семестре{{ group ? ' для группы ' : '' }}{{ group }}</h4>
-
-            <v-table :data="periods_of_disciplines" :columns="periods_of_disciplines_columns"></v-table>
-        </div>
-
-        <div class="row">
-            <h4>Распределение учебной нагрузки</h4>
-
-            <div class="col-md-6 form-group">
-                <v-select
-                    :options="periods_of_disciplines_format"
-                    v-model="period_of_disciplines"
-                    placeholder="Выберите период действия дисциплины">
-                    <div slot="no-options">Ничего не найдено</div>
-                </v-select>
-            </div>
-
-            <div class="col-md-6 form-group">
-                <v-select
-                    :options="disciplines"
-                    v-model="discipline"
-                    placeholder="Выберите дисциплину">
-                    <div slot="no-options">Ничего не найдено</div>
-                </v-select>
-            </div>
-
-            <div class="col-md-6 form-group">
-                <v-select
-                    :options="teachers"
-                    v-model="teacher"
-                    placeholder="Выберите преподавателя">
-                    <div slot="no-options">Ничего не найдено</div>
-                </v-select>
-            </div>
-
-            <div class="col-md-6 form-group">
-                <v-select
-                    :options="classrooms"
-                    v-model="classroom"
-                    placeholder="Выберите аудиторию">
-                    <div slot="no-options">Ничего не найдено</div>
-                </v-select>
-            </div>
-
-            <div class="col-md-6 form-group">
-                <v-select
-                    :options="types_discipline"
-                    v-model="type_discipline"
-                    placeholder="Выберите тип занятия">
-                    <div slot="no-options">Ничего не найдено</div>
-                </v-select>
-            </div>
-
-            <div class="col-md-6">
-                <form-input
-                    type="number"
-                    name="count_hours"
-                    label="Количество часов в неделю"
-                    v-model="count_hours"
-                    :error="count_hours_error"
-                    @error="count_hours_error = arguments[0]">
-                </form-input>
-            </div>
-
-            <div class="col-md-12">
-                <div class="radio">
-                    <label>
-                        <input type="radio" v-model="forgroup" value="1">
-                        <span class="circle"></span>
-                        <span class="check"></span>
-                        Для группы
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" v-model="forgroup" value="2">
-                        <span class="circle"></span>
-                        <span class="check"></span>
-                        Для подгруппы
-                    </label>
-                </div>
-                <div v-if="forgroup === '2'">
-                    <div class="checkbox" v-for="subgroup in subgroups_format" style="margin-left: 20px">
-                        <label>
-                            <input
-                                type="checkbox"
-                                :value="subgroup"
-                                checked="checked"
-                                v-model="subgroups_checked"
+                        <div class="col-md-6">
+                            <datepicker
+                                label="Дата начала действия дисциплин"
+                                name="start_of_study"
+                                :config="configStartDateDisciplines"
+                                v-model="start_date_disciplines"
+                                :error="start_date_disciplines_error"
+                                @error="start_date_disciplines_error = arguments[0]"
                             >
-                            <span class="checkbox-material"><span class="check"></span></span>
-                            {{ subgroup.label }}
-                        </label>
+                            </datepicker>
+                        </div>
+                        <div class="col-md-6">
+                            <datepicker
+                                label="Дата конца действия дисциплин"
+                                name="end_of_study"
+                                :config="configEndDateDisciplines"
+                                v-model="end_date_disciplines"
+                                :error="end_date_disciplines_error"
+                                @error="end_date_disciplines_error = arguments[0]"
+                            >
+                            </datepicker>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input type="submit" class="btn pull-right btn-success" value="Добавить">
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <h4>Управление периодами действия дисциплин в семестре{{ group ? ' для группы ' : '' }}{{ group }}</h4>
+
+                        <v-table :data="periods_of_disciplines" :columns="periods_of_disciplines_columns"></v-table>
+                    </div>
+
+                    <div class="row">
+                        <h4>Распределение учебной нагрузки</h4>
+
+                        <div class="col-md-6 form-group">
+                            <v-select
+                                :options="periods_of_disciplines_format"
+                                v-model="period_of_disciplines"
+                                placeholder="Выберите период действия дисциплины">
+                                <div slot="no-options">Ничего не найдено</div>
+                            </v-select>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <v-select
+                                :options="disciplines"
+                                v-model="discipline"
+                                placeholder="Выберите дисциплину">
+                                <div slot="no-options">Ничего не найдено</div>
+                            </v-select>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <v-select
+                                :options="teachers"
+                                v-model="teacher"
+                                placeholder="Выберите преподавателя">
+                                <div slot="no-options">Ничего не найдено</div>
+                            </v-select>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <v-select
+                                :options="classrooms"
+                                v-model="classroom"
+                                placeholder="Выберите аудиторию">
+                                <div slot="no-options">Ничего не найдено</div>
+                            </v-select>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <v-select
+                                :options="types_discipline"
+                                v-model="type_discipline"
+                                placeholder="Выберите тип занятия">
+                                <div slot="no-options">Ничего не найдено</div>
+                            </v-select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <form-input
+                                type="number"
+                                name="count_hours"
+                                label="Количество часов в неделю"
+                                v-model="count_hours"
+                                :error="count_hours_error"
+                                @error="count_hours_error = arguments[0]">
+                            </form-input>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" v-model="forgroup" value="1">
+                                    <span class="circle"></span>
+                                    <span class="check"></span>
+                                    Для группы
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" v-model="forgroup" value="2">
+                                    <span class="circle"></span>
+                                    <span class="check"></span>
+                                    Для подгруппы
+                                </label>
+                            </div>
+                            <div v-if="forgroup === '2'">
+                                <div class="checkbox" v-for="subgroup in subgroups_format" style="margin-left: 20px">
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            :value="subgroup"
+                                            checked="checked"
+                                            v-model="subgroups_checked"
+                                        >
+                                        <span class="checkbox-material"><span class="check"></span></span>
+                                        {{ subgroup.label }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <input type="submit" class="btn pull-right btn-success" value="Добавить">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h4>Управление учебными нагрузками в семестре{{ group ? ' для группы ' : '' }}{{ group }}</h4>
+
+                        <v-table :data="teaching_load" :columns="teaching_load_columns" theadslot="true">
+                            <thead slot="theadslot">
+                                <tr>
+                                    <th class="VueTables__sortable" rowspan="2">
+                                        <span class="VueTables__heading">Дисциплина</span>
+                                    </th>
+                                    <th colspan="3">
+                                        <span class="VueTables__heading">Лекционный курс</span>
+                                    </th>
+                                    <th colspan="3">
+                                        <span class="VueTables__heading">Практические занятия</span>
+                                    </th>
+                                    <th colspan="4">
+                                        <span class="VueTables__heading">Лабораторные занятия</span>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span class="VueTables__heading">Фамилия И.О. преподавателя</span>
+                                    </th>
+                                    <th>
+                                        <span class="VueTables__heading vertical-text">Аудитория</span>
+                                    </th>
+                                    <th>
+                                        <span class="VueTables__heading vertical-text">Часы</span>
+                                    </th>
+                                    <th>
+                                        <span class="VueTables__heading">Фамилия И.О. преподавателя</span>
+                                    </th>
+                                    <th>
+                                        <span class="VueTables__heading vertical-text">Аудитория</span>
+                                    </th>
+                                    <th>
+                                        <span class="VueTables__heading vertical-text">Часы</span>
+                                    </th>
+                                    <th>
+                                        <span class="VueTables__heading">Фамилия И.О. преподавателя</span>
+                                    </th>
+                                    <th>
+                                        <span class="VueTables__heading vertical-text">Подгруппы</span>
+                                    </th>
+                                    <th>
+                                        <span class="VueTables__heading vertical-text">Аудитория</span>
+                                    </th>
+                                    <th>
+                                        <span class="VueTables__heading vertical-text">Часы</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </v-table>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-12">
-                <input type="submit" class="btn pull-right btn-success" value="Добавить">
-            </div>
-        </div>
-
-        <div class="row">
-            <h4>Управление учебными нагрузками в семестре{{ group ? ' для группы ' : '' }}{{ group }}</h4>
-
-            <v-table :data="teaching_load" :columns="teaching_load_columns" theadslot="true">
-                <thead slot="theadslot">
-                    <tr>
-                        <th class="VueTables__sortable" rowspan="2">
-                            <span class="VueTables__heading">Дисциплина</span>
-                        </th>
-                        <th colspan="3">
-                            <span class="VueTables__heading">Лекционный курс</span>
-                        </th>
-                        <th colspan="3">
-                            <span class="VueTables__heading">Практические занятия</span>
-                        </th>
-                        <th colspan="4">
-                            <span class="VueTables__heading">Лабораторные занятия</span>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <span class="VueTables__heading">Фамилия И.О. преподавателя</span>
-                        </th>
-                        <th>
-                            <span class="VueTables__heading vertical-text">Аудитория</span>
-                        </th>
-                        <th>
-                            <span class="VueTables__heading vertical-text">Часы</span>
-                        </th>
-                        <th>
-                            <span class="VueTables__heading">Фамилия И.О. преподавателя</span>
-                        </th>
-                        <th>
-                            <span class="VueTables__heading vertical-text">Аудитория</span>
-                        </th>
-                        <th>
-                            <span class="VueTables__heading vertical-text">Часы</span>
-                        </th>
-                        <th>
-                            <span class="VueTables__heading">Фамилия И.О. преподавателя</span>
-                        </th>
-                        <th>
-                            <span class="VueTables__heading vertical-text">Подгруппы</span>
-                        </th>
-                        <th>
-                            <span class="VueTables__heading vertical-text">Аудитория</span>
-                        </th>
-                        <th>
-                            <span class="VueTables__heading vertical-text">Часы</span>
-                        </th>
-                    </tr>
-                </thead>
-            </v-table>
         </div>
     </div>
 </template>

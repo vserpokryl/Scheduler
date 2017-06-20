@@ -33,7 +33,7 @@ window.$.noty.defaults = {
 
     template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
 
-    timeout: 3500, // [integer|boolean] delay for closing event in milliseconds. Set false for sticky notifications
+    timeout: 5000, // [integer|boolean] delay for closing event in milliseconds. Set false for sticky notifications
     progressBar: true, // [boolean] - displays a progress bar
 
     animation: {
