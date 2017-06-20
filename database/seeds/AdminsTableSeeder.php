@@ -26,7 +26,7 @@ class AdminsTableSeeder extends Seeder
         ])->each(function ($university) {
             $university->admins()->save(factory(Admin::class)->make([
                 'email'         => 'test@test.ru',
-                'password'      => 'password'
+                'password'      => 'password',
             ]));
 
             $university->faculties()->save(factory(Faculty::class)->make([

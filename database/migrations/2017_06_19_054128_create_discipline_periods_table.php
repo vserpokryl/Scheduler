@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateDisciplinePeriodsTable
+ * Class CreateDisciplinePeriodsTable.
  */
 class CreateDisciplinePeriodsTable extends Migration
 {

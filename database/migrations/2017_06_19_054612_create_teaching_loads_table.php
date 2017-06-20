@@ -7,7 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateTeachingLoadsTable
+ * Class CreateTeachingLoadsTable.
  */
 class CreateTeachingLoadsTable extends Migration
 {
